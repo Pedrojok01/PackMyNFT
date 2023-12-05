@@ -1,0 +1,35 @@
+{
+  "name": "pack-my-nft",
+  "version": "1.0.0",
+  "description": "Bundle your assets into NFTs",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "build": "forge build",
+    "test": "forge test -vvv",
+    "cover": "forge coverage",
+    "lint": "solhint \"src/**/*.sol\"",
+    "prettier": "prettier --write --plugin=prettier-plugin-solidity \"**/*.sol\"",
+    "slither": "slither src/PackMyNFT.sol --solc-remaps @openzeppelin=lib/openzeppelin-contracts",
+    "deploy:forge": " export $(cat .env | xargs) && forge script ./scripts/foundry/deploy_faucet.s.sol --private-key ${PRIVATE_KEY} --broadcast  --rpc-url 'https://kovan.infura.io/v3/'${INFURA_API_KEY}"
+  },
+  "repository": {
+    "type": "git"
+  },
+  "keywords": [
+    "forge",
+    "template",
+    "erc20",
+    "openzeppelin",
+    "Solidity"
+  ],
+  "author": "Pedrojok01",
+  "license": "MIT",
+  "devDependencies": {
+    "prettier": "^3.1.0",
+    "prettier-plugin-solidity": "^1.2.0",
+    "solhint": "^4.0.0",
+    "solhint-plugin-prettier": "^0.1.0"
+  }
+}

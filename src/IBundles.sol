@@ -33,7 +33,6 @@ interface IBundles {
      */
     function safeMint(
         address to,
-        uint256 lvlMin,
         address[] calldata addresses,
         uint256[] memory numbers
     ) external payable returns (uint256 tokenId);
@@ -43,12 +42,4 @@ interface IBundles {
      * @param tokenId of the token to burn
      */
     function burn(uint256 tokenId) external;
-
-    /**
-     * @dev burn this token and releases assembled assets
-     * @param tokenId of the token to burn
-     */
-    function getBundleData(
-        uint256 tokenId
-    ) external view returns (address[] memory, uint256[] memory);
 }
