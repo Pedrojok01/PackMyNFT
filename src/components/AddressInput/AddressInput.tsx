@@ -55,8 +55,8 @@ const AddressInput: FC<AddressInputProps> = ({ receiver, setReceiver }) => {
     const validAddress = isValidEthAddress(receiver)
       ? receiver
       : isAddress(resolvedAddress as string) && resolvedAddress !== zeroAddress
-      ? resolvedAddress
-      : undefined;
+        ? resolvedAddress
+        : undefined;
 
     if (validAddress) return <Jazzicons seed={validAddress.toLowerCase()} size={30} />;
     if (!resolvedAddress && receiver && !isResolvingInProgress)

@@ -3,7 +3,7 @@ import { type ReactNode, useState, useEffect } from "react";
 
 import { CacheProvider } from "@chakra-ui/next-js";
 import { extendTheme, ChakraProvider } from "@chakra-ui/react";
-import { RainbowKitProvider } from "@rainbow-me/rainbowkit";
+import { RainbowKitProvider, lightTheme } from "@rainbow-me/rainbowkit";
 import { WagmiConfig } from "wagmi";
 
 import { chains, config } from "@/wagmi";
@@ -23,7 +23,14 @@ export function Providers({ children }: { children: ReactNode }) {
     <WagmiConfig config={config}>
       <CacheProvider>
         <ChakraProvider resetCSS theme={theme}>
-          <RainbowKitProvider coolMode chains={chains} appInfo={appInfo}>
+          <RainbowKitProvider
+            coolMode
+            chains={chains}
+            appInfo={appInfo}
+            theme={lightTheme({
+              accentColor: "#008080",
+            })}
+          >
             {mounted && children}
           </RainbowKitProvider>
         </ChakraProvider>

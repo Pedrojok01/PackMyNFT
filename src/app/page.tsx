@@ -1,15 +1,32 @@
 "use client";
 import { Box, Flex } from "@chakra-ui/react";
+import Image from "next/image";
+import shape_bottom from "public/img/background_shape_bottom.png";
+import shape_top from "public/img/background_shape_top.png";
 
-import { Footer, Header, MainPane } from "@/components";
+import { Footer, Header, MintPane } from "@/components";
 
 export default function Home() {
   return (
-    <Flex flexDirection="column" minHeight="100vh">
+    <Flex flexDirection="column" minHeight="100vh" position="relative">
       <Header />
 
+      <Box position="absolute" top="0" right="0" zIndex={-10}>
+        <Image alt="background shape" src={shape_top.src} width={350} height={350} layout="fixed" />
+      </Box>
+
       <Box as="main" flex={1} p={4}>
-        <MainPane />
+        <MintPane />
+      </Box>
+
+      <Box position="absolute" bottom="0" left="0" zIndex={-10}>
+        <Image
+          alt="background shape"
+          src={shape_bottom.src}
+          width={350}
+          height={350}
+          layout="fixed"
+        />
       </Box>
 
       <Footer />

@@ -16,7 +16,7 @@ import {
   SignMessage,
 } from "./components";
 
-const MainPane: FC = () => {
+const MintPane: FC = () => {
   const { isConnected } = useAccount();
   const { colorMode } = useColorMode();
 
@@ -24,9 +24,10 @@ const MainPane: FC = () => {
     <Box
       className={styles.container}
       border={colorMode === "light" ? "none" : "1px solid rgba(152, 161, 192, 0.24)"}
+      backgroundColor={colorMode === "light" ? "#fff" : "#1a202c"}
     >
       <Heading as="h2" fontSize={"2rem"} mb={10} className="text-shadow">
-        Display Info
+        Mint Packs
       </Heading>
 
       <Flex className={styles.content}>
@@ -58,4 +59,4 @@ const MainPane: FC = () => {
   );
 };
 
-export default MainPane;
+export default MintPane;
