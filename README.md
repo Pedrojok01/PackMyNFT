@@ -5,12 +5,12 @@
 
 <h1><strong> Next Web3 Boilerplate </strong></h1>
 
-[![Stargazers](https://img.shields.io/github/stars/Pedrojok01/Next-Web3-Boilerplate)](https://github.com/Pedrojok01/Next-Web3-Boilerplate/stargazers)
-[![Forks](https://img.shields.io/github/forks/Pedrojok01/Next-Web3-Boilerplate)](https://github.com/Pedrojok01/Next-Web3-Boilerplate/issues)
-[![Issues](https://img.shields.io/github/issues/Pedrojok01/Next-Web3-Boilerplate)](https://github.com/Pedrojok01/Next-Web3-Boilerplate/issues)
-[![MIT License](https://img.shields.io/github/license/Pedrojok01/Next-Web3-Boilerplate)](https://github.com/Pedrojok01/Next-Web3-Boilerplate/blob/main/License)
+[![Stargazers](https://img.shields.io/github/stars/Pedrojok01/PackMyNFT)](https://github.com/Pedrojok01/PackMyNFT/stargazers)
+[![Forks](https://img.shields.io/github/forks/Pedrojok01/PackMyNFT)](https://github.com/Pedrojok01/PackMyNFT/issues)
+[![Issues](https://img.shields.io/github/issues/Pedrojok01/PackMyNFT)](https://github.com/Pedrojok01/PackMyNFT/issues)
+[![MIT License](https://img.shields.io/github/license/Pedrojok01/PackMyNFT)](https://github.com/Pedrojok01/PackMyNFT/blob/main/License)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-blue?logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/pierre-e/)
-![Vercel](https://img.shields.io/github/deployments/Pedrojok01/Next-Web3-Boilerplate/production?label=Vercel&logo=Vercel&logoColor=white)
+![Vercel](https://img.shields.io/github/deployments/Pedrojok01/PackMyNFT/production?label=Vercel&logo=Vercel&logoColor=white)
 
 <br></br>
 
@@ -22,7 +22,7 @@
 
 Simple and minimalist Web3 boilerplate to boost your Dapp development. Built using the latest tech outhere: [Next.js](https://nextjs.org/), [Viem](https://viem.sh/), [Wagmi](https://wagmi.sh/), [RainbowKit](https://www.rainbowkit.com/), [ChakraUI](https://chakra-ui.com/) and [Typescript](https://www.typescriptlang.org/). Eslint, Prettier and Husky already configured. The perfect starting point for your next web3 project.
 
-Try it yourself: [https://next-web3-boilerplate.com/](https://next-web3-boilerplate.com/)
+Try it yourself: [https://packmynft.com/](https://packmynft.com/)
 
 ## Built With
 
@@ -47,7 +47,7 @@ Try it yourself: [https://next-web3-boilerplate.com/](https://next-web3-boilerpl
 ### Once your config is ready, create a new repo, open your favorite code editor, and clone the repo with the following cmd:
 
 ```bash
-git clone https://github.com/Pedrojok01/Next-Web3-Boilerplate.git .
+git clone https://github.com/Pedrojok01/PackMyNFT.git .
 ```
 
 ### Install all package dependancies by running:
@@ -75,7 +75,7 @@ NEXT_PUBLIC_ALCHEMY_API_KEY = "Your Alchemy API key here";
 
 You can also use any other node provider instead or in addition to [Alchemy](https://www.alchemy.com/).
 
-### To start the Next-Web3-Boilerplate:
+### To start the PackMyNFT:
 
 First, run the development server:
 

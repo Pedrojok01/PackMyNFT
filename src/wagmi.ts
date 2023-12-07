@@ -35,7 +35,7 @@ const { chains, publicClient, webSocketPublicClient } = configureChains(
 );
 
 const { wallets } = getDefaultWallets({
-  appName: "Next-Web3-Boilerplate",
+  appName: "PackMyNFT",
   projectId: walletConnectProjectId,
   chains,
 });

@@ -6,10 +6,10 @@
   "license": "MIT",
   "private": true,
   "homepage": "https://packmynft.com",
-  "bugs": "https://github.com/Pedrojok01/Next-Web3-Boilerplate/issues",
+  "bugs": "https://github.com/Pedrojok01/PackMyNFT/issues",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Pedrojok01/Next-Web3-Boilerplate"
+    "url": "https://github.com/Pedrojok01/PackMyNFT"
   },
   "scripts": {
     "dev": "next dev",

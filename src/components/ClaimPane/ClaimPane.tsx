@@ -16,7 +16,7 @@ import {
   SignMessage,
 } from "./components";
 
-const MainPane: FC = () => {
+const ClaimPane: FC = () => {
   const { isConnected } = useAccount();
   const { colorMode } = useColorMode();
 
@@ -27,7 +27,7 @@ const MainPane: FC = () => {
       backgroundColor={colorMode === "light" ? "#fff" : "#1a202c"}
     >
       <Heading as="h2" fontSize={"2rem"} mb={10} className="text-shadow">
-        Display Info
+        Claim Pack
       </Heading>
 
       <Flex className={styles.content}>
@@ -59,4 +59,4 @@ const MainPane: FC = () => {
   );
 };
 
-export default MainPane;
+export default ClaimPane;

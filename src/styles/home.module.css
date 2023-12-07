@@ -1,0 +1,11 @@
+/* Add this to your global.css or a relevant CSS module */
+@media (max-width: 300px) {
+  .homePageContainer {
+    flex-direction: column;
+  }
+
+  .homePageContainer > div {
+    width: 100%;
+    transform: none; /* Remove rotation on small devices */
+  }
+}

@@ -1,1 +1,1 @@
-export { default as MainPane } from "./MainPane";
+export { default as ClaimPane } from "./ClaimPane";

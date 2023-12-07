@@ -1,4 +1,5 @@
 export * from "./AddressInput";
+export * from "./ClaimPane";
 export * from "./DarkModeButton";
 export * from "./Footer";
 export * from "./Header";

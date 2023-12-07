@@ -1,35 +1,27 @@
+// page.tsx
 "use client";
-import { Box, Flex } from "@chakra-ui/react";
+import { Box, Flex, Text } from "@chakra-ui/react";
 import Image from "next/image";
-import shape_bottom from "public/img/background_shape_bottom.png";
-import shape_top from "public/img/background_shape_top.png";
+import packNFT from "public/img/pack-my-nft.png";
 
-import { Footer, Header, MintPane } from "@/components";
+import CustomLayout from "@/components/CustomLayout";
 
 export default function Home() {
   return (
-    <Flex flexDirection="column" minHeight="100vh" position="relative">
-      <Header />
+    <CustomLayout>
+      <Flex align="center" justify="space-between">
+        <Box width="50%">
+          <Text fontSize="lg" fontWeight="bold">
+            Pack My NFT
+          </Text>
+          <Text>Additional line 1</Text>
+          <Text>Additional line 2</Text>
+        </Box>
 
-      <Box position="absolute" top="0" right="0" zIndex={-10}>
-        <Image alt="background shape" src={shape_top.src} width={350} height={350} layout="fixed" />
-      </Box>
-
-      <Box as="main" flex={1} p={4}>
-        <MintPane />
-      </Box>
-
-      <Box position="absolute" bottom="0" left="0" zIndex={-10}>
-        <Image
-          alt="background shape"
-          src={shape_bottom.src}
-          width={350}
-          height={350}
-          layout="fixed"
-        />
-      </Box>
-
-      <Footer />
-    </Flex>
+        <Box width="50%" transform="rotate(10deg)">
+          <Image src={packNFT.src} alt="Pack My NFT" layout="responsive" width={200} height={200} />
+        </Box>
+      </Flex>
+    </CustomLayout>
   );
 }

@@ -1,3 +1,4 @@
+"use client";
 import { type FC, type ChangeEvent, type MouseEvent, useEffect, useState } from "react";
 
 import { Button, Input, VStack } from "@chakra-ui/react";

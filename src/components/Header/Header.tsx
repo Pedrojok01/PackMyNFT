@@ -1,9 +1,10 @@
 "use client";
 import { type FC } from "react";
 
-import { Box, Center, HStack, Heading, useColorMode } from "@chakra-ui/react";
+import { Box, Center, HStack, Heading, Link, useColorMode } from "@chakra-ui/react";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import Image from "next/image";
+import NextLink from "next/link";
 import logo from "public/img/packmynft_logo.png";
 
 import { useWindowSize } from "@/hooks/useWindowSize";
@@ -21,8 +22,13 @@ const Header: FC = () => {
       className={styles.menuContainer}
       background={colorMode === "light" ? "#fff" : "#1a202c"}
     >
-      <Box className={styles.menuItem}>Mint</Box>
-      <Box className={styles.menuItem}>Claim</Box>
+      <Link as={NextLink} href="/mint" style={{ textDecoration: "none" }}>
+        <Box className={styles.menuItem}>Mint</Box>
+      </Link>
+
+      <Link as={NextLink} href="/claim" style={{ textDecoration: "none" }}>
+        <Box className={styles.menuItem}>Claim</Box>
+      </Link>
     </Center>
   );
 
@@ -36,14 +42,16 @@ const Header: FC = () => {
         zIndex={10}
         justifyContent={"space-between"}
       >
-        <HStack>
-          <Image src={logo.src} alt="logo" width={45} height={45} />
-          {!isTablet && (
-            <Heading as="h1" fontSize={"1.5rem"} className="text-shadow">
-              Pack My NFT
-            </Heading>
-          )}
-        </HStack>
+        <Link as={NextLink} href="/" style={{ textDecoration: "none" }}>
+          <HStack>
+            <Image src={logo.src} alt="logo" width={45} height={45} />
+            {!isTablet && (
+              <Heading as="h1" fontSize={"1.5rem"} className="text-shadow">
+                Pack My NFT
+              </Heading>
+            )}
+          </HStack>
+        </Link>
 
         {!isTablet && menuIems}
 
