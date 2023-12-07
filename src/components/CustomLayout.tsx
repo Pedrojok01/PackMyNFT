@@ -21,7 +21,7 @@ const CustomLayout: FC<CustomLayoutProps> = ({ children }) => {
         <Image alt="background shape" src={shape_top.src} width={350} height={350} layout="fixed" />
       </Box>
 
-      <Box as="main" flex={1} p={4}>
+      <Box as="main" flex={1} p={4} pt={"4rem"}>
         {children}
       </Box>
 

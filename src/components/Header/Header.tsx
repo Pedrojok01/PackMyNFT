@@ -6,6 +6,7 @@ import { ConnectButton } from "@rainbow-me/rainbowkit";
 import Image from "next/image";
 import NextLink from "next/link";
 import logo from "public/img/packmynft_logo.png";
+import { useAccount } from "wagmi";
 
 import { useWindowSize } from "@/hooks/useWindowSize";
 import styles from "@/styles/header.module.css";
@@ -13,8 +14,9 @@ import styles from "@/styles/header.module.css";
 import { DarkModeButton } from "../DarkModeButton";
 
 const Header: FC = () => {
-  const { isTablet } = useWindowSize();
+  const { isTablet, isSmallScreen } = useWindowSize();
   const { colorMode } = useColorMode();
+  const { isConnected } = useAccount();
 
   const menuIems = (
     <Center
@@ -53,7 +55,7 @@ const Header: FC = () => {
           </HStack>
         </Link>
 
-        {!isTablet && menuIems}
+        {!isSmallScreen && isConnected && menuIems}
 
         <HStack>
           <ConnectButton />
@@ -61,7 +63,7 @@ const Header: FC = () => {
         </HStack>
       </HStack>
 
-      {isTablet && menuIems}
+      {isSmallScreen && isConnected && menuIems}
     </Box>
   );
 };
