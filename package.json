@@ -26,7 +26,10 @@
   ],
   "author": "Pedrojok01",
   "license": "MIT",
+  "type": "module",
   "devDependencies": {
+    "axios": "^1.6.2",
+    "dotenv": "^16.3.1",
     "prettier": "^3.1.0",
     "prettier-plugin-solidity": "^1.2.0",
     "solhint": "^4.0.0",

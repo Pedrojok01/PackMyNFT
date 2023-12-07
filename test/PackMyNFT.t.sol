@@ -14,7 +14,10 @@ contract PackMyNFTInvariant is Helpers {
         string memory uri = packMyNFT.tokenURI(tokenId);
 
         // Assertions
-        assertEq(uri, "https://test.com/");
+        assertEq(
+            uri,
+            "ipfs://QmPdWmcbxqco4vBZf9cL6XsTHHNF54tVzu2JoMN357pwqw/metadata.json"
+        );
     }
 
     function test_TokenURI_NonexistentToken() public {

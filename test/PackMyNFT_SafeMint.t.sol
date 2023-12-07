@@ -17,7 +17,10 @@ contract PackMyNFTTest_SafeMint is Helpers {
 
         // Assertions
         assertEq(packMyNFT.ownerOf(tokenId), user1);
-        assertEq(packMyNFT.tokenURI(tokenId), "https://test.com/");
+        assertEq(
+            packMyNFT.tokenURI(tokenId),
+            "ipfs://QmPdWmcbxqco4vBZf9cL6XsTHHNF54tVzu2JoMN357pwqw/metadata.json"
+        );
         assertEq(address(packMyNFT).balance, 1 ether);
         assertEq(mockERC20.balanceOf(address(packMyNFT)), 100);
     }
@@ -34,6 +37,39 @@ contract PackMyNFTTest_SafeMint is Helpers {
         assertEq(packMyNFT.ownerOf(tokenId_2), user2);
         assertEq(tokenId_3, 2);
         assertEq(packMyNFT.ownerOf(tokenId_3), user3);
+    }
+
+    function test_SafeMint_InvalidArrayLength() public {
+        address[] memory addresses = new address[](1);
+        addresses[0] = address(mockERC20);
+
+        uint256[] memory numbers = new uint256[](17);
+        numbers[0] = 2 ether; // Expected ETH amount
+        numbers[1] = 1; // ERC20 length
+        numbers[2] = 1; // ERC721 length
+        numbers[3] = 10; // ERC1155 length
+        numbers[4] = 1000; // ERC20 amount
+        numbers[5] = 0;
+        numbers[6] = 0;
+        numbers[7] = 0;
+        numbers[8] = 0;
+        numbers[9] = 0;
+        numbers[10] = 0;
+        numbers[11] = 0;
+        numbers[12] = 0;
+        numbers[13] = 0;
+        numbers[14] = 0;
+        numbers[15] = 0;
+        numbers[16] = 0;
+
+        vm.prank(user1);
+        mockERC20.approve(address(packMyNFT), numbers[4]);
+
+        vm.expectRevert(
+            abi.encodeWithSignature("PackMyNFT__InvalidArraysLength()")
+        );
+        vm.prank(user1);
+        packMyNFT.safeMint{value: 2 ether}(user1, addresses, numbers); // Incorrect Array length
     }
 
     function test_SafeMint_WithIncorrectEthValue() public {
@@ -62,7 +98,6 @@ contract PackMyNFTTest_SafeMint is Helpers {
         PackMyNFT limitedSupplyContract = new PackMyNFT(
             "PackMyNFT",
             "PMNFT",
-            "https://test.com/",
             1
         );
 

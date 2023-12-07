@@ -51,7 +51,6 @@ contract PackMyNFTTest_BatchMint is Helpers {
         PackMyNFT limitedSupplyContract = new PackMyNFT(
             "PackMyNFT",
             "PMNFT",
-            "https://test.com/",
             1
         );
 

@@ -7,7 +7,12 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 contract MockERC1155 is ERC1155, Ownable {
     constructor(
         address initialOwner
-    ) ERC1155('"https://test.com/"') Ownable(initialOwner) {}
+    )
+        ERC1155(
+            "ipfs://QmPdWmcbxqco4vBZf9cL6XsTHHNF54tVzu2JoMN357pwqw/metadata.json"
+        )
+        Ownable(initialOwner)
+    {}
 
     function setURI(string memory newuri) public onlyOwner {
         _setURI(newuri);

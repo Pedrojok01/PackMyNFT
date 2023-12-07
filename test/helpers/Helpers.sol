@@ -34,12 +34,7 @@ contract Helpers is Test {
     );
 
     function setUp() public {
-        packMyNFT = new PackMyNFT(
-            "PackMyNFT",
-            "PMNFT",
-            "https://test.com/",
-            1000
-        );
+        packMyNFT = new PackMyNFT("PackMyNFT", "PMNFT", 1000);
         mockERC20 = new MockERC20(msg.sender);
         mockERC721 = new MockERC721();
         mockERC1155 = new MockERC1155(msg.sender);
