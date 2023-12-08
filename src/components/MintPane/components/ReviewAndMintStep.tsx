@@ -31,6 +31,7 @@ const ReviewAndMintStep: FC<ReviewAndMintStepProps> = ({ onMint }) => {
 
       <SelectedAssets readOnly={true} />
 
+      <Text>Number of pack to mint: (max: 150)</Text>
       <Input
         type="number"
         min={1}

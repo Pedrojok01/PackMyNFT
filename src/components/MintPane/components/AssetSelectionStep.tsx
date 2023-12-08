@@ -19,7 +19,7 @@ const AssetSelectionStep: FC = () => {
   const toast = useToast();
 
   if (!address || !chain?.id || !nativeData) {
-    throw new Error("Address, Chain Id, or Native Data is missing");
+    throw new Error("Missing required data. Reconnect your web3 wallet.");
   }
 
   const { tokens } = useFetchTokenBalances(address, chain.id);
