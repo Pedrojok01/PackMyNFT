@@ -8,6 +8,8 @@ export const SUPPORTED_CHAIN = {
   testnet: [5, 97, 420, 4002, 80001, 421613],
 };
 
+export const MAX_ASSETS_PER_PACK = 5;
+
 /* 
 Deployed at the same address on:
  - Ethereum, Goerli, 

@@ -10,7 +10,7 @@ import { Providers } from "./providers";
 const open_sans = Open_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Pack-My-NFT",
+  title: "Pack My NFT",
   description: "Bundle assets into a single NFT pack",
 };
 

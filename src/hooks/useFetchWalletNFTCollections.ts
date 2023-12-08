@@ -3,7 +3,16 @@ import useSWR from "swr";
 import { APP_URL } from "@/data/constant";
 import fetcher from "@/utils/fetcher";
 
-export const useFetchWalletNFTCollections = (account: `0x${string}`, chainId: number) => {
+interface NFTCollections {
+  collections: Collection[];
+  isLoading: boolean;
+  isError: any;
+}
+
+export const useFetchWalletNFTCollections = (
+  account: `0x${string}`,
+  chainId: number,
+): NFTCollections => {
   const { data, error, isLoading } = useSWR(
     account && chainId ? [`${APP_URL}api/getWalletNFTCollections`, account, chainId] : null,
     ([url, account, chainId]) => fetcher({ key: url, account, chainId }),

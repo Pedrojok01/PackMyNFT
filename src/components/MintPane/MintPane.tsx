@@ -1,24 +1,25 @@
-// components/MainPane.tsx
-import { type FC } from "react";
+import { type FC, useState } from "react";
 
-import { Box, Divider, Flex, Heading, useColorMode } from "@chakra-ui/react";
-import { useAccount } from "wagmi";
+import { Box, Flex, Heading, useColorMode } from "@chakra-ui/react";
 
+import useStore from "@/store/store";
 import styles from "@/styles/mainPane.module.css";
 
-import {
-  Status,
-  Address,
-  Chain,
-  Balance,
-  BlockNumber,
-  TransferNative,
-  SignMessage,
-} from "./components";
+import { AssetSelectionStep, ConfirmationModal, ReviewAndMintStep } from "./components";
 
 const MintPane: FC = () => {
-  const { isConnected } = useAccount();
   const { colorMode } = useColorMode();
+  const { currentStep, setCurrentStep } = useStore();
+  const [showConfirmation, setShowConfirmation] = useState(false);
+
+  const handleMint = () => {
+    setShowConfirmation(true);
+  };
+
+  const handleCloseConfirmation = () => {
+    setShowConfirmation(false);
+    setCurrentStep(1);
+  };
 
   return (
     <Box
@@ -31,29 +32,11 @@ const MintPane: FC = () => {
       </Heading>
 
       <Flex className={styles.content}>
-        <Status />
+        {currentStep === 1 && <AssetSelectionStep />}
 
-        {isConnected && (
-          <>
-            <Address />
-            <Chain />
-            <Balance />
-            <BlockNumber />
+        {currentStep === 2 && <ReviewAndMintStep onMint={handleMint} />}
 
-            <Divider mb={5} />
-
-            <Flex
-              w={"100%"}
-              display={"flex"}
-              justifyContent={"space-around"}
-              flexWrap={"wrap"}
-              gap={5}
-            >
-              <SignMessage />
-              <TransferNative />
-            </Flex>
-          </>
-        )}
+        <ConfirmationModal isOpen={showConfirmation} onClose={handleCloseConfirmation} />
       </Flex>
     </Box>
   );

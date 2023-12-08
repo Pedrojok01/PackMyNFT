@@ -18,13 +18,13 @@ export default function Home() {
       <Flex className={styles.container}>
         <Box className={styles.subContainer}>
           <Text className={`${styles.subtitle} text-shadow`} bgColor={backgroundColor}>
-            Bundles assets into single NFTs with
+            Bundle crypto assets into single NFTs packs with
           </Text>
           <Text className={`${styles.title} text-shadow`} bgColor={backgroundColor}>
             Pack My NFT
           </Text>
           <Text className={`${styles.subtitle} text-shadow`} bgColor={backgroundColor}>
-            Support all exisitng assets, as well as batch minting
+            Support all existing assets, as well as batch minting
           </Text>
         </Box>
 

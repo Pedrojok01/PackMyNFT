@@ -1,4 +1,30 @@
 /**********************************************************
+                          NATIVE Coins
+***********************************************************/
+interface NativeCoin {
+  decimals: number;
+  formatted: string;
+  symbol: string;
+  value: bigint;
+}
+
+/**********************************************************
+                          ERC20 Tokens
+***********************************************************/
+
+interface EvmToken {
+  token_address: string;
+  name: string;
+  symbol: string;
+  logo: string;
+  thumbnail: string;
+  decimals: string;
+  balance: string;
+  possible_spam: bool;
+  verified_collection: bool;
+}
+
+/**********************************************************
                         Collections
 ***********************************************************/
 
@@ -18,22 +44,6 @@ interface CollectionExtended extends Collection {
 }
 
 type Collections = CollectionExtended[];
-
-/**********************************************************
-                          ERC20 Tokens
-***********************************************************/
-
-interface EvmToken {
-  token_address: string;
-  name: string;
-  symbol: string;
-  logo: string;
-  thumbnail: string;
-  decimals: string;
-  balance: string;
-  possible_spam: bool;
-  verified_collection: bool;
-}
 
 /**********************************************************
                            NFTs
@@ -76,52 +86,10 @@ type Nfts = {
   nfts: EvmNft[];
   total: number;
 };
-/**********************************************************
-                        TEMPLATE PROPS
-***********************************************************/
-
-interface CollectionSelectionProps {
-  setCollection: Dispatch<SetStateAction<CollectionExtended | undefined>>;
-}
-
-interface DisplayNFTProps {
-  item: DisplayedNFT;
-  index: number;
-  isNFTSelected: (currentNft: DisplayedNFT) => boolean;
-  handleClickCard: (clickedNFT: DisplayedNFT) => void;
-}
-type DisplayedNFT = Nft | CollectionExtended;
-
-interface NFTSelectionProps {
-  collection: CollectionExtended;
-}
-
-interface TransferProps {
-  collectionAddress: string | undefined;
-  address: string;
-  setAddress: Dispatch<SetStateAction<string>>;
-}
-
-interface DoneProps {
-  address: string;
-  onReset: () => void;
-}
 
 /**********************************************************
-                        DIVERS
+                           Wallets
 ***********************************************************/
-
-type MenuItem = Required<MenuProps>["items"][number];
-
-interface Item {
-  label: string;
-  key: string;
-  icon: JSX.Element;
-}
-
-interface CollectionSelectorProps {
-  setNftsDisplayed: React.Dispatch<React.SetStateAction<Nft[]>>;
-}
 
 interface AddEthereumChainParameter {
   chainId: string; // A 0x-prefixed hexadecimal string

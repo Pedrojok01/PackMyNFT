@@ -9,7 +9,7 @@ type RequestBody = {
   chainId: number;
 };
 
-export const runtime = "experimental-edge";
+export const runtime = "nodejs";
 
 export async function POST(request: NextRequest) {
   try {
