@@ -103,3 +103,12 @@ interface AddEthereumChainParameter {
   blockExplorerUrls?: (string | undefined)[];
   iconUrls?: string[]; // Currently ignored.
 }
+
+/**********************************************************
+                           Divers
+***********************************************************/
+
+interface BundleArrays {
+  addressesArray: `0x${string}`[];
+  numbersArray: (number | string | BigNumber)[];
+}

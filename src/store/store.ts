@@ -3,7 +3,7 @@ import { create } from "zustand";
 
 interface StoreData {
   selectedNative: NativeCoin | undefined;
-  nativeAmount: number | undefined;
+  nativeAmount: number | string;
   selectedTokens: EvmToken[];
   tokenAmounts: Record<string, number>; // Store amounts for each token by token address
   selectedCollections: Collection[];
@@ -18,7 +18,7 @@ interface StoreData {
 
 const useStore = create<StoreData>((set) => ({
   selectedNative: undefined,
-  nativeAmount: undefined,
+  nativeAmount: "",
   selectedTokens: [],
   tokenAmounts: {},
   selectedCollections: [],

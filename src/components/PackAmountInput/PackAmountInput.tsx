@@ -1,6 +1,6 @@
-import type { FC } from "react";
+import { type FC, useState } from "react";
 
-import { Input } from "@chakra-ui/react";
+import { FormErrorMessage, Input } from "@chakra-ui/react";
 
 import { useWindowSize } from "@/hooks";
 
@@ -10,16 +10,27 @@ interface AmountInputProps {
 }
 
 const PackAmountInput: FC<AmountInputProps> = ({ value, onChange }) => {
-  const { isTablet, isSmallScreen } = useWindowSize();
+  const { isMobile, isTablet, isSmallScreen } = useWindowSize();
+
+  const [hasError, setHasError] = useState(false);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const amount = e.target.value ? Number(e.target.value) : "";
+    setHasError(!e.target.value || Number(amount) <= 0);
+    onChange(Number(amount));
+  };
 
   return (
-    <Input
-      w={isTablet ? 40 : isSmallScreen ? 60 : 80}
-      type="number"
-      value={value}
-      onChange={(e) => onChange(Number(e.target.value))}
-      placeholder="Amount per pack"
-    />
+    <>
+      <Input
+        w={isMobile ? "6rem" : isTablet ? "10rem" : isSmallScreen ? "15rem" : "20rem"}
+        type="number"
+        value={value}
+        onChange={handleChange}
+        placeholder="Amount per pack"
+      />
+      {hasError && <FormErrorMessage>Invalid Amount</FormErrorMessage>}
+    </>
   );
 };
 

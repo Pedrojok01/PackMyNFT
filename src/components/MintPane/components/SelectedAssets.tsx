@@ -1,6 +1,6 @@
-import type { FC } from "react";
+import { useState, type FC } from "react";
 
-import { Box, Button, Flex, Text } from "@chakra-ui/react";
+import { Box, Button, Divider, Flex, FormErrorMessage, Text } from "@chakra-ui/react";
 
 import { PackAmountInput } from "@/components";
 import useStore from "@/store/store";
@@ -20,17 +20,24 @@ const SelectedAssets: FC<SelectedAssetsProps> = ({ onRemove, readOnly = false })
     setNativeAmount,
     setTokenAmount,
   } = useStore();
+  const [errors, setErrors] = useState<{ [key: string]: boolean }>({});
 
-  const handleNativeAmountChange = (amount: number) => {
-    setNativeAmount(amount);
-  };
-
-  const handleTokenAmountChange = (amount: number, tokenAddress: string) => {
-    setTokenAmount(tokenAddress, amount);
+  const handleAmountChange = (amount: number, assetAddress?: string) => {
+    setErrors({ ...errors, [assetAddress || "native"]: amount <= 0 || isNaN(amount) });
+    if (assetAddress) {
+      setTokenAmount(assetAddress, amount);
+    } else {
+      setNativeAmount(amount);
+    }
   };
 
   return (
     <Box>
+      {!readOnly &&
+        (selectedNative || selectedTokens.length > 0 || selectedCollections.length > 0) && (
+          <Divider my={5} />
+        )}
+
       {selectedNative && (
         <Flex justifyContent="space-between" alignItems="center" mb={2}>
           <Text>
@@ -38,7 +45,11 @@ const SelectedAssets: FC<SelectedAssetsProps> = ({ onRemove, readOnly = false })
           </Text>
           {!readOnly && onRemove && (
             <Box display={"flex"} justifyContent={"flex-end"} gap={10} alignItems={"center"}>
-              <PackAmountInput value={nativeAmount} onChange={handleNativeAmountChange} />
+              <PackAmountInput
+                value={nativeAmount}
+                onChange={(amount) => handleAmountChange(amount)}
+              />
+              {errors["native"] && <FormErrorMessage>Invalid amount</FormErrorMessage>}
 
               <Button colorScheme="red" size="sm" onClick={() => onRemove(selectedNative.symbol)}>
                 Remove
@@ -56,8 +67,9 @@ const SelectedAssets: FC<SelectedAssetsProps> = ({ onRemove, readOnly = false })
             <Box display={"flex"} justifyContent={"flex-end"} gap={10} alignItems={"center"}>
               <PackAmountInput
                 value={tokenAmounts[asset.token_address] || ""}
-                onChange={(amount) => handleTokenAmountChange(amount, asset.token_address)}
+                onChange={(amount) => handleAmountChange(amount, asset.token_address)}
               />
+              {errors["native"] && <FormErrorMessage>Invalid amount</FormErrorMessage>}
 
               <Button colorScheme="red" size="sm" onClick={() => onRemove(asset.token_address)}>
                 Remove
@@ -68,7 +80,9 @@ const SelectedAssets: FC<SelectedAssetsProps> = ({ onRemove, readOnly = false })
       ))}
       {selectedCollections.map((asset) => (
         <Flex key={asset.token_address} justifyContent="space-between" alignItems="center" mb={2}>
-          <Text>{asset.name}</Text>
+          <Text>
+            {readOnly && "1"} {asset.name}
+          </Text>
           {!readOnly && onRemove && (
             <Button colorScheme="red" size="sm" onClick={() => onRemove(asset.token_address)}>
               Remove
@@ -76,6 +90,10 @@ const SelectedAssets: FC<SelectedAssetsProps> = ({ onRemove, readOnly = false })
           )}
         </Flex>
       ))}
+      {!readOnly &&
+        (selectedNative || selectedTokens.length > 0 || selectedCollections.length > 0) && (
+          <Divider my={5} />
+        )}
     </Box>
   );
 };

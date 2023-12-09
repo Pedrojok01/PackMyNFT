@@ -1,3 +1,4 @@
+export * from "./useAssetUpdater";
 export * from "./useDebounce";
 export * from "./useFetchWalletNFTCollections";
 export * from "./useFetchWalletNFTs";
