@@ -1,16 +1,18 @@
 import { useState, type FC } from "react";
 
 import { Box, Button, Divider, Flex, FormErrorMessage, Text } from "@chakra-ui/react";
+import { formatUnits } from "viem";
 
 import { PackAmountInput } from "@/components";
 import useStore from "@/store/store";
 
 interface SelectedAssetsProps {
+  native?: NativeCoin;
   onRemove?: (assetAddress: string) => void;
   readOnly?: boolean;
 }
 
-const SelectedAssets: FC<SelectedAssetsProps> = ({ onRemove, readOnly = false }) => {
+const SelectedAssets: FC<SelectedAssetsProps> = ({ onRemove, readOnly = false, native }) => {
   const {
     selectedNative,
     nativeAmount,
@@ -34,8 +36,14 @@ const SelectedAssets: FC<SelectedAssetsProps> = ({ onRemove, readOnly = false })
   return (
     <Box>
       {!readOnly &&
+        native &&
         (selectedNative || selectedTokens.length > 0 || selectedCollections.length > 0) && (
-          <Divider my={5} />
+          <>
+            <Text fontSize="1rem" mt={4} mb={4}>
+              For {native.symbol} and ERC20 tokens, enter the amount to add per pack
+            </Text>
+            <Divider my={5} />
+          </>
         )}
 
       {selectedNative && (
@@ -46,6 +54,7 @@ const SelectedAssets: FC<SelectedAssetsProps> = ({ onRemove, readOnly = false })
           {!readOnly && onRemove && (
             <Box display={"flex"} justifyContent={"flex-end"} gap={10} alignItems={"center"}>
               <PackAmountInput
+                balance={selectedNative.formatted}
                 value={nativeAmount}
                 onChange={(amount) => handleAmountChange(amount)}
               />
@@ -66,6 +75,7 @@ const SelectedAssets: FC<SelectedAssetsProps> = ({ onRemove, readOnly = false })
           {!readOnly && onRemove && (
             <Box display={"flex"} justifyContent={"flex-end"} gap={10} alignItems={"center"}>
               <PackAmountInput
+                balance={formatUnits(BigInt(asset.balance), Number(asset.decimals))}
                 value={tokenAmounts[asset.token_address] || ""}
                 onChange={(amount) => handleAmountChange(amount, asset.token_address)}
               />

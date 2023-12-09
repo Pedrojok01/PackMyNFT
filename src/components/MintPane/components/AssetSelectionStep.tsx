@@ -26,17 +26,17 @@ const AssetSelectionStep: FC = () => {
     throw new Error("Missing required data. Reconnect your web3 wallet.");
   }
 
-  const { combinedAssetCount, updateSelectedAssets, updateSelectedCollections, handleRemoveAsset } =
-    useAssetUpdater();
+  const {
+    combinedAssetCount,
+    isAmountMissing,
+    updateSelectedAssets,
+    updateSelectedCollections,
+    handleRemoveAsset,
+  } = useAssetUpdater();
   const { tokens } = useFetchTokenBalances(address, chain.id);
   const { collections } = useFetchWalletNFTCollections(address, chain.id);
 
-  const { selectedNative, nativeAmount, selectedTokens, tokenAmounts, setCurrentStep } = useStore();
-
-  const isAmountMissing = () => {
-    if (selectedNative && !nativeAmount) return true;
-    return selectedTokens.some((token) => !tokenAmounts[token.token_address]);
-  };
+  const { setCurrentStep } = useStore();
 
   const proceedToNextStep = () => {
     if (isAmountMissing()) {
@@ -58,7 +58,7 @@ const AssetSelectionStep: FC = () => {
 
       <TokenSelect native={nativeData} tokens={tokens} onChange={updateSelectedAssets} />
       <CollectionSelect collections={collections} onChange={updateSelectedCollections} />
-      <SelectedAssets onRemove={handleRemoveAsset} />
+      <SelectedAssets onRemove={handleRemoveAsset} native={nativeData} />
       <Button onClick={proceedToNextStep} colorScheme="teal" isDisabled={combinedAssetCount === 0}>
         Next
       </Button>
