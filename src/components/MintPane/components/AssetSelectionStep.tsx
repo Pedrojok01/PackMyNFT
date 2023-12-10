@@ -31,8 +31,6 @@ const AssetSelectionStep: FC = () => {
   const { tokens } = useFetchTokenBalances(address, chain.id);
   const { collections } = useFetchWalletNFTs(address, chain.id);
 
-  console.log("collections", collections);
-
   const { setCurrentStep } = useStore();
 
   const proceedToNextStep = () => {

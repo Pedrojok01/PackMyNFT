@@ -65,7 +65,7 @@ export const useAssetUpdater = () => {
   );
 
   const updateSelectedCollections = useCallback(
-    (newCollection: Collection) => {
+    (newCollection: CollectionExtended) => {
       if (combinedAssetCount >= MAX_ASSETS_PER_PACK) {
         notifyError({ title, message });
         return;
@@ -93,14 +93,24 @@ export const useAssetUpdater = () => {
   const handleRemoveAsset = useCallback(
     (assetAddress: string) => {
       setSelectedNative(selectedNative?.symbol === assetAddress ? undefined : selectedNative);
-      setNativeAmount(selectedNative?.symbol === assetAddress ? "" : nativeAmount);
+      setNativeAmount(selectedNative?.symbol === assetAddress ? undefined : nativeAmount);
       setSelectedTokens(selectedTokens.filter((token) => token.token_address !== assetAddress));
       setTokenAmount(assetAddress, 0);
       setSelectedCollections(
         selectedCollections.filter((collection) => collection.token_address !== assetAddress),
       );
     },
-    [nativeAmount, setNativeAmount, selectedNative, selectedTokens, selectedCollections],
+    [
+      nativeAmount,
+      setNativeAmount,
+      setSelectedCollections,
+      setSelectedNative,
+      setSelectedTokens,
+      setTokenAmount,
+      selectedNative,
+      selectedTokens,
+      selectedCollections,
+    ],
   );
 
   return {

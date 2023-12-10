@@ -2,10 +2,11 @@
 "use client";
 import { Box, Flex, Text, useColorMode } from "@chakra-ui/react";
 import Image from "next/image";
-import packNFT from "public/img/pack-my-nft.png";
 
 import CustomLayout from "@/components/CustomLayout";
 import styles from "@/styles/home.module.css";
+
+import packNFT from "../../public/img/pack-my-nft.png";
 
 export default function Home() {
   const { colorMode } = useColorMode();

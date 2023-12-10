@@ -3,22 +3,22 @@ import { create } from "zustand";
 
 interface StoreData {
   selectedNative: NativeCoin | undefined;
-  nativeAmount: number | string;
+  nativeAmount: number | undefined;
   selectedTokens: EvmToken[];
   tokenAmounts: Record<string, number>; // Store amounts for each token by token address
-  selectedCollections: Collection[];
+  selectedCollections: Collections;
   currentStep: number;
   setSelectedNative: (selectedNative: any) => void;
-  setNativeAmount: (amount: number | string) => void;
+  setNativeAmount: (amount: number | undefined) => void;
   setSelectedTokens: (selectedTokens: EvmToken[]) => void;
   setTokenAmount: (tokenAddress: string, amount: number) => void;
-  setSelectedCollections: (selectedCollections: Collection[]) => void;
+  setSelectedCollections: (selectedCollections: Collections) => void;
   setCurrentStep: (currentStep: number) => void;
 }
 
 const useStore = create<StoreData>((set) => ({
   selectedNative: undefined,
-  nativeAmount: "",
+  nativeAmount: undefined,
   selectedTokens: [],
   tokenAmounts: {},
   selectedCollections: [],

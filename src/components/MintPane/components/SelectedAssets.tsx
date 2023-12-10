@@ -1,11 +1,11 @@
 import { useState, type FC } from "react";
 
-import { Box, Button, Divider, Flex, FormErrorMessage, Text } from "@chakra-ui/react";
-import { formatUnits } from "viem";
+import { Box, Button, Flex, FormErrorMessage, Text } from "@chakra-ui/react";
 
-import { PackAmountInput } from "@/components";
+import { CustomDivider, PackAmountInput } from "@/components";
 import { useWindowSize } from "@/hooks";
 import useStore from "@/store/store";
+import { formatTokenBalance } from "@/utils/formatters";
 
 interface SelectedAssetsProps {
   native: NativeCoin;
@@ -63,7 +63,7 @@ const SelectedAssets: FC<SelectedAssetsProps> = ({ onRemove, native }) => {
           <Box display={"flex"} justifyContent={"flex-end"} gap={10} alignItems={"center"}>
             <PackAmountInput
               balance={selectedNative.formatted}
-              value={nativeAmount}
+              value={nativeAmount ?? 0}
               onChange={(amount) => handleAmountChange(amount)}
             />
             {errors["native"] && <FormErrorMessage>Invalid amount</FormErrorMessage>}
@@ -82,8 +82,8 @@ const SelectedAssets: FC<SelectedAssetsProps> = ({ onRemove, native }) => {
 
           <Box display={"flex"} justifyContent={"flex-end"} gap={10} alignItems={"center"}>
             <PackAmountInput
-              balance={formatUnits(BigInt(asset.balance), Number(asset.decimals))}
-              value={tokenAmounts[asset.token_address] || ""}
+              balance={formatTokenBalance(asset)}
+              value={tokenAmounts[asset.token_address]}
               onChange={(amount) => handleAmountChange(amount, asset.token_address)}
             />
             {errors["native"] && <FormErrorMessage>Invalid amount</FormErrorMessage>}
@@ -112,10 +112,3 @@ const SelectedAssets: FC<SelectedAssetsProps> = ({ onRemove, native }) => {
 };
 
 export default SelectedAssets;
-
-const CustomDivider: FC = () => (
-  <>
-    <Divider mt={5} mb={1} />
-    <Divider mt={1} mb={5} />
-  </>
-);

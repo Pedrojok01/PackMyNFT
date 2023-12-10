@@ -5,12 +5,12 @@ import { Box, Center, HStack, Heading, Link, useColorMode } from "@chakra-ui/rea
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import Image from "next/image";
 import NextLink from "next/link";
-import logo from "public/img/packmynft_logo.png";
 import { useAccount } from "wagmi";
 
 import { useWindowSize } from "@/hooks/useWindowSize";
 import styles from "@/styles/header.module.css";
 
+import logo from "../../../public/img/packmynft_logo.png";
 import { DarkModeButton } from "../DarkModeButton";
 
 const Header: FC = () => {

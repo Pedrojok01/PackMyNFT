@@ -5,7 +5,7 @@ import { Input } from "@chakra-ui/react";
 import { useWindowSize } from "@/hooks";
 
 interface AmountInputProps {
-  value: number | string;
+  value: number;
   balance: string;
   onChange: (value: number, tokenAddress?: string) => void;
 }

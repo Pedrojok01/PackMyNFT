@@ -2,9 +2,9 @@
 import { useMemo, type FC, type ChangeEvent } from "react";
 
 import { Select } from "@chakra-ui/react";
-import { formatUnits } from "viem";
 
 import useStore from "@/store/store";
+import { formatTokenBalance } from "@/utils/formatters";
 
 interface TokenSelectProps {
   native: NativeCoin;
@@ -48,10 +48,9 @@ const TokenSelect: FC<TokenSelectProps> = ({ native, tokens, onChange }) => {
         if (token.possible_spam) {
           return null;
         }
-        const value = formatUnits(BigInt(token.balance), Number(token.decimals));
         return (
           <option key={token.token_address} value={token.symbol}>
-            {token.name} ({value})
+            {token.name} ({formatTokenBalance(token)})
           </option>
         );
       })}
