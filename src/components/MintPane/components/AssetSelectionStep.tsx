@@ -4,12 +4,7 @@ import { type FC } from "react";
 import { Button, Text } from "@chakra-ui/react";
 import { useAccount, useBalance, useNetwork } from "wagmi";
 
-import {
-  useAssetUpdater,
-  useFetchTokenBalances,
-  useFetchWalletNFTCollections,
-  useNotify,
-} from "@/hooks";
+import { useAssetUpdater, useFetchTokenBalances, useFetchWalletNFTs, useNotify } from "@/hooks";
 import useStore from "@/store/store";
 
 import CollectionSelect from "./CollectionSelect";
@@ -34,7 +29,9 @@ const AssetSelectionStep: FC = () => {
     handleRemoveAsset,
   } = useAssetUpdater();
   const { tokens } = useFetchTokenBalances(address, chain.id);
-  const { collections } = useFetchWalletNFTCollections(address, chain.id);
+  const { collections } = useFetchWalletNFTs(address, chain.id);
+
+  console.log("collections", collections);
 
   const { setCurrentStep } = useStore();
 

@@ -37,6 +37,7 @@
     "sharp": "0.33.0",
     "stream": "^0.0.2",
     "swr": "^2.2.4",
+    "uuid": "^9.0.1",
     "viem": "^1.19.11",
     "wagmi": "1.4.8"
   },
@@ -44,6 +45,7 @@
     "@types/node": "20.10.4",
     "@types/react": "18.2.42",
     "@types/react-dom": "18.2.17",
+    "@types/uuid": "^9.0.7",
     "@typescript-eslint/eslint-plugin": "6.13.2",
     "eslint": "8.55.0",
     "eslint-config-next": "14.0.3",

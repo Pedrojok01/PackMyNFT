@@ -15,7 +15,9 @@ export const useAssetUpdater = () => {
     tokenAmounts,
     selectedCollections,
     setSelectedNative,
+    setNativeAmount,
     setSelectedTokens,
+    setTokenAmount,
     setSelectedCollections,
   } = useStore();
 
@@ -51,7 +53,15 @@ export const useAssetUpdater = () => {
         );
       }
     },
-    [selectedTokens, selectedNative, notifyError],
+    [
+      combinedAssetCount,
+      selectedTokens,
+      setSelectedTokens,
+      selectedNative,
+      setSelectedNative,
+      message,
+      notifyError,
+    ],
   );
 
   const updateSelectedCollections = useCallback(
@@ -77,18 +87,20 @@ export const useAssetUpdater = () => {
         notifyError({ title, message });
       }
     },
-    [selectedCollections, notifyError],
+    [combinedAssetCount, message, selectedCollections, setSelectedCollections, notifyError],
   );
 
   const handleRemoveAsset = useCallback(
     (assetAddress: string) => {
       setSelectedNative(selectedNative?.symbol === assetAddress ? undefined : selectedNative);
+      setNativeAmount(selectedNative?.symbol === assetAddress ? "" : nativeAmount);
       setSelectedTokens(selectedTokens.filter((token) => token.token_address !== assetAddress));
+      setTokenAmount(assetAddress, 0);
       setSelectedCollections(
         selectedCollections.filter((collection) => collection.token_address !== assetAddress),
       );
     },
-    [selectedNative, selectedTokens, selectedCollections],
+    [nativeAmount, setNativeAmount, selectedNative, selectedTokens, selectedCollections],
   );
 
   return {

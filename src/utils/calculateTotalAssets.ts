@@ -1,4 +1,3 @@
-// utils.js
 export const calculateTotalAssets = (
   selectedNative: NativeCoin | undefined,
   selectedTokens: EvmToken[],

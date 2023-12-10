@@ -1,8 +1,8 @@
-import Moralis from "moralis";
 import { NextRequest, NextResponse } from "next/server";
 
+import { fetchCollections, fetchNFTs, startMoralis } from "@/services/moralisService";
+import { processCollections } from "@/utils/collectionHelper";
 import { getMoralisChain } from "@/utils/getMoralisChain";
-import { startMoralis } from "@/utils/startMoralis";
 
 type RequestBody = {
   account: `0x${string}`;
@@ -12,40 +12,40 @@ type RequestBody = {
 export const runtime = "nodejs";
 
 export async function POST(request: NextRequest) {
+  await startMoralis();
+  const { account, chainId } = (await request.json()) as RequestBody;
+
+  if (!account || !chainId) {
+    return NextResponse.json(
+      { success: false, message: "Missing account or chainId" },
+      { status: 400 },
+    );
+  }
+
+  const moralisChain = getMoralisChain(chainId);
+  if (!moralisChain) {
+    return NextResponse.json({ success: false, message: "Invalid chainId" }, { status: 400 });
+  }
+
   try {
-    await startMoralis();
+    const collectionsPromise = fetchCollections(account, moralisChain);
+    const nftsPromise = fetchNFTs(account, moralisChain);
 
-    const { account, chainId } = (await request.json()) as RequestBody;
-    if (!account || !chainId) {
-      return NextResponse.json(
-        { success: false, message: "Missing account or chainId" },
-        { status: 400 },
-      );
-    }
+    const [collectionsResponse, nfts] = await Promise.all([collectionsPromise, nftsPromise]);
+    const collections = collectionsResponse.raw.result.filter(
+      (collection) => !collection.possible_spam,
+    );
 
-    const moralisChain = getMoralisChain(chainId);
-    if (!moralisChain) {
-      return NextResponse.json({ success: false, message: "Invalid chainId" }, { status: 400 });
-    }
+    const data = processCollections(collections, nfts);
 
-    const nftsResponse = await Moralis.EvmApi.nft.getWalletNFTs({
-      address: account,
-      chain: moralisChain,
-      normalizeMetadata: true,
-    });
-
-    const nfts = nftsResponse.raw.result;
-
-    return NextResponse.json({
-      nfts,
-    });
-  } catch (error: any) {
-    console.error("Error fetching NFTs:", error);
+    return NextResponse.json({ data });
+  } catch (error) {
+    console.error("Error in Moralis data fetching:", error);
     return NextResponse.json(
       {
         success: false,
         message: "Server error occurred",
-        error: error.message,
+        error: error instanceof Error ? error.message : error,
       },
       { status: 500 },
     );

@@ -1,5 +1,5 @@
 /**********************************************************
-                          NATIVE Coins
+                          Native Coins
 ***********************************************************/
 interface NativeCoin {
   decimals: number;
@@ -38,61 +38,63 @@ interface Collection {
 }
 
 interface CollectionExtended extends Collection {
-  image: string | undefined;
+  image?: string;
+  nfts: Nft[];
+  total: number;
   uuid: string;
-  nfts: nft[];
 }
 
 type Collections = CollectionExtended[];
+
+type CollectionsMap = {
+  [tokenAddress: string]: CollectionExtended;
+};
 
 /**********************************************************
                            NFTs
 ***********************************************************/
 
 interface EvmNft {
-  amount: string;
+  amount?: string | undefined;
   block_number: string;
   block_number_minted: string;
   contract_type: string;
   last_metadata_sync: string;
   last_token_uri_sync: string;
-  metadata: string;
+  metadata?: string | undefined;
   name: string;
-  normalized_metadata: NormalizedMetadata;
+  normalized_metadata?: NormalizedMetadata;
   owner_of: string;
   possible_spam: boolean;
   symbol: string;
   token_address: string;
   token_hash: string;
   token_id: string;
-  token_uri: string;
-  verified_collection: boolean;
+  token_uri?: string | undefined;
+  verified_collection?: boolean | undefined;
 }
 
-type NormalizedMetadata = {
-  animation_url: string | null;
-  attributes: any[];
-  description: string;
-  external_link: string | null;
-  image: string;
-  name: string;
-};
+type NormalizedMetadata =
+  | {
+      animation_url?: string | undefined;
+      attributes?: any[];
+      description?: string | undefined;
+      external_link?: string | undefined;
+      image?: string | undefined;
+      name?: string | undefined;
+    }
+  | undefined;
 
 interface Nft extends EvmNft {
   image: string;
 }
-
-type Nfts = {
-  nfts: EvmNft[];
-  total: number;
-};
 
 /**********************************************************
                            Wallets
 ***********************************************************/
 
 interface AddEthereumChainParameter {
-  chainId: string; // A 0x-prefixed hexadecimal string
+  chainId: string;
   chainName?: string;
   nativeCurrency?: {
     name: string;
@@ -101,7 +103,7 @@ interface AddEthereumChainParameter {
   };
   rpcUrls?: (string | undefined)[];
   blockExplorerUrls?: (string | undefined)[];
-  iconUrls?: string[]; // Currently ignored.
+  iconUrls?: string[];
 }
 
 /**********************************************************

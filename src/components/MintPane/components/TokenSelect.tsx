@@ -1,8 +1,10 @@
 // TokenSelect.tsx
-import type { FC } from "react";
+import { useMemo, type FC, type ChangeEvent } from "react";
 
 import { Select } from "@chakra-ui/react";
 import { formatUnits } from "viem";
+
+import useStore from "@/store/store";
 
 interface TokenSelectProps {
   native: NativeCoin;
@@ -11,26 +13,38 @@ interface TokenSelectProps {
 }
 
 const TokenSelect: FC<TokenSelectProps> = ({ native, tokens, onChange }) => {
+  const { selectedNative, selectedTokens } = useStore();
+
+  const availableTokens = useMemo(
+    () =>
+      tokens.filter(
+        (token) =>
+          !selectedTokens.some((selected) => selected.token_address === token.token_address),
+      ),
+    [tokens, selectedTokens],
+  );
+
+  const handleSelectChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    if (e.target.value === native.symbol) {
+      // Handle native coin selection
+      onChange(native);
+    } else {
+      // Handle ERC20 token selection
+      const selectedToken = tokens.find((token) => token.symbol === e.target.value);
+      if (selectedToken) {
+        onChange(selectedToken);
+      }
+    }
+  };
+
   return (
-    <Select
-      placeholder="Select token"
-      onChange={(e) => {
-        if (e.target.value === native.symbol) {
-          // Handle native coin selection
-          onChange(native);
-        } else {
-          // Handle ERC20 token selection
-          const selectedToken = tokens.find((token) => token.symbol === e.target.value);
-          if (selectedToken) {
-            onChange(selectedToken);
-          }
-        }
-      }}
-    >
-      <option value={native.symbol}>
-        {native.symbol} ({native.formatted})
-      </option>
-      {tokens.map((token) => {
+    <Select placeholder="Select token" onChange={handleSelectChange}>
+      {!selectedNative && (
+        <option value={native.symbol}>
+          {native.symbol} ({native.formatted})
+        </option>
+      )}
+      {availableTokens.map((token) => {
         if (token.possible_spam) {
           return null;
         }

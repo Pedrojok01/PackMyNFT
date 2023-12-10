@@ -9,7 +9,7 @@ interface StoreData {
   selectedCollections: Collection[];
   currentStep: number;
   setSelectedNative: (selectedNative: any) => void;
-  setNativeAmount: (amount: number) => void;
+  setNativeAmount: (amount: number | string) => void;
   setSelectedTokens: (selectedTokens: EvmToken[]) => void;
   setTokenAmount: (tokenAddress: string, amount: number) => void;
   setSelectedCollections: (selectedCollections: Collection[]) => void;
