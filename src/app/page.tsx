@@ -1,7 +1,7 @@
 // page.tsx
 "use client";
 import { Box, Flex, Text, useColorMode } from "@chakra-ui/react";
-import Image from "next/legacy/image";
+import Image from "next/image";
 
 import CustomLayout from "@/components/CustomLayout";
 import styles from "@/styles/home.module.css";
@@ -30,7 +30,17 @@ export default function Home() {
         </Box>
 
         <Box className={`${styles.subContainer} ${styles.subContainerImage}`}>
-          <Image src={packNFT.src} alt="Pack My NFT" layout="responsive" width={200} height={200} />
+          <Image
+            src={packNFT.src}
+            alt="Pack My NFT"
+            width={200}
+            height={200}
+            sizes="100vw"
+            style={{
+              width: "100%",
+              height: "auto",
+            }}
+          />
         </Box>
       </Flex>
     </CustomLayout>

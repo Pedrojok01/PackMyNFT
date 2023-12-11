@@ -1,7 +1,7 @@
 import React, { useCallback, type FC, type ChangeEvent } from "react";
 
 import { Box, Input, InputGroup, InputLeftAddon, Spinner } from "@chakra-ui/react";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { isAddress, zeroAddress } from "viem";
 import { useEnsResolver } from "wagmi";
 
@@ -67,6 +67,10 @@ const AddressInput: FC<AddressInputProps> = ({ receiver, setReceiver }) => {
           className="icon-wrapper error-icon"
           width={30}
           height={30}
+          style={{
+            maxWidth: "100%",
+            height: "auto",
+          }}
         />
       );
     return null;

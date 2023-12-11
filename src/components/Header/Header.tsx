@@ -3,7 +3,7 @@ import { type FC } from "react";
 
 import { Box, Center, HStack, Heading, Link, useColorMode } from "@chakra-ui/react";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import NextLink from "next/link";
 import { useAccount } from "wagmi";
 
@@ -46,7 +46,16 @@ const Header: FC = () => {
       >
         <Link as={NextLink} href="/" style={{ textDecoration: "none" }}>
           <HStack>
-            <Image src={logo.src} alt="logo" width={45} height={45} />
+            <Image
+              src={logo.src}
+              alt="logo"
+              width={45}
+              height={45}
+              style={{
+                maxWidth: "100%",
+                height: "auto",
+              }}
+            />
             {!isTablet && (
               <Heading as="h1" fontSize={"1.5rem"} className="text-shadow">
                 Pack My NFT

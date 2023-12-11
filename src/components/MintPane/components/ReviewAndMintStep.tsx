@@ -2,7 +2,7 @@
 import { useState, type FC } from "react";
 
 import { Box, Button, Center, HStack, Input, Text } from "@chakra-ui/react";
-import Image from "next/legacy/image";
+import Image from "next/image";
 
 import { CustomDivider } from "@/components";
 import { useWindowSize } from "@/hooks";
@@ -71,7 +71,16 @@ const ReviewAndMintStep: FC<ReviewAndMintStepProps> = ({ onMint }) => {
           >
             <AssetsPerPack />
           </Box>
-          <Image src={packNFT.src} alt="Pack My NFT" width={400} height={400} />
+          <Image
+            src={packNFT.src}
+            alt="Pack My NFT"
+            width={400}
+            height={400}
+            style={{
+              maxWidth: "100%",
+              height: "auto",
+            }}
+          />
         </Box>
 
         {/* Box number 2 */}
