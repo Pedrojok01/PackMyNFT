@@ -103,22 +103,17 @@ const ReviewAndMintStep: FC<ReviewAndMintStepProps> = ({ onMint }) => {
 
             <CardBody>
               <Stack divider={<StackDivider />} spacing="4">
-                {selectedNative && (
-                  <Box>
-                    <Heading size="xs" textTransform="uppercase">
-                      Native
-                    </Heading>
-                    <Text pt="2" fontSize="sm">
-                      {totalNative} {selectedNative.symbol}
-                    </Text>
-                  </Box>
-                )}
                 {selectedTokens?.length > 0 && (
                   <Box>
                     <Heading size="xs" textTransform="uppercase">
                       Tokens
                     </Heading>
                     <Text pt="2" fontSize="sm">
+                      {selectedNative && (
+                        <li>
+                          {totalNative} {selectedNative.symbol}
+                        </li>
+                      )}
                       {Object.entries(totalTokens).map(([tokenAddress, amount]) => {
                         const token = selectedTokens.find((t) => t.token_address === tokenAddress);
                         return (

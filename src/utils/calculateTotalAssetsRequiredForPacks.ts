@@ -7,7 +7,7 @@ interface TotalAssetsRequired {
 export const calculateTotalAssetsRequiredForPacks = (
   packCount: number,
   nativeAmount: number | undefined,
-  selectedTokens: EvmToken[] | undefined,
+  selectedTokens: EvmToken[],
   tokenAmounts: Record<string, number>,
   selectedCollections: CollectionExtended[],
 ): TotalAssetsRequired => {
@@ -21,7 +21,7 @@ export const calculateTotalAssetsRequiredForPacks = (
   }
 
   // Calculate total tokens required for each token
-  selectedTokens?.forEach((token) => {
+  selectedTokens.forEach((token) => {
     const amountPerPack = tokenAmounts[token.token_address] || 0;
     totalTokens[token.token_address] = packCount * amountPerPack;
   });

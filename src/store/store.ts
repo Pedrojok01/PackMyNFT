@@ -8,8 +8,8 @@ interface StoreData {
   tokenAmounts: Record<string, number>; // Store amounts for each token by token address
   selectedCollections: Collections;
   currentStep: number;
-  setSelectedNative: (selectedNative: any) => void;
-  setNativeAmount: (amount: number | undefined) => void;
+  setSelectedNative: (selectedNative: NativeCoin) => void;
+  setNativeAmount: (amount: number) => void;
   setSelectedTokens: (selectedTokens: EvmToken[]) => void;
   setTokenAmount: (tokenAddress: string, amount: number) => void;
   setSelectedCollections: (selectedCollections: Collections) => void;

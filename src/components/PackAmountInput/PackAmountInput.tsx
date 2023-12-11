@@ -33,7 +33,7 @@ const PackAmountInput: FC<AmountInputProps> = ({ value, balance, onChange }) => 
     <Input
       w={isMobile ? "6rem" : isTablet ? "10rem" : isSmallScreen ? "15rem" : "20rem"}
       type="number"
-      value={value}
+      value={value || ""}
       onChange={handleChange}
       placeholder="Amount per pack"
     />

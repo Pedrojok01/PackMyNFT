@@ -4,7 +4,7 @@ import { formatTokenBalance } from "./formatters";
 export const calculateMaxAmountOfPacksMintable = (
   selectedNative: NativeCoin | undefined,
   nativeAmount: number | undefined, // Amount of native token per pack
-  selectedTokens: EvmToken[] | undefined,
+  selectedTokens: EvmToken[],
   tokenAmounts: Record<string, number>, // Amounts of each token per pack
   selectedCollections: Collections,
 ): number => {
