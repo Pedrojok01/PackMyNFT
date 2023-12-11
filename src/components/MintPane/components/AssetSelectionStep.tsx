@@ -1,7 +1,7 @@
 // components/AssetSelectionStep.tsx
 import { type FC } from "react";
 
-import { Button, Text } from "@chakra-ui/react";
+import { Button, Center, Spinner, Text, VStack } from "@chakra-ui/react";
 import { useAccount, useBalance, useNetwork } from "wagmi";
 
 import { useAssetUpdater, useFetchTokenBalances, useFetchWalletNFTs, useNotify } from "@/hooks";
@@ -16,10 +16,9 @@ const AssetSelectionStep: FC = () => {
   const { chain } = useNetwork();
   const { data: nativeData } = useBalance({ address, watch: true });
   const { notifyError } = useNotify();
+  const { setCurrentStep } = useStore();
 
-  if (!address || !chain?.id || !nativeData) {
-    throw new Error("Missing required data. Reconnect your web3 wallet.");
-  }
+  const isDataLoaded = address && chain?.id && nativeData;
 
   const {
     combinedAssetCount,
@@ -28,10 +27,8 @@ const AssetSelectionStep: FC = () => {
     updateSelectedCollections,
     handleRemoveAsset,
   } = useAssetUpdater();
-  const { tokens } = useFetchTokenBalances(address, chain.id);
-  const { collections } = useFetchWalletNFTs(address, chain.id);
-
-  const { setCurrentStep } = useStore();
+  const { tokens } = useFetchTokenBalances(address, chain?.id ?? 0);
+  const { collections } = useFetchWalletNFTs(address, chain?.id ?? 0);
 
   const proceedToNextStep = () => {
     if (isAmountMissing()) {
@@ -44,6 +41,17 @@ const AssetSelectionStep: FC = () => {
 
     setCurrentStep(2);
   };
+
+  if (!isDataLoaded) {
+    return (
+      <Center>
+        <VStack spacing={4}>
+          <Spinner />
+          <Text>Fetching data... Please wait.</Text>
+        </VStack>
+      </Center>
+    );
+  }
 
   return (
     <>

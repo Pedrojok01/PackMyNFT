@@ -19,6 +19,12 @@
   justify-content: center;
 }
 
+@media (width < 950px) {
+  .container {
+    width: 90%;
+  }
+}
+
 @media (width < 768px) {
   .container {
     width: 100%;

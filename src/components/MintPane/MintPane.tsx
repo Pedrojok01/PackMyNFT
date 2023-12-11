@@ -1,14 +1,16 @@
 import { type FC, useState } from "react";
 
-import { Box, Flex, Heading, useColorMode } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
+import { useAccount } from "wagmi";
 
 import useStore from "@/store/store";
 import styles from "@/styles/mainPane.module.css";
 
 import { AssetSelectionStep, ConfirmationModal, ReviewAndMintStep } from "./components";
+import { ContentBox, NotConnected } from "..";
 
 const MintPane: FC = () => {
-  const { colorMode } = useColorMode();
+  const { isConnected } = useAccount();
   const { currentStep, setCurrentStep } = useStore();
   const [showConfirmation, setShowConfirmation] = useState(false);
 
@@ -22,23 +24,19 @@ const MintPane: FC = () => {
   };
 
   return (
-    <Box
-      className={styles.container}
-      border={colorMode === "light" ? "none" : "1px solid rgba(152, 161, 192, 0.24)"}
-      backgroundColor={colorMode === "light" ? "#fff" : "#1a202c"}
-    >
-      <Heading as="h2" fontSize={"2rem"} mb={10} className="text-shadow">
-        Mint Packs
-      </Heading>
+    <ContentBox title="Mint Packs">
+      {!isConnected ? (
+        <NotConnected />
+      ) : (
+        <Flex className={styles.content}>
+          {currentStep === 1 && <AssetSelectionStep />}
 
-      <Flex className={styles.content}>
-        {currentStep === 1 && <AssetSelectionStep />}
+          {currentStep === 2 && <ReviewAndMintStep onMint={handleMint} />}
 
-        {currentStep === 2 && <ReviewAndMintStep onMint={handleMint} />}
-
-        <ConfirmationModal isOpen={showConfirmation} onClose={handleCloseConfirmation} />
-      </Flex>
-    </Box>
+          <ConfirmationModal isOpen={showConfirmation} onClose={handleCloseConfirmation} />
+        </Flex>
+      )}
+    </ContentBox>
   );
 };
 

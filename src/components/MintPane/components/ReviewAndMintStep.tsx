@@ -1,29 +1,16 @@
 // components/ReviewAndMintStep.tsx
 import { useState, type FC } from "react";
 
-import {
-  Box,
-  Button,
-  Card,
-  CardBody,
-  CardHeader,
-  Center,
-  HStack,
-  Heading,
-  Input,
-  Stack,
-  StackDivider,
-  Text,
-} from "@chakra-ui/react";
+import { Box, Button, Center, HStack, Input, Text } from "@chakra-ui/react";
 import Image from "next/image";
 
 import { CustomDivider } from "@/components";
+import { useWindowSize } from "@/hooks";
 import useStore from "@/store/store";
 import { calculateMaxAmountOfPacksMintable } from "@/utils/calculateMaxAmountOfPacksMintable";
 import { calculateTotalAssetsRequiredForPacks } from "@/utils/calculateTotalAssetsRequiredForPacks";
 
-import { MintButton } from ".";
-import AssetsPerPack from "./AssetsPerPack";
+import { AssetsPerPack, NeededAssetsCard } from ".";
 import packNFT from "../../../../public/img/pack-my-nft.png";
 
 interface ReviewAndMintStepProps {
@@ -31,6 +18,7 @@ interface ReviewAndMintStepProps {
 }
 
 const ReviewAndMintStep: FC<ReviewAndMintStepProps> = ({ onMint }) => {
+  const { isTablet } = useWindowSize();
   const {
     selectedNative,
     nativeAmount,
@@ -56,10 +44,20 @@ const ReviewAndMintStep: FC<ReviewAndMintStepProps> = ({ onMint }) => {
     selectedCollections,
   );
 
+  const handlePackCountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newPackCount = Math.max(1, Math.min(maxPackCount, Number(e.target.value)));
+    setPackCount(newPackCount);
+  };
+
   return (
-    <Box>
-      <HStack alignItems={"flex-start"}>
-        <Box position={"relative"} w={"50%"}>
+    <>
+      <HStack
+        alignItems={!isTablet ? "flex-start" : "center"}
+        justifyContent="center"
+        flexDirection={!isTablet ? "row" : "column"}
+      >
+        {/* Box number 1 */}
+        <Box position="relative" w="49%" minW={300}>
           <Text fontSize="lg" mb={4}>
             Pack content preview
           </Text>
@@ -76,7 +74,8 @@ const ReviewAndMintStep: FC<ReviewAndMintStepProps> = ({ onMint }) => {
           <Image src={packNFT.src} alt="Pack My NFT" width={400} height={400} />
         </Box>
 
-        <Box w={"50%"}>
+        {/* Box number 2 */}
+        <Box position="relative" w="49%" minW={280}>
           <Text fontSize="lg" mb={4}>
             Number of pack to mint
           </Text>
@@ -91,63 +90,20 @@ const ReviewAndMintStep: FC<ReviewAndMintStepProps> = ({ onMint }) => {
             min={1}
             value={packCount}
             isRequired={true}
-            onChange={(e) => setPackCount(Math.max(1, Number(e.target.value)))}
+            onChange={handlePackCountChange}
           />
 
           <CustomDivider />
 
-          <Card>
-            <CardHeader>
-              <Heading size="md">Total assets needed for {packCount} packs:</Heading>
-            </CardHeader>
-
-            <CardBody>
-              <Stack divider={<StackDivider />} spacing="4">
-                {selectedTokens?.length > 0 && (
-                  <Box>
-                    <Heading size="xs" textTransform="uppercase">
-                      Tokens
-                    </Heading>
-                    <Text pt="2" fontSize="sm">
-                      {selectedNative && (
-                        <li>
-                          {totalNative} {selectedNative.symbol}
-                        </li>
-                      )}
-                      {Object.entries(totalTokens).map(([tokenAddress, amount]) => {
-                        const token = selectedTokens.find((t) => t.token_address === tokenAddress);
-                        return (
-                          <li key={tokenAddress}>
-                            {amount} {token?.symbol || "Unknown Token"}
-                          </li>
-                        );
-                      })}
-                    </Text>
-                  </Box>
-                )}
-
-                {selectedCollections?.length > 0 && (
-                  <Box>
-                    <Heading size="xs" textTransform="uppercase">
-                      NFTs
-                    </Heading>
-                    <Text pt="2" fontSize="sm">
-                      {Object.entries(totalNfts).map(([tokenAddress, amount]) => {
-                        const collection = selectedCollections.find(
-                          (c) => c.token_address === tokenAddress,
-                        );
-                        return (
-                          <li key={tokenAddress}>
-                            {amount} {collection?.name || "Unknown Collection"}
-                          </li>
-                        );
-                      })}
-                    </Text>
-                  </Box>
-                )}
-              </Stack>
-            </CardBody>
-          </Card>
+          <NeededAssetsCard
+            packCount={packCount}
+            selectedNative={selectedNative}
+            totalNative={totalNative}
+            selectedTokens={selectedTokens}
+            totalTokens={totalTokens}
+            selectedCollections={selectedCollections}
+            totalNfts={totalNfts}
+          />
         </Box>
       </HStack>
 
@@ -155,9 +111,11 @@ const ReviewAndMintStep: FC<ReviewAndMintStepProps> = ({ onMint }) => {
         <Button onClick={() => setCurrentStep(1)} colorScheme="gray">
           Back
         </Button>
-        <MintButton onMint={onMint} />
+        <Button colorScheme="teal" onClick={onMint}>
+          Mint Pack
+        </Button>
       </Center>
-    </Box>
+    </>
   );
 };
 
