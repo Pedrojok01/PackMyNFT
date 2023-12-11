@@ -1,7 +1,7 @@
 import React, { useCallback, type FC, type ChangeEvent } from "react";
 
 import { Box, Input, InputGroup, InputLeftAddon, Spinner } from "@chakra-ui/react";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { isAddress, zeroAddress } from "viem";
 import { useEnsResolver } from "wagmi";
 

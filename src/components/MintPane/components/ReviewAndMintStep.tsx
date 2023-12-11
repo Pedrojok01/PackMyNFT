@@ -2,7 +2,7 @@
 import { useState, type FC } from "react";
 
 import { Box, Button, Center, HStack, Input, Text } from "@chakra-ui/react";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 import { CustomDivider } from "@/components";
 import { useWindowSize } from "@/hooks";

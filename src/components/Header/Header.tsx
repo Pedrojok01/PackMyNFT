@@ -3,7 +3,7 @@ import { type FC } from "react";
 
 import { Box, Center, HStack, Heading, Link, useColorMode } from "@chakra-ui/react";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import NextLink from "next/link";
 import { useAccount } from "wagmi";
 
