@@ -7,7 +7,11 @@ import Image from "next/image";
 import { CustomDivider } from "@/components";
 import { useWindowSize } from "@/hooks";
 import useStore from "@/store/store";
-import { calculateMaxAmountOfPacksMintable, calculateTotalAssetsRequiredForPacks } from "@/utils";
+import {
+  calculateMaxAmountOfPacksMintable,
+  calculateTotalAssetsRequiredForPacks,
+  sortArrayForBundle,
+} from "@/utils";
 
 import { AssetsPerPack, NeededAssetsCard } from ".";
 import packNFT from "../../../../public/img/pack-my-nft.png";
@@ -47,6 +51,15 @@ const ReviewAndMintStep: FC<ReviewAndMintStepProps> = ({ onMint }) => {
     const newPackCount = Math.max(1, Math.min(maxPackCount, Number(e.target.value)));
     setPackCount(newPackCount);
   };
+
+  const testSortArrayFunction = sortArrayForBundle(
+    nativeAmount ?? 0,
+    selectedTokens,
+    selectedCollections,
+    tokenAmounts,
+    packCount,
+  );
+  console.log("testSortArrayFunction: ", testSortArrayFunction);
 
   return (
     <>

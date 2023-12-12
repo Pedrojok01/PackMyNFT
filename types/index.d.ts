@@ -112,5 +112,5 @@ interface AddEthereumChainParameter {
 
 interface BundleArrays {
   addressesArray: `0x${string}`[];
-  numbersArray: (number | string | BigNumber)[];
+  numbersArray: bigint[];
 }

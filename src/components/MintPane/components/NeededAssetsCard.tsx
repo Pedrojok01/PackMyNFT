@@ -50,10 +50,10 @@ const NeededAssetsCard: FC<NeededAssetsCardProps> = ({
                   </li>
                 )}
                 {selectedTokens.length > 0 &&
-                  Object.entries(totalTokens).map(([tokenAddress, amount]) => {
+                  Object.entries(totalTokens).map(([tokenAddress, amount], index) => {
                     const token = selectedTokens.find((t) => t.token_address === tokenAddress);
                     return (
-                      <li key={tokenAddress}>
+                      <li key={index}>
                         {amount} {token?.symbol || "Unknown Token"}
                       </li>
                     );
@@ -68,12 +68,12 @@ const NeededAssetsCard: FC<NeededAssetsCardProps> = ({
                 NFTs
               </Heading>
               <Text pt="2" fontSize="sm">
-                {Object.entries(totalNfts).map(([tokenAddress, amount]) => {
+                {Object.entries(totalNfts).map(([tokenAddress, amount], index) => {
                   const collection = selectedCollections.find(
                     (c) => c.token_address === tokenAddress,
                   );
                   return (
-                    <li key={tokenAddress}>
+                    <li key={index}>
                       {amount} {collection?.name || "Unknown Collection"}
                     </li>
                   );

@@ -1,11 +1,11 @@
-// store.js
+// store.ts
 import { create } from "zustand";
 
 interface StoreData {
   selectedNative: NativeCoin | undefined;
-  setSelectedNative: (selectedNative: NativeCoin) => void;
+  setSelectedNative: (selectedNative: NativeCoin | undefined) => void;
   nativeAmount: number | undefined;
-  setNativeAmount: (amount: number) => void;
+  setNativeAmount: (amount: number | undefined) => void;
   selectedTokens: EvmToken[];
   setSelectedTokens: (selectedTokens: EvmToken[]) => void;
   tokenAmounts: Record<string, number>; // Store amounts for each token by token address
