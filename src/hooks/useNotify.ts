@@ -6,9 +6,19 @@ interface NotifyProps {
   title: string;
   message: ReactNode;
 }
+type NotificationType = "success" | "error";
 
 export const useNotify = () => {
   const toast = useToast();
+
+  const openNotification = (type: NotificationType, title: string, message: string | ReactNode) => {
+    if (type === "success") {
+      notifySuccess({ title, message });
+    }
+    if (type === "error") {
+      notifyError({ title, message });
+    }
+  };
 
   const notifySuccess = useCallback(
     ({ title, message }: NotifyProps) => {
@@ -41,5 +51,6 @@ export const useNotify = () => {
   return {
     notifySuccess,
     notifyError,
+    openNotification,
   };
 };

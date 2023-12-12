@@ -4,7 +4,7 @@ import { useAccount, useEnsName } from "wagmi";
 
 import { InfoText } from "@/components";
 import { useWindowSize } from "@/hooks";
-import { getEllipsisTxt } from "@/utils/formatters";
+import { getEllipsisTxt } from "@/utils";
 
 const Address: FC = (): JSX.Element => {
   const { address } = useAccount();

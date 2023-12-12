@@ -1,4 +1,4 @@
-import { Chain } from "wagmi";
+import { type Chain } from "wagmi";
 
 export const ethereum: Chain = {
   id: 1,
@@ -14,7 +14,7 @@ export const ethereum: Chain = {
     public: { http: ["https://cloudflare-eth.com"] },
   },
   blockExplorers: {
-    default: { name: "", url: "https://etherscan.io/" },
+    default: { name: "Etherscan", url: "https://etherscan.io/" },
   },
   testnet: false,
 };
@@ -33,7 +33,7 @@ export const goerli: Chain = {
     public: { http: ["https://goerli.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161"] },
   },
   blockExplorers: {
-    default: { name: "", url: "https://goerli.etherscan.io/" },
+    default: { name: "Goerliscan", url: "https://goerli.etherscan.io/" },
   },
   testnet: true,
 };
@@ -81,7 +81,7 @@ export const arbitrum: Chain = {
   name: "Arbitrum One",
   network: "arbitrum",
   nativeCurrency: {
-    name: "Ether",
+    name: "ETH",
     symbol: "ETH",
     decimals: 18,
   },
@@ -100,8 +100,8 @@ export const arbitrumGoerli: Chain = {
   name: "Arbitrum Goerli",
   network: "arbitrum-goerli",
   nativeCurrency: {
-    name: "Arbitrum Goerli Ether",
-    symbol: "FTM",
+    name: "ETH",
+    symbol: "ETH",
     decimals: 18,
   },
   rpcUrls: {
@@ -110,6 +110,44 @@ export const arbitrumGoerli: Chain = {
   },
   blockExplorers: {
     default: { name: "Arbiscan", url: "https://goerli.arbiscan.io/" },
+  },
+  testnet: true,
+};
+
+export const zksyncEra: Chain = {
+  id: 324,
+  name: "zkSync Era Mainnet",
+  network: "zksync-era",
+  nativeCurrency: {
+    name: "zkSync Era Ether",
+    symbol: "ETH",
+    decimals: 18,
+  },
+  rpcUrls: {
+    default: { http: ["https://mainnet.era.zksync.io"] },
+    public: { http: ["https://mainnet.era.zksync.io"] },
+  },
+  blockExplorers: {
+    default: { name: "zkSyncScan", url: "https://explorer.zksync.io/" },
+  },
+  testnet: false,
+};
+
+export const zksyncEraTest: Chain = {
+  id: 300,
+  name: "zkSync Era Sepolia Testnet",
+  network: "zksync-era-sepolia",
+  nativeCurrency: {
+    name: "zkSync Era Sepolia Ether",
+    symbol: "ETH",
+    decimals: 18,
+  },
+  rpcUrls: {
+    default: { http: ["https://sepolia.era.zksync.dev"] },
+    public: { http: ["https://sepolia.era.zksync.dev"] },
+  },
+  blockExplorers: {
+    default: { name: "zkSyncScan", url: "https://sepolia.explorer.zksync.io/" },
   },
   testnet: true,
 };
@@ -128,7 +166,7 @@ export const polygon: Chain = {
     public: { http: ["https://poly-rpc.gateway.pokt.network"] },
   },
   blockExplorers: {
-    default: { name: "", url: "https://polygonscan.com/" },
+    default: { name: "Polygonscan", url: "https://polygonscan.com/" },
   },
   testnet: false,
 };
@@ -147,7 +185,7 @@ export const mumbai: Chain = {
     public: { http: ["https://rpc-mumbai.maticvigil.com"] },
   },
   blockExplorers: {
-    default: { name: "", url: "https://mumbai.polygonscan.com/" },
+    default: { name: "Polygonscan", url: "https://mumbai.polygonscan.com/" },
   },
   testnet: true,
 };

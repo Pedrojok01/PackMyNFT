@@ -5,7 +5,7 @@ import { Box, Button, Flex, FormErrorMessage, Text } from "@chakra-ui/react";
 import { CustomDivider, PackAmountInput } from "@/components";
 import { useWindowSize } from "@/hooks";
 import useStore from "@/store/store";
-import { formatTokenBalance } from "@/utils/formatters";
+import { formatTokenBalance } from "@/utils";
 
 interface SelectedAssetsProps {
   native: NativeCoin;

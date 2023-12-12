@@ -1,6 +1,6 @@
 import type { Abi } from "viem";
 
-export const PackMyNFT_ABI = [
+export const PACKMYNFT_ABI = [
   {
     inputs: [
       {
@@ -209,6 +209,11 @@ export const PackMyNFT_ABI = [
   },
   {
     inputs: [],
+    name: "PackMyNFT__TooManyPacks",
+    type: "error",
+  },
+  {
+    inputs: [],
     name: "PackMyNFT__ValuesDontMatch",
     type: "error",
   },
@@ -366,6 +371,45 @@ export const PackMyNFT_ABI = [
     type: "event",
   },
   {
+    inputs: [],
+    name: "MAX_ARRAY_SIZE",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "MAX_BATCH_AMOUNT",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "MAX_SUPPLY",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
     inputs: [
       {
         internalType: "address",
@@ -481,19 +525,6 @@ export const PackMyNFT_ABI = [
         internalType: "bool",
         name: "",
         type: "bool",
-      },
-    ],
-    stateMutability: "view",
-    type: "function",
-  },
-  {
-    inputs: [],
-    name: "maxPackSupply",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256",
       },
     ],
     stateMutability: "view",

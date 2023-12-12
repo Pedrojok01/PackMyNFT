@@ -33,6 +33,7 @@ export default function Home() {
           <Image
             src={packNFT.src}
             alt="Pack My NFT"
+            priority={true}
             width={200}
             height={200}
             sizes="100vw"

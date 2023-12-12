@@ -2,7 +2,7 @@ import Moralis from "moralis";
 import { NextRequest, NextResponse } from "next/server";
 
 import { startMoralis } from "@/services/moralisService";
-import { getMoralisChain } from "@/utils/getMoralisChain";
+import { getMoralisChain } from "@/utils";
 
 type RequestBody = {
   account: `0x${string}`;

@@ -7,8 +7,7 @@ import Image from "next/image";
 import { CustomDivider } from "@/components";
 import { useWindowSize } from "@/hooks";
 import useStore from "@/store/store";
-import { calculateMaxAmountOfPacksMintable } from "@/utils/calculateMaxAmountOfPacksMintable";
-import { calculateTotalAssetsRequiredForPacks } from "@/utils/calculateTotalAssetsRequiredForPacks";
+import { calculateMaxAmountOfPacksMintable, calculateTotalAssetsRequiredForPacks } from "@/utils";
 
 import { AssetsPerPack, NeededAssetsCard } from ".";
 import packNFT from "../../../../public/img/pack-my-nft.png";

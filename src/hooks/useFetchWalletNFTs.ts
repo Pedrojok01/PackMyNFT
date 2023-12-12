@@ -2,7 +2,7 @@
 import useSWR from "swr";
 
 import { APP_URL } from "@/data/constant";
-import fetcher from "@/utils/fetcher";
+import { fetcher } from "@/utils";
 
 interface FetchedNFTs {
   collections: Collections;

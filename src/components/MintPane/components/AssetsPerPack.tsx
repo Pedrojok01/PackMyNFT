@@ -22,7 +22,7 @@ const AssetsPerPack: FC = () => {
 
   return (
     <Box bg={backgroundColor} p={2} borderRadius={8}>
-      {selectedNative && renderAssets(Number(nativeAmount?.toFixed(2)), selectedNative.symbol)}
+      {selectedNative && renderAssets(Number(nativeAmount?.toFixed(5)), selectedNative.symbol)}
       {selectedTokens.map((asset) => renderAssets(tokenAmounts[asset.token_address], asset.name))}
       {selectedCollections.map((asset) => renderAssets(1, asset.name))}
     </Box>

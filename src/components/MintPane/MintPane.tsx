@@ -1,7 +1,7 @@
-import { type FC, useState } from "react";
+import { type FC, useState, useEffect } from "react";
 
 import { Flex } from "@chakra-ui/react";
-import { useAccount } from "wagmi";
+import { useAccount, useNetwork } from "wagmi";
 
 import useStore from "@/store/store";
 import styles from "@/styles/mainPane.module.css";
@@ -11,8 +11,13 @@ import { ContentBox, NotConnected } from "..";
 
 const MintPane: FC = () => {
   const { isConnected } = useAccount();
-  const { currentStep, setCurrentStep } = useStore();
+  const { chain } = useNetwork();
+  const { currentStep, setCurrentStep, reset } = useStore();
   const [showConfirmation, setShowConfirmation] = useState(false);
+
+  useEffect(() => {
+    reset();
+  }, [chain, reset]);
 
   const handleMint = () => {
     setShowConfirmation(true);

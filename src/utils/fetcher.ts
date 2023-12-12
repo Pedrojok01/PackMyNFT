@@ -6,7 +6,7 @@ type FetcherParams = {
   chainId: number;
 };
 
-const fetcher = async ({ key, account, chainId }: FetcherParams): Promise<any> => {
+export const fetcher = async ({ key, account, chainId }: FetcherParams): Promise<any> => {
   const res = await fetch(key, {
     method: "POST",
     headers: {
@@ -25,5 +25,3 @@ const fetcher = async ({ key, account, chainId }: FetcherParams): Promise<any> =
 
   return res.json();
 };
-
-export default fetcher;

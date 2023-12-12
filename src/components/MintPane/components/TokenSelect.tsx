@@ -4,7 +4,7 @@ import { useMemo, type FC, type ChangeEvent } from "react";
 import { Select } from "@chakra-ui/react";
 
 import useStore from "@/store/store";
-import { formatTokenBalance } from "@/utils/formatters";
+import { formatTokenBalance } from "@/utils";
 
 interface TokenSelectProps {
   native: NativeCoin;

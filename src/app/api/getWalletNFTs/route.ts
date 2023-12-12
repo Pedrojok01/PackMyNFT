@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 import { fetchCollections, fetchNFTs, startMoralis } from "@/services/moralisService";
-import { processCollections } from "@/utils/collectionHelper";
-import { getMoralisChain } from "@/utils/getMoralisChain";
+import { getMoralisChain, processCollections } from "@/utils";
 
 type RequestBody = {
   account: `0x${string}`;

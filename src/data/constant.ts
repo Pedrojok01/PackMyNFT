@@ -12,11 +12,11 @@ export const MAX_ASSETS_PER_PACK = 5;
 
 /* 
 Deployed at the same address on:
- - Ethereum, Goerli, 
+ - Ethereum, Sepolia (OK & verified) 
  - BSC, BSC Testnet, 
  - Polygon, Polygon Mumbai,
  - Optimism, Optimism Goerli, 
  - ArbitrumOne, Arbitrum Testnet, 
  - Fantom Opera, Fantom Testnet
 */
-export const PACK_MY_NFT = "";
+export const PACK_MY_NFT = "0x5f492548d781a509119b6fA2D874dC81A64e18a8";

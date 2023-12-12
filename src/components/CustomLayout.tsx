@@ -3,7 +3,6 @@ import type { FC, ReactNode } from "react";
 
 import { Box, Flex, Image } from "@chakra-ui/react";
 
-// import Image from "next/image";
 import { Footer, Header } from "@/components";
 
 import shape_bottom from "../../public/img/background_shape_bottom.png";
