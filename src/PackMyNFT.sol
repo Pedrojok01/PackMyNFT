@@ -41,9 +41,10 @@ contract PackMyNFT is
 
     string private constant BASE_URI =
         "ipfs://QmPdWmcbxqco4vBZf9cL6XsTHHNF54tVzu2JoMN357pwqw/metadata.json";
-    uint256 private immutable maxArraySize = 15; // DoS protection
-    uint256 private nonce; // Used as token Id + Total number of packs minted
-    uint256 public immutable maxPackSupply; // 0 = no limit
+    uint256 private nonce; // Used as: Token Id & Total supply
+    uint256 public immutable MAX_BATCH_AMOUNT = 200; // Gas limit protection
+    uint256 public immutable MAX_ARRAY_SIZE = 15; // DoS protection
+    uint256 public immutable MAX_SUPPLY; // 0 = no limit
 
     // Struct to store bundle data (simplifies the burn mechanism)
     struct BundleData {
@@ -51,13 +52,14 @@ contract PackMyNFT is
         uint256[] numbers;
     }
 
-    mapping(uint256 => BundleData) bundleData;
+    mapping(uint256 => BundleData) private bundleData;
 
     // Custom errors
     error PackMyNFT__NonExistantToken();
     error PackMyNFT__TokenNotOwned();
     error PackMyNFT__MintToAddress0();
     error PackMyNFT__InvalidNativeValue();
+    error PackMyNFT__TooManyPacks();
     error PackMyNFT__InvalidArraysLength();
     error PackMyNFT__ArraysDontMatch();
     error PackMyNFT__NumbersDontMatch();
@@ -77,7 +79,7 @@ contract PackMyNFT is
         string memory symbol_,
         uint256 maxSupply
     ) ERC721(name_, symbol_) {
-        maxPackSupply = maxSupply;
+        MAX_SUPPLY = maxSupply;
     }
 
     /*///////////////////////////////////////////////////////////////////////////////
@@ -95,7 +97,7 @@ contract PackMyNFT is
         address[] calldata addresses,
         uint256[] memory numbers
     ) public payable returns (uint256 tokenId) {
-        uint256 maxSupply = maxPackSupply;
+        uint256 maxSupply = MAX_SUPPLY;
         if (maxSupply != 0 && nonce >= maxSupply)
             revert PackMyNFT__MaxSupplyReached();
         if (to == address(0)) revert PackMyNFT__MintToAddress0();
@@ -120,9 +122,12 @@ contract PackMyNFT is
         uint256[][] calldata arrayOfNumbers,
         uint256 amountOfPacks
     ) external payable nonReentrant {
-        uint256 maxSupply = maxPackSupply;
+        uint256 maxSupply = MAX_SUPPLY;
         if (maxSupply != 0 && nonce + amountOfPacks > maxSupply)
             revert PackMyNFT__MaxSupplyReached();
+        if (amountOfPacks > MAX_BATCH_AMOUNT) {
+            revert PackMyNFT__TooManyPacks();
+        }
         if (to == address(0)) revert PackMyNFT__MintToAddress0();
         if (msg.value != arrayOfNumbers[0][0] * amountOfPacks)
             revert PackMyNFT__ValuesDontMatch();
@@ -189,8 +194,9 @@ contract PackMyNFT is
         address[] calldata addresses,
         uint256[] memory numbers
     ) private {
-        if (addresses.length > maxArraySize || numbers.length > maxArraySize)
-            revert PackMyNFT__InvalidArraysLength();
+        if (
+            addresses.length > MAX_ARRAY_SIZE || numbers.length > MAX_ARRAY_SIZE
+        ) revert PackMyNFT__InvalidArraysLength();
         if (addresses.length != numbers[1] + numbers[2] + numbers[3])
             revert PackMyNFT__ArraysDontMatch();
         if (addresses.length != numbers.length - 4 - numbers[3])

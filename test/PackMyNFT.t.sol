@@ -46,8 +46,8 @@ contract PackMyNFTInvariant is Helpers {
     }
 
     function invariant_totalSupply() public view {
-        if (packMyNFT.maxPackSupply() != 0) {
-            assert(packMyNFT.totalSupply() <= packMyNFT.maxPackSupply());
+        if (packMyNFT.MAX_SUPPLY() != 0) {
+            assert(packMyNFT.totalSupply() <= packMyNFT.MAX_SUPPLY());
         }
     }
 

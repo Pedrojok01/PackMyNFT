@@ -9,10 +9,12 @@
     "build": "forge build",
     "test": "forge test -vvv",
     "cover": "forge coverage",
+    "cover:debug": "forge coverage --report debug",
     "lint": "solhint \"src/**/*.sol\"",
     "prettier": "prettier --write --plugin=prettier-plugin-solidity \"**/*.sol\"",
     "slither": "slither src/PackMyNFT.sol --solc-remaps @openzeppelin=lib/openzeppelin-contracts",
-    "deploy:forge": " export $(cat .env | xargs) && forge script ./scripts/foundry/deploy_faucet.s.sol --private-key ${PRIVATE_KEY} --broadcast  --rpc-url 'https://kovan.infura.io/v3/'${INFURA_API_KEY}"
+    "simulate": "forge script script/PackMyNFTScript.s.sol:PackMyNFTScript --rpc-url sepolia",
+    "deploy": "forge script script/PackMyNFTScript.s.sol:PackMyNFTScript --rpc-url sepolia --broadcast --verify --watch"
   },
   "repository": {
     "type": "git"

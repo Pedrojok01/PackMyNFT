@@ -84,6 +84,41 @@ contract PackMyNFTTest_BatchMint is Helpers {
         );
     }
 
+    function test_BatchMint_MaxBatchPackExceeded() public {
+        PackMyNFT limitedSupplyContract = new PackMyNFT(
+            "PackMyNFT",
+            "PMNFT",
+            1000
+        );
+
+        address to = address(this);
+        uint256 amountOfPacks = 250;
+
+        address[] memory addresses = new address[](1);
+        addresses[0] = address(mockERC20);
+
+        uint256[][] memory arrayOfNumbers = new uint256[][](amountOfPacks);
+        for (uint256 i = 0; i < amountOfPacks; i++) {
+            arrayOfNumbers[i] = new uint256[](5);
+            arrayOfNumbers[i][0] = 0.01 ether;
+            arrayOfNumbers[i][1] = 1;
+            arrayOfNumbers[i][2] = 0;
+            arrayOfNumbers[i][3] = 0;
+            arrayOfNumbers[i][4] = 100;
+        }
+
+        uint256 requiredValue = arrayOfNumbers[0][0] * amountOfPacks;
+
+        vm.expectRevert(abi.encodeWithSignature("PackMyNFT__TooManyPacks()"));
+        vm.prank(user1);
+        limitedSupplyContract.batchMint{value: requiredValue}(
+            to,
+            addresses,
+            arrayOfNumbers,
+            amountOfPacks
+        );
+    }
+
     function test_BatchMint_ToZeroAddress() public {
         uint256 amountOfPacks = 5;
 
