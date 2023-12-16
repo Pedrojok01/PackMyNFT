@@ -59,11 +59,12 @@ export const useContractExecution = () => {
   const handleAllMint = async (
     bundleArrays: BundleArrays[],
     packCount: number,
+    setPacksMinted: (packsMinted: number) => void,
   ): Promise<Receipt> => {
     setLoading(true);
 
     try {
-      const receipt = await mint(bundleArrays, packCount);
+      const receipt = await mint(bundleArrays, packCount, setPacksMinted);
       return receipt;
     } catch (err: any) {
       return { success: false, data: null, error: err.message ?? err };

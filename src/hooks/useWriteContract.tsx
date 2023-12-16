@@ -120,7 +120,11 @@ export const useWriteContract = () => {
 
   /* Execute mint:
    *****************/
-  const mint = async (bundleArrays: BundleArrays[], packCount: number): Promise<Receipt> => {
+  const mint = async (
+    bundleArrays: BundleArrays[],
+    packCount: number,
+    setPacksMinted: (packsMinted: number) => void,
+  ): Promise<Receipt> => {
     if (!walletClient) throw new Error("Wallet client not initialized");
 
     const packMyNftInstance = getContract({
@@ -137,6 +141,7 @@ export const useWriteContract = () => {
       } else {
         let remainingPacks = packCount;
         let transactionIndex = 0;
+        let totalPacksMinted = 0;
         const batchResults = [];
 
         while (remainingPacks > 0) {
@@ -154,6 +159,11 @@ export const useWriteContract = () => {
             packsThisTxn,
           );
           batchResults.push(result.data);
+
+          if (result.success) {
+            totalPacksMinted += packsThisTxn;
+            setPacksMinted(totalPacksMinted); // Update the packs minted so far
+          }
 
           remainingPacks -= packsThisTxn;
           transactionIndex++;

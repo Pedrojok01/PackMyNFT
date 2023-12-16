@@ -11,25 +11,23 @@ import {
   Text,
 } from "@chakra-ui/react";
 
+import useStore from "@/store/store";
+
 interface NeededAssetsCardProps {
   packCount: number;
-  selectedNative: NativeCoin | undefined;
   totalNative: number;
-  selectedTokens: EvmToken[];
   totalTokens: { [tokenAddress: string]: number };
-  selectedCollections: Collection[];
   totalNfts: { [tokenAddress: string]: number };
 }
 
 const NeededAssetsCard: FC<NeededAssetsCardProps> = ({
   packCount,
-  selectedNative,
   totalNative,
-  selectedTokens,
   totalTokens,
-  selectedCollections,
   totalNfts,
 }) => {
+  const { selectedNative, selectedTokens, selectedCollections } = useStore();
+
   return (
     <Card>
       <CardHeader>

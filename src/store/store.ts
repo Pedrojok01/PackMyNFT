@@ -14,6 +14,8 @@ interface StoreData {
   setSelectedCollections: (selectedCollections: Collections) => void;
   currentStep: number;
   setCurrentStep: (currentStep: number) => void;
+  packCount: number;
+  setPackCount: (packCount: number) => void;
   loading: boolean;
   setLoading: (loading: boolean) => void;
   reset: () => void;
@@ -35,6 +37,8 @@ const useStore = create<StoreData>((set) => ({
   setSelectedCollections: (nfts) => set({ selectedCollections: nfts }),
   currentStep: 1,
   setCurrentStep: (step) => set({ currentStep: step }),
+  packCount: 1,
+  setPackCount: (packCount) => set({ packCount }),
   loading: false,
   setLoading: (loading) => set({ loading }),
   reset: () =>
@@ -45,6 +49,7 @@ const useStore = create<StoreData>((set) => ({
       tokenAmounts: {},
       selectedCollections: [],
       currentStep: 1,
+      packCount: 1,
       loading: false,
     }),
 }));

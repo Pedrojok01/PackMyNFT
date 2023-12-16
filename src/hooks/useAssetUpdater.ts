@@ -1,4 +1,4 @@
-// hooks/useAssetUpdater.js
+// hooks/useAssetUpdater.ts
 import { useCallback } from "react";
 
 import { MAX_ASSETS_PER_PACK } from "@/data/constant";

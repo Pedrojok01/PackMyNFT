@@ -1,4 +1,4 @@
-// components/MintProgressModal.js
+// components/MintProgressModal.tsx
 import React, { type FC } from "react";
 
 import {
@@ -24,11 +24,12 @@ import {
   Text,
 } from "@chakra-ui/react";
 
+import useStore from "@/store/store";
+
 interface MintProgressModalProps {
   isOpen: boolean;
   onClose: () => void;
   currentStep: number;
-  totalSteps: number;
   batchProgress: number;
 }
 
@@ -41,9 +42,9 @@ const MintProgressModal: FC<MintProgressModalProps> = ({
   isOpen,
   onClose,
   currentStep,
-  totalSteps,
   batchProgress,
 }) => {
+  const { packCount } = useStore();
   const bgColor = useColorModeValue("var(--background-light)", "var(--background-dark)");
 
   return (
@@ -74,22 +75,18 @@ const MintProgressModal: FC<MintProgressModalProps> = ({
               </Step>
             ))}
           </Stepper>
-          {currentStep === 1 && (
+          {currentStep === 1 && packCount > 200 && (
             <>
               <Text fontSize="sm" mt={6} mb={2}>
                 Minting {batchProgress}% of packs
               </Text>
 
-              <Progress value={10} colorScheme="brand" />
+              <Progress value={batchProgress} colorScheme="brand" />
             </>
           )}
 
           <Box display="flex" alignItems="center" justifyContent="center" p={8}>
-            <CircularProgress
-              isIndeterminate={currentStep < totalSteps}
-              value={batchProgress}
-              color="brand.500"
-            />
+            <CircularProgress isIndeterminate value={batchProgress} color="brand.500" />
           </Box>
         </ModalBody>
       </ModalContent>

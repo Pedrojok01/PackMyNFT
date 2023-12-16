@@ -6,7 +6,7 @@ import { useAccount, useNetwork } from "wagmi";
 import useStore from "@/store/store";
 import styles from "@/styles/mainPane.module.css";
 
-import { AssetSelectionStep, ReviewAndMintStep } from "./components";
+import { SelectStep, ReviewAndMintStep, SuccessStep } from "./components";
 import { ContentBox, NotConnected } from "..";
 
 const MintPane: FC = () => {
@@ -24,9 +24,9 @@ const MintPane: FC = () => {
         <NotConnected />
       ) : (
         <Flex className={styles.content}>
-          {currentStep === 1 && <AssetSelectionStep />}
-
+          {currentStep === 1 && <SelectStep />}
           {currentStep === 2 && <ReviewAndMintStep />}
+          {currentStep === 3 && <SuccessStep />}
         </Flex>
       )}
     </ContentBox>

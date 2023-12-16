@@ -32,6 +32,7 @@
     "moralis": "2.23.2",
     "next": "14.0.4",
     "react": "18.2.0",
+    "react-confetti": "^6.1.0",
     "react-dom": "18.2.0",
     "react-jazzicon": "1.0.4",
     "sharp": "0.33.0",

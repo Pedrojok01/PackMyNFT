@@ -11,15 +11,12 @@ import CollectionSelect from "./CollectionSelect";
 import SelectedAssets from "./SelectedAssets";
 import TokenSelect from "./TokenSelect";
 
-const AssetSelectionStep: FC = () => {
+const SelectStep: FC = () => {
   const { address } = useAccount();
   const { chain } = useNetwork();
   const { data: nativeData } = useBalance({ address, watch: true });
   const { notifyError } = useNotify();
   const { setCurrentStep } = useStore();
-
-  const isDataLoaded = address && chain?.id && nativeData;
-
   const {
     combinedAssetCount,
     isAmountMissing,
@@ -27,6 +24,13 @@ const AssetSelectionStep: FC = () => {
     updateSelectedCollections,
     handleRemoveAsset,
   } = useAssetUpdater();
+
+  if (!address) {
+    throw new Error("Address not found. Make sure that your web3 wallet is connected.");
+  }
+
+  const isDataLoaded = address && chain?.id && nativeData;
+
   const { tokens } = useFetchTokenBalances(address, chain?.id ?? 0);
   const { collections } = useFetchWalletNFTs(address, chain?.id ?? 0);
 
@@ -42,7 +46,7 @@ const AssetSelectionStep: FC = () => {
     setCurrentStep(2);
   };
 
-  if (!isDataLoaded) {
+  if (!isDataLoaded || !address) {
     return (
       <Center>
         <VStack spacing={4}>
@@ -69,4 +73,4 @@ const AssetSelectionStep: FC = () => {
   );
 };
 
-export default AssetSelectionStep;
+export default SelectStep;
