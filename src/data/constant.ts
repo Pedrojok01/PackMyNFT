@@ -9,14 +9,15 @@ export const SUPPORTED_CHAIN = {
 };
 
 export const MAX_ASSETS_PER_PACK = 5;
+export const MAX_PACKS_PER_TXN = 200;
 
 /* 
 Deployed at the same address on:
- - Ethereum, Sepolia (OK & verified) 
+ - Ethereum, Sepolia 
  - BSC, BSC Testnet, 
  - Polygon, Polygon Mumbai,
  - Optimism, Optimism Goerli, 
  - ArbitrumOne, Arbitrum Testnet, 
  - Fantom Opera, Fantom Testnet
 */
-export const PACK_MY_NFT = "0x5f492548d781a509119b6fA2D874dC81A64e18a8";
+export const PACK_MY_NFT: `0x${string}` = "0x5f492548d781a509119b6fA2D874dC81A64e18a8"; // sepolia only

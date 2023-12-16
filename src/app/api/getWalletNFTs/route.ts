@@ -10,7 +10,7 @@ type RequestBody = {
 
 export const runtime = "nodejs";
 
-export async function POST(request: NextRequest) {
+export async function POST(request: NextRequest): Promise<NextResponse> {
   await startMoralis();
   const { account, chainId } = (await request.json()) as RequestBody;
 
@@ -37,14 +37,20 @@ export async function POST(request: NextRequest) {
 
     const data = processCollections(collections, nfts);
 
-    return NextResponse.json({ data });
+    return NextResponse.json({
+      success: true,
+      data: data,
+      message: "NFTs fetched successfully",
+    });
   } catch (error) {
-    console.error("Error in Moralis data fetching:", error);
+    const errorMessage = error instanceof Error ? error.message : "Unknown error occurred";
+    console.error("Error in Moralis data fetching:", errorMessage);
+
     return NextResponse.json(
       {
         success: false,
         message: "Server error occurred",
-        error: error instanceof Error ? error.message : error,
+        error: errorMessage,
       },
       { status: 500 },
     );

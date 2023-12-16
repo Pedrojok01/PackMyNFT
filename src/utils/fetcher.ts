@@ -6,7 +6,7 @@ type FetcherParams = {
   chainId: number;
 };
 
-export const fetcher = async ({ key, account, chainId }: FetcherParams): Promise<any> => {
+export const fetcher = async <T>({ key, account, chainId }: FetcherParams): Promise<T> => {
   const res = await fetch(key, {
     method: "POST",
     headers: {

@@ -1,6 +1,6 @@
 import { errorMessages } from "@/data/errorMessages";
 
-export const handleErrors = (err: any, contractInstance: any) => {
+export const handleErrors = (err: any, contractInstance: any): string => {
   let message = err.details ?? err.reason ?? err.message ?? err;
 
   if (err?.error?.data) {

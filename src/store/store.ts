@@ -16,8 +16,6 @@ interface StoreData {
   setCurrentStep: (currentStep: number) => void;
   loading: boolean;
   setLoading: (loading: boolean) => void;
-  error: string | null;
-  setError: (error: string | null) => void;
   reset: () => void;
 }
 
@@ -39,8 +37,6 @@ const useStore = create<StoreData>((set) => ({
   setCurrentStep: (step) => set({ currentStep: step }),
   loading: false,
   setLoading: (loading) => set({ loading }),
-  error: null,
-  setError: (error) => set({ error }),
   reset: () =>
     set({
       selectedNative: undefined,
@@ -49,7 +45,6 @@ const useStore = create<StoreData>((set) => ({
       tokenAmounts: {},
       selectedCollections: [],
       currentStep: 1,
-      error: null,
       loading: false,
     }),
 }));

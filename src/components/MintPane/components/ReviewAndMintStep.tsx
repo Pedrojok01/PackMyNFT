@@ -5,7 +5,7 @@ import { Box, Button, Center, HStack, Input, Text } from "@chakra-ui/react";
 import Image from "next/image";
 
 import { CustomDivider } from "@/components";
-import { useWindowSize } from "@/hooks";
+import { useContractExecution, useWindowSize } from "@/hooks";
 import useStore from "@/store/store";
 import {
   calculateMaxAmountOfPacksMintable,
@@ -13,14 +13,11 @@ import {
   sortArrayForBundle,
 } from "@/utils";
 
-import { AssetsPerPack, NeededAssetsCard } from ".";
+import { AssetsPerPack, MintProgressModal, NeededAssetsCard } from ".";
 import packNFT from "../../../../public/img/pack-my-nft.png";
 
-interface ReviewAndMintStepProps {
-  onMint: () => void;
-}
-
-const ReviewAndMintStep: FC<ReviewAndMintStepProps> = ({ onMint }) => {
+const ReviewAndMintStep: FC = () => {
+  const { handleAllApprovals, handleAllMint } = useContractExecution();
   const { isTablet } = useWindowSize();
   const {
     selectedNative,
@@ -28,9 +25,13 @@ const ReviewAndMintStep: FC<ReviewAndMintStepProps> = ({ onMint }) => {
     selectedTokens,
     tokenAmounts,
     selectedCollections,
+    loading,
     setCurrentStep,
   } = useStore();
   const [packCount, setPackCount] = useState(1);
+  const [isMintModalOpen, setMintModalOpen] = useState(false);
+  const [currentMintStep, setCurrentMintStep] = useState(0);
+  const totalMintSteps = selectedTokens.length + selectedCollections.length + 50;
   const { totalNative, totalTokens, totalNfts } = calculateTotalAssetsRequiredForPacks(
     packCount,
     nativeAmount,
@@ -52,14 +53,42 @@ const ReviewAndMintStep: FC<ReviewAndMintStepProps> = ({ onMint }) => {
     setPackCount(newPackCount);
   };
 
-  const testSortArrayFunction = sortArrayForBundle(
-    nativeAmount ?? 0,
-    selectedTokens,
-    selectedCollections,
-    tokenAmounts,
-    packCount,
-  );
-  console.log("testSortArrayFunction: ", testSortArrayFunction);
+  const handleMint = async () => {
+    setMintModalOpen(true);
+
+    try {
+      setCurrentMintStep(0);
+      const approvalData = await handleAllApprovals(
+        selectedTokens,
+        selectedCollections,
+        tokenAmounts,
+        packCount,
+      );
+
+      if (!approvalData.success) {
+        throw new Error(approvalData.error ?? "An error occured during approval process.");
+      }
+
+      const sortedArrays = sortArrayForBundle(
+        nativeAmount ?? 0,
+        selectedTokens,
+        selectedCollections,
+        tokenAmounts,
+        packCount,
+      );
+      setCurrentMintStep(1);
+      const mintData = await handleAllMint(sortedArrays, packCount);
+      console.log("result", mintData);
+
+      if (!mintData.success) {
+        throw new Error(mintData.error ?? "An error occured during approval process.");
+      }
+    } catch (error: any) {
+      console.error(error);
+    } finally {
+      setMintModalOpen(false);
+    }
+  };
 
   return (
     <>
@@ -132,10 +161,18 @@ const ReviewAndMintStep: FC<ReviewAndMintStepProps> = ({ onMint }) => {
         <Button onClick={() => setCurrentStep(1)} colorScheme="gray">
           Back
         </Button>
-        <Button colorScheme="teal" onClick={onMint}>
+        <Button colorScheme="teal" onClick={handleMint} isLoading={loading}>
           Mint Pack
         </Button>
       </Center>
+
+      <MintProgressModal
+        isOpen={isMintModalOpen}
+        onClose={() => setMintModalOpen(false)}
+        currentStep={currentMintStep}
+        totalSteps={totalMintSteps}
+        batchProgress={0}
+      />
     </>
   );
 };

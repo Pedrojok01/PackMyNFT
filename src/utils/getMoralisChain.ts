@@ -1,6 +1,6 @@
 import { EvmChain } from "@moralisweb3/common-evm-utils";
 
-export const getMoralisChain = (chainId: number) => {
+export const getMoralisChain = (chainId: number): EvmChain => {
   switch (chainId) {
     case 1:
       return EvmChain.ETHEREUM;

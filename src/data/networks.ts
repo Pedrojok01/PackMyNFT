@@ -19,21 +19,21 @@ export const ethereum: Chain = {
   testnet: false,
 };
 
-export const goerli: Chain = {
-  id: 5,
-  name: "Goerli",
-  network: "Goerli",
+export const sepolia: Chain = {
+  id: 11155111,
+  name: "Sepolia",
+  network: "Sepolia",
   nativeCurrency: {
-    name: "ETH",
+    name: "SepoliaETH",
     symbol: "ETH",
     decimals: 18,
   },
   rpcUrls: {
-    default: { http: ["https://goerli.blockpi.network/v1/rpc/public"] },
-    public: { http: ["https://goerli.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161"] },
+    default: { http: ["https://sepolia.infura.io/v3/"] },
+    public: { http: ["https://rpc.sepolia.org"] },
   },
   blockExplorers: {
-    default: { name: "Goerliscan", url: "https://goerli.etherscan.io/" },
+    default: { name: "Sepoliascan", url: "https://sepolia.etherscan.io" },
   },
   testnet: true,
 };
@@ -268,7 +268,7 @@ export const bnb_test: Chain = {
 
 export const networks = {
   ethereum,
-  goerli,
+  sepolia,
   optimism,
   optimismGoerli,
   arbitrum,

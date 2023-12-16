@@ -13,7 +13,19 @@ export function Providers({ children }: { children: ReactNode }) {
 
   useEffect(() => setMounted(true), []);
 
-  const theme = extendTheme({ initialColorMode: "dark", useSystemColorMode: false });
+  const theme = extendTheme({
+    config: {
+      initialColorMode: "dark",
+      useSystemColorMode: false,
+      cssVarPrefix: "packMyNFT",
+    },
+    colors: {
+      brand: {
+        200: "#008080",
+        500: "#008080",
+      },
+    },
+  });
 
   const appInfo = {
     appName: "PackMyNFT",

@@ -11,7 +11,7 @@ type RequestBody = {
 
 export const runtime = "nodejs";
 
-export async function POST(request: NextRequest): Promise<EvmToken[] | NextResponse> {
+export async function POST(request: NextRequest): Promise<NextResponse> {
   try {
     await startMoralis();
 
@@ -34,15 +34,19 @@ export async function POST(request: NextRequest): Promise<EvmToken[] | NextRespo
     });
 
     return NextResponse.json({
-      tokenResponse,
+      success: true,
+      data: tokenResponse,
+      message: "Tokens fetched successfully",
     });
-  } catch (error: any) {
-    console.error("Error fetching NFTs:", error);
+  } catch (error) {
+    const errorMessage = error instanceof Error ? error.message : "Unknown error occurred";
+    console.error("Error fetching NFTs:", errorMessage);
+
     return NextResponse.json(
       {
         success: false,
         message: "Server error occurred",
-        error: error.message,
+        error: errorMessage,
       },
       { status: 500 },
     );

@@ -1,5 +1,5 @@
 export class ExtendedError extends Error {
-  info?: any;
+  info?: NFTResponse | TokenResponse;
   status?: number;
 
   constructor(message: string) {

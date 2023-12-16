@@ -89,8 +89,13 @@ interface Nft extends EvmNft {
   image: string;
 }
 
+interface BundleArrays {
+  addressesArray: `0x${string}`[];
+  numbersArray: bigint[];
+}
+
 /**********************************************************
-                           Wallets
+                           Divers
 ***********************************************************/
 
 interface AddEthereumChainParameter {
@@ -106,11 +111,20 @@ interface AddEthereumChainParameter {
   iconUrls?: string[];
 }
 
+interface Receipt {
+  success: boolean;
+  data: any;
+  error: string | null;
+}
+
 /**********************************************************
-                           Divers
+                           APIs
 ***********************************************************/
 
-interface BundleArrays {
-  addressesArray: `0x${string}`[];
-  numbersArray: bigint[];
+interface NFTResponse {
+  data: Collections;
+}
+
+interface TokenResponse {
+  data: EvmToken[];
 }

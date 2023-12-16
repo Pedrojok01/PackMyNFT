@@ -1,14 +1,14 @@
 import { type PublicClient, getContract, parseUnits } from "viem";
-import { usePublicClient, useWalletClient } from "wagmi";
+import { useAccount, usePublicClient, useWalletClient } from "wagmi";
 
 import { PACKMYNFT_ABI, ERC721_ABI, ERC20_ABI } from "@/data/abis";
-import { PACK_MY_NFT } from "@/data/constant";
+import { MAX_PACKS_PER_TXN, PACK_MY_NFT } from "@/data/constant";
 import { handleErrors } from "@/utils/errorHandling";
 
 import { useNotify } from ".";
 
 export const useWriteContract = () => {
-  // const { chain } = useNetwork();
+  const { address } = useAccount();
   const { notifyError, openNotification } = useNotify();
   const publicClient: PublicClient = usePublicClient();
   const { data: walletClient } = useWalletClient();
@@ -40,7 +40,7 @@ export const useWriteContract = () => {
       return { success: true, data: hash, error: null };
     } catch (error: any) {
       const message = handleErrors(error, ERC20_ABI);
-      notifyError(message);
+      notifyError({ title: "An error occured during token approval", message: message });
       return { success: false, data: null, error: message };
     }
   };
@@ -66,58 +66,114 @@ export const useWriteContract = () => {
       return { success: true, data: hash, error: null };
     } catch (error: any) {
       const message = handleErrors(error, PACKMYNFT_ABI);
-      notifyError(message);
+      notifyError({ title: "An error occured during NFT approval", message: message });
       return { success: false, data: null, error: message };
     }
   };
 
-  // Execute a Bundle:
+  /* Single Mint function:
+   ************************/
+  const singleMint = async (
+    packMyNftInstance: any,
+    addressesArray: `0x${string}`[],
+    numbersArray: bigint[],
+  ) => {
+    await publicClient.simulateContract({
+      address: PACK_MY_NFT,
+      abi: PACKMYNFT_ABI,
+      functionName: "safeMint",
+      account: address,
+      args: [address, addressesArray, numbersArray],
+    });
 
-  /* Execute a batch transfer:
-   ****************************/
+    const hash = await packMyNftInstance.write.safeMint([address, addressesArray, numbersArray]);
+    const receipt = await publicClient.waitForTransactionReceipt({ confirmations: 3, hash: hash });
+    return { success: true, data: receipt, error: null };
+  };
 
-  type Method = "batchTransferERC721" | "batchTransferERC1155";
-  type Params = [string, string, string[], number[]?];
+  /* batch Mint function:
+   ***********************/
+  const batchMint = async (
+    packMyNftInstance: any,
+    addressesArray: `0x${string}`[],
+    numbersArrays: bigint[][],
+    packCount: number,
+  ) => {
+    await publicClient.simulateContract({
+      address: PACK_MY_NFT,
+      abi: PACKMYNFT_ABI,
+      functionName: "batchMint",
+      account: address,
+      args: [address, addressesArray, numbersArrays, packCount],
+    });
 
-  const executeTransfer = async (method: Method, params: Params) => {
+    const hash = await packMyNftInstance.write.batchMint([
+      address,
+      addressesArray,
+      numbersArrays,
+      packCount,
+    ]);
+    const receipt = await publicClient.waitForTransactionReceipt({ confirmations: 3, hash: hash });
+
+    return { success: true, data: receipt, error: null };
+  };
+
+  /* Execute mint:
+   *****************/
+  const mint = async (bundleArrays: BundleArrays[], packCount: number): Promise<Receipt> => {
     if (!walletClient) throw new Error("Wallet client not initialized");
 
-    const PACK_MY_NFTInstance = getContract({
+    const packMyNftInstance = getContract({
       abi: PACKMYNFT_ABI,
-      address: PACK_MY_NFT as `0x${string}`,
+      address: PACK_MY_NFT,
       walletClient: walletClient,
     });
 
+    const addressesArray = bundleArrays[0].addressesArray;
+
     try {
-      const hash = await PACK_MY_NFTInstance.write[method](params);
-      const transaction = await publicClient.waitForTransactionReceipt({
-        confirmations: 4,
-        hash: hash,
-      });
-      // notifySuccess({hash, chain?.id});
-      return { success: true, data: transaction, error: null };
-    } catch (error: any) {
-      const message = handleErrors(error, PACKMYNFT_ABI);
-      notifyError(message);
+      if (packCount === 1) {
+        return await singleMint(packMyNftInstance, addressesArray, bundleArrays[0].numbersArray);
+      } else {
+        let remainingPacks = packCount;
+        let transactionIndex = 0;
+        const batchResults = [];
+
+        while (remainingPacks > 0) {
+          const packsThisTxn = Math.min(remainingPacks, MAX_PACKS_PER_TXN);
+          const batchArraysForThisTxn = bundleArrays.slice(
+            transactionIndex * MAX_PACKS_PER_TXN,
+            (transactionIndex + 1) * MAX_PACKS_PER_TXN,
+          );
+
+          const numbersArrays = batchArraysForThisTxn.map((bundle) => bundle.numbersArray);
+          const result = await batchMint(
+            packMyNftInstance,
+            addressesArray,
+            numbersArrays,
+            packsThisTxn,
+          );
+          batchResults.push(result.data);
+
+          remainingPacks -= packsThisTxn;
+          transactionIndex++;
+        }
+
+        return { success: true, data: batchResults, error: null };
+      }
+    } catch (error) {
+      const message = handleErrors(error, PACK_MY_NFT);
+      notifyError({ title: "An error occured during mint", message: message });
       return { success: false, data: null, error: message };
     }
   };
 
-  const executeTransfer721 = (collectionAddress: string, receiver: string, tokenIds: string[]) =>
-    executeTransfer("batchTransferERC721", [collectionAddress, receiver, tokenIds]);
-
-  const executeTransfer1155 = (
-    collectionAddress: string,
-    receiver: string,
-    tokenIds: string[],
-    tokenAmounts: number[],
-  ) =>
-    executeTransfer("batchTransferERC1155", [collectionAddress, receiver, tokenIds, tokenAmounts]);
+  /* Execute a Bundle mint:
+   *************************/
 
   return {
     approveToken,
     approveNft,
-    executeTransfer721,
-    executeTransfer1155,
+    mint,
   };
 };

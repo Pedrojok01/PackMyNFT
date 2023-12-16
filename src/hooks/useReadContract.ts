@@ -10,7 +10,7 @@ export const useReadContract = () => {
 
   /* Check if existing allowance of ERC20 token :
    ***********************************************/
-  const checkTokenAllowance = async (token: Address): Promise<number | bigint> => {
+  const checkTokenAllowance = async (token: Address): Promise<bigint> => {
     if (!publicClient) throw new Error("Public client not initialized");
 
     const tokenInstance = getContract({
@@ -21,10 +21,10 @@ export const useReadContract = () => {
 
     try {
       const allowance = await tokenInstance.read.allowance([address as string, PACK_MY_NFT]);
-      return allowance as number | bigint;
+      return allowance as bigint;
     } catch (error: any) {
-      console.log(error.details ?? error.reason ?? error.message ?? error);
-      return 0;
+      console.error(error.details ?? error.reason ?? error.message ?? error);
+      return 0n;
     }
   };
 
@@ -48,8 +48,23 @@ export const useReadContract = () => {
     }
   };
 
+  /* Check existing allowance of an NFT collection (both ERC721 or ERC1155):
+   **************************************************************************/
+  const checkAllApprovals = async (tokens: EvmToken[], collections: Collections) => {
+    const tokenAllowances = await Promise.all(
+      tokens.map((token) => checkTokenAllowance(token.token_address as `0x${string}`)),
+    );
+
+    const nftApprovals = await Promise.all(
+      collections.map((collection) => checkNftAllowance(collection.token_address as `0x${string}`)),
+    );
+
+    return { tokenAllowances, nftApprovals };
+  };
+
   return {
     checkTokenAllowance,
     checkNftAllowance,
+    checkAllApprovals,
   };
 };
