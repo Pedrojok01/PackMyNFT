@@ -4,7 +4,6 @@ export * from "./useDebounce";
 export * from "./useFetchNFTFromCollection";
 export * from "./useFetchWalletNFTs";
 export * from "./useFetchWalletTokenBalances";
-export * from "./useIPFS";
 export * from "./useMintingProcess";
 export * from "./useNotify";
 export * from "./useReadContract";
