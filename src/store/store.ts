@@ -12,8 +12,8 @@ interface StoreData {
   setTokenAmount: (tokenAddress: string, amount: number) => void;
   selectedCollections: Collections;
   setSelectedCollections: (selectedCollections: Collections) => void;
-  nftToClaim: EvmNft | undefined;
-  setNftToClaim: (nft: EvmNft | undefined) => void;
+  nftToClaim: Nft | undefined;
+  setNftToClaim: (nft: Nft | undefined) => void;
   currentStep: number;
   setCurrentStep: (currentStep: number) => void;
   packCount: number;

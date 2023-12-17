@@ -5,7 +5,7 @@ import { Box, Image, SimpleGrid, Text, useColorModeValue } from "@chakra-ui/reac
 import useStore from "@/store/store";
 
 interface DisplayNFTsProps {
-  nfts: EvmNft[];
+  nfts: Nft[];
 }
 
 const DisplayNFTs: FC<DisplayNFTsProps> = ({ nfts }) => {
@@ -18,8 +18,8 @@ const DisplayNFTs: FC<DisplayNFTsProps> = ({ nfts }) => {
       {nfts.map((nft) => (
         <Box
           key={nft.token_id}
-          p={4}
-          borderWidth="5px"
+          p={2}
+          borderWidth="4px"
           borderRadius="lg"
           overflow="hidden"
           bg={bg}
@@ -28,9 +28,9 @@ const DisplayNFTs: FC<DisplayNFTsProps> = ({ nfts }) => {
           cursor="pointer"
           borderColor={nftToClaim?.token_id === nft.token_id ? "teal.500" : undefined}
         >
-          <Image src={nft.normalized_metadata?.image} alt={nft.name} />
-          <Box p="6">
-            <Box display="flex" alignItems="baseline">
+          <Image src={nft.image} alt={nft.name} />
+          <Box p="4">
+            <Box display="flex" alignItems="baseline" justifyContent={"space-between"}>
               <Text
                 fontWeight="semibold"
                 textTransform="uppercase"
@@ -38,6 +38,14 @@ const DisplayNFTs: FC<DisplayNFTsProps> = ({ nfts }) => {
                 letterSpacing="wide"
               >
                 {nft.name}
+              </Text>
+              <Text
+                fontWeight="semibold"
+                textTransform="uppercase"
+                fontSize="sm"
+                letterSpacing="wide"
+              >
+                Id: {nft.token_id}
               </Text>
             </Box>
           </Box>

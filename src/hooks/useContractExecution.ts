@@ -8,7 +8,7 @@ import { useWriteContract } from "./useWriteContract";
 export const useContractExecution = () => {
   const { setLoading } = useStore();
   const { checkAllApprovals } = useReadContract();
-  const { approveToken, approveNft, mint } = useWriteContract();
+  const { approveToken, approveNft, mint, claimPack } = useWriteContract();
 
   /* Check existing allowance of an NFT collection (both ERC721 or ERC1155):
    **************************************************************************/
@@ -73,5 +73,18 @@ export const useContractExecution = () => {
     }
   };
 
-  return { handleAllApprovals, handleAllMint };
+  const handleClaim = async (tokenId: string): Promise<Receipt> => {
+    setLoading(true);
+
+    try {
+      const receipt = await claimPack(tokenId);
+      return receipt;
+    } catch (err: any) {
+      return { success: false, data: null, error: err.message ?? err };
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return { handleAllApprovals, handleAllMint, handleClaim };
 };

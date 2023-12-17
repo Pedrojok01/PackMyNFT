@@ -132,5 +132,5 @@ interface TokenResponse {
 }
 
 interface NFTResponse {
-  data: EvmNft[];
+  data: Nft[];
 }

@@ -5,7 +5,7 @@ import { APP_URL } from "@/data/constant";
 import { ExtendedError, fetcher } from "@/utils";
 
 interface FetchedNFTs {
-  nfts: EvmNft[];
+  nfts: Nft[];
   isLoading: boolean;
   isError: ExtendedError | undefined;
 }

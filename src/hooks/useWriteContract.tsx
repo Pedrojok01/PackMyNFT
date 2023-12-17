@@ -179,12 +179,47 @@ export const useWriteContract = () => {
     }
   };
 
-  /* Execute a Bundle mint:
-   *************************/
+  /* Claim an NFT pack and get the content back:
+   *********************************************/
+
+  /* batch Mint function:
+   ***********************/
+  const claimPack = async (tokenId: string) => {
+    if (!walletClient) throw new Error("Wallet client not initialized");
+
+    const packMyNftInstance = getContract({
+      abi: PACKMYNFT_ABI,
+      address: PACK_MY_NFT,
+      walletClient: walletClient,
+    });
+
+    try {
+      await publicClient.simulateContract({
+        address: PACK_MY_NFT,
+        abi: PACKMYNFT_ABI,
+        functionName: "burn",
+        account: address,
+        args: [tokenId],
+      });
+
+      const hash = await packMyNftInstance.write.burn([tokenId]);
+      const receipt = await publicClient.waitForTransactionReceipt({
+        confirmations: 3,
+        hash: hash,
+      });
+
+      return { success: true, data: receipt, error: null };
+    } catch (error) {
+      const message = handleErrors(error, PACK_MY_NFT);
+      notifyError({ title: "An error occured during claim", message: message });
+      return { success: false, data: null, error: message };
+    }
+  };
 
   return {
     approveToken,
     approveNft,
     mint,
+    claimPack,
   };
 };
