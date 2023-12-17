@@ -1,9 +1,10 @@
 // components/AssetSelectionStep.tsx
 import { type FC } from "react";
 
-import { Button, Center, Spinner, Text, VStack } from "@chakra-ui/react";
+import { Button, Text } from "@chakra-ui/react";
 import { useAccount, useBalance, useNetwork } from "wagmi";
 
+import { Loading } from "@/components";
 import { useAssetUpdater, useFetchTokenBalances, useFetchWalletNFTs, useNotify } from "@/hooks";
 import useStore from "@/store/store";
 
@@ -47,14 +48,7 @@ const SelectStep: FC = () => {
   };
 
   if (!isDataLoaded || !address) {
-    return (
-      <Center>
-        <VStack spacing={4}>
-          <Spinner />
-          <Text>Fetching data... Please wait.</Text>
-        </VStack>
-      </Center>
-    );
+    return <Loading />;
   }
 
   return (

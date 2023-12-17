@@ -16,3 +16,13 @@ export const formatTokenBalance = (asset: EvmToken): string => {
 export const parseTokenBalance = (amount: number, decimals: string): bigint => {
   return parseUnits(amount.toString(), Number(decimals));
 };
+
+// Format a token bigint balance to a readable string
+export const formatNumber = (amount: string, decimals: string): string => {
+  return formatUnits(BigInt(amount), Number(decimals));
+};
+
+// Format a token bigint balance to a string
+export const parseNumber = (amount: string, decimals: string): bigint => {
+  return parseUnits(amount.toString(), Number(decimals));
+};

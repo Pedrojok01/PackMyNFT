@@ -12,6 +12,8 @@ interface StoreData {
   setTokenAmount: (tokenAddress: string, amount: number) => void;
   selectedCollections: Collections;
   setSelectedCollections: (selectedCollections: Collections) => void;
+  nftToClaim: EvmNft | undefined;
+  setNftToClaim: (nft: EvmNft | undefined) => void;
   currentStep: number;
   setCurrentStep: (currentStep: number) => void;
   packCount: number;
@@ -35,6 +37,8 @@ const useStore = create<StoreData>((set) => ({
     })),
   selectedCollections: [],
   setSelectedCollections: (nfts) => set({ selectedCollections: nfts }),
+  nftToClaim: undefined,
+  setNftToClaim: (nft) => set({ nftToClaim: nft }),
   currentStep: 1,
   setCurrentStep: (step) => set({ currentStep: step }),
   packCount: 1,
@@ -48,6 +52,7 @@ const useStore = create<StoreData>((set) => ({
       selectedTokens: [],
       tokenAmounts: {},
       selectedCollections: [],
+      nftToClaim: undefined,
       currentStep: 1,
       packCount: 1,
       loading: false,

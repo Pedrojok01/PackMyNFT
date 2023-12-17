@@ -3,11 +3,11 @@ import { type FC, useEffect } from "react";
 import { Flex } from "@chakra-ui/react";
 import { useAccount, useNetwork } from "wagmi";
 
+import { ContentBox, NotConnected } from "@/components";
 import useStore from "@/store/store";
 import styles from "@/styles/mainPane.module.css";
 
 import { SelectStep, ReviewAndMintStep, SuccessStep } from "./components";
-import { ContentBox, NotConnected } from "..";
 
 const MintPane: FC = () => {
   const { isConnected } = useAccount();

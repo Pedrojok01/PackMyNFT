@@ -123,10 +123,14 @@ type Steps = "select" | "mint" | "success";
                            APIs
 ***********************************************************/
 
-interface NFTResponse {
+interface CollectionsResponse {
   data: Collections;
 }
 
 interface TokenResponse {
   data: EvmToken[];
+}
+
+interface NFTResponse {
+  data: EvmNft[];
 }

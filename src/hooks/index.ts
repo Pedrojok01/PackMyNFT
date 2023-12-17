@@ -1,6 +1,7 @@
 export * from "./useAssetUpdater";
 export * from "./useContractExecution";
 export * from "./useDebounce";
+export * from "./useFetchNFTFromCollection";
 export * from "./useFetchWalletNFTs";
 export * from "./useFetchWalletTokenBalances";
 export * from "./useIPFS";

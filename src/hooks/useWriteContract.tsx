@@ -3,6 +3,7 @@ import { useAccount, usePublicClient, useWalletClient } from "wagmi";
 
 import { PACKMYNFT_ABI, ERC721_ABI, ERC20_ABI } from "@/data/abis";
 import { MAX_PACKS_PER_TXN, PACK_MY_NFT } from "@/data/constant";
+import { formatNumber } from "@/utils";
 import { handleErrors } from "@/utils/errorHandling";
 
 import { useNotify } from ".";
@@ -35,7 +36,7 @@ export const useWriteContract = () => {
       openNotification(
         "success",
         "Token Approval set",
-        `Allowance succesfully set to ${allowance}.`,
+        `Allowance succesfully set to ${formatNumber(allowance, token.decimals)}.`,
       );
       return { success: true, data: hash, error: null };
     } catch (error: any) {

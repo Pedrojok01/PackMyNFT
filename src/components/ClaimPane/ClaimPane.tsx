@@ -1,24 +1,38 @@
-// components/MainPane.tsx
+// components/ClaimPane.tsx
 import { type FC } from "react";
 
-import { Divider, Flex } from "@chakra-ui/react";
-import { useAccount } from "wagmi";
+import { Button, Flex, Center } from "@chakra-ui/react";
+import { useAccount, useNetwork } from "wagmi";
 
+import { ContentBox, Loading, NotConnected } from "@/components";
+import { useFetchNFTFromCollection } from "@/hooks";
+import useStore from "@/store/store";
 import styles from "@/styles/mainPane.module.css";
 
-import {
-  Status,
-  Address,
-  Chain,
-  Balance,
-  BlockNumber,
-  TransferNative,
-  SignMessage,
-} from "./components";
-import { ContentBox, NotConnected } from "..";
+import { DisplayNFTs } from "./components";
 
 const ClaimPane: FC = () => {
-  const { isConnected } = useAccount();
+  const { isConnected, address } = useAccount();
+  const { chain } = useNetwork();
+  const { nftToClaim } = useStore();
+
+  if (!address) {
+    throw new Error("Address not found. Make sure that your web3 wallet is connected.");
+  }
+
+  const isDataLoaded = address && chain?.id;
+  const { nfts } = useFetchNFTFromCollection(address, chain?.id ?? 0);
+
+  if (!isDataLoaded || !address) {
+    return <Loading />;
+  }
+
+  const handleClaim = () => {
+    if (nftToClaim) {
+      console.log("Claiming NFT with Token ID:", nftToClaim.token_id);
+      // Implement claim logic here
+    }
+  };
 
   return (
     <ContentBox title="Claim Pack">
@@ -26,27 +40,15 @@ const ClaimPane: FC = () => {
         <NotConnected />
       ) : (
         <Flex className={styles.content}>
-          <Status />
-
           {isConnected && (
             <>
-              <Address />
-              <Chain />
-              <Balance />
-              <BlockNumber />
+              <DisplayNFTs nfts={nfts} />
 
-              <Divider mb={5} />
-
-              <Flex
-                w={"100%"}
-                display={"flex"}
-                justifyContent={"space-around"}
-                flexWrap={"wrap"}
-                gap={5}
-              >
-                <SignMessage />
-                <TransferNative />
-              </Flex>
+              <Center justifyContent="center" mt={6}>
+                <Button colorScheme="teal" onClick={handleClaim}>
+                  Claim
+                </Button>
+              </Center>
             </>
           )}
         </Flex>
