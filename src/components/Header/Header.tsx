@@ -8,6 +8,7 @@ import NextLink from "next/link";
 import { useAccount } from "wagmi";
 
 import { useWindowSize } from "@/hooks/useWindowSize";
+import useStore from "@/store/store";
 import styles from "@/styles/header.module.css";
 
 import logo from "../../../public/img/packmynft_logo.png";
@@ -17,6 +18,7 @@ const Header: FC = () => {
   const { isTablet, isSmallScreen } = useWindowSize();
   const { colorMode } = useColorMode();
   const { isConnected } = useAccount();
+  const { reset } = useStore();
 
   const menuIems = (
     <Center
@@ -25,11 +27,15 @@ const Header: FC = () => {
       background={colorMode === "light" ? "#fff" : "#1a202c"}
     >
       <Link as={NextLink} href="/mint" style={{ textDecoration: "none" }}>
-        <Box className={styles.menuItem}>Mint</Box>
+        <Box className={styles.menuItem} onClick={() => reset()}>
+          Mint
+        </Box>
       </Link>
 
       <Link as={NextLink} href="/claim" style={{ textDecoration: "none" }}>
-        <Box className={styles.menuItem}>Claim</Box>
+        <Box className={styles.menuItem} onClick={() => reset()}>
+          Claim
+        </Box>
       </Link>
     </Center>
   );

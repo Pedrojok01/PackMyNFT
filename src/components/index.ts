@@ -8,3 +8,4 @@ export * from "./MintPane";
 export * from "./NotConnected";
 export * from "./PackAmountInput";
 export * from "./Loading";
+export * from "./SuccessBox";

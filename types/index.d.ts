@@ -24,6 +24,11 @@ interface EvmToken {
   verified_collection: bool;
 }
 
+interface TokenData extends EvmToken {
+  amount: string;
+  address: string;
+}
+
 /**********************************************************
                         Collections
 ***********************************************************/
@@ -89,6 +94,10 @@ interface Nft extends EvmNft {
   image: string;
 }
 
+interface NftData extends EvmNft {
+  amount: string;
+}
+
 interface BundleArrays {
   addressesArray: `0x${string}`[];
   numbersArray: bigint[];
@@ -117,6 +126,13 @@ interface Receipt {
   error: string | null;
 }
 
+interface EventData {
+  addresses: string[];
+  numbers: bigint[];
+  owner: string;
+  tokenId: bigint;
+}
+
 type Steps = "select" | "mint" | "success";
 
 /**********************************************************
@@ -133,4 +149,30 @@ interface TokenResponse {
 
 interface NFTResponse {
   data: Nft[];
+}
+
+interface MetadataResponse {
+  data: {
+    tokensMetadata: TokenData[];
+    nftsMetadata: EvmNft[];
+  };
+}
+
+/**********************************************************
+                      Unpacked Assets
+***********************************************************/
+
+interface AssetDetail {
+  address: string;
+  amount: string;
+  name?: string;
+  type?: "native" | "ERC20" | "ERC721" | "ERC1155";
+  tokenId?: string;
+}
+
+interface CategorizedAssets {
+  native: AssetDetail;
+  ERC20: Record<number, AssetDetail>;
+  ERC721: Record<number, AssetDetail>;
+  ERC1155: Record<number, AssetDetail>;
 }

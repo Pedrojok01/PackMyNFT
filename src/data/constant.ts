@@ -20,4 +20,6 @@ Deployed at the same address on:
  - ArbitrumOne, Arbitrum Testnet, 
  - Fantom Opera, Fantom Testnet
 */
-export const PACK_MY_NFT: `0x${string}` = "0x5f492548d781a509119b6fA2D874dC81A64e18a8"; // sepolia only
+// export const PACK_MY_NFT: `0x${string}` = "0x5f492548d781a509119b6fA2D874dC81A64e18a8"; // sepolia only
+
+export const PACK_MY_NFT: `0x${string}` = "0x02C7E4571177c7332BfB451bc4cf1b7222d7bF70";

@@ -1,6 +1,6 @@
 export * from "./calculateMaxAmountOfPacksMintable";
 export * from "./calculateTotalAssetsRequiredForPacks";
-export * from "./processCollections";
+export * from "./categorizeAssets";
 export * from "./errorHandling";
 export * from "./extendedError";
 export * from "./fetcher";
@@ -8,4 +8,5 @@ export * from "./fixIpfsUrl";
 export * from "./formatters";
 export * from "./getExplorerByChain";
 export * from "./getMoralisChain";
+export * from "./processCollections";
 export * from "./sortArraysForBundle";

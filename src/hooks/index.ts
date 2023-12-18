@@ -8,6 +8,7 @@ export * from "./useMintingProcess";
 export * from "./useNotify";
 export * from "./useReadContract";
 export * from "./useSignMessageHook";
+export * from "./useAssetsMetadata";
 export * from "./useTotalAssetsRequiredPerPack";
 export * from "./useWindowSize";
 export * from "./useWriteContract";

@@ -14,6 +14,8 @@ interface StoreData {
   setSelectedCollections: (selectedCollections: Collections) => void;
   nftToClaim: Nft | undefined;
   setNftToClaim: (nft: Nft | undefined) => void;
+  eventData: EventData | undefined;
+  setEventData: (eventData: EventData | undefined) => void;
   currentStep: number;
   setCurrentStep: (currentStep: number) => void;
   packCount: number;
@@ -39,6 +41,8 @@ const useStore = create<StoreData>((set) => ({
   setSelectedCollections: (nfts) => set({ selectedCollections: nfts }),
   nftToClaim: undefined,
   setNftToClaim: (nft) => set({ nftToClaim: nft }),
+  eventData: undefined,
+  setEventData: (eventData) => set({ eventData }),
   currentStep: 1,
   setCurrentStep: (step) => set({ currentStep: step }),
   packCount: 1,
@@ -53,6 +57,7 @@ const useStore = create<StoreData>((set) => ({
       tokenAmounts: {},
       selectedCollections: [],
       nftToClaim: undefined,
+      eventData: undefined,
       currentStep: 1,
       packCount: 1,
       loading: false,
