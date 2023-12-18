@@ -16,7 +16,7 @@ const ClaimPane: FC = () => {
   const { chain } = useNetwork();
   const { nftToClaim, loading, eventData, setEventData } = useStore();
   const { handleClaim } = useContractExecution();
-  const { nfts, isLoading } = useFetchNFTFromCollection(address ?? "0x", chain?.id ?? 0);
+  const { nfts, isLoading, refetch } = useFetchNFTFromCollection(address ?? "0x", chain?.id ?? 0);
 
   const claim = async () => {
     setEventData(undefined);
@@ -24,6 +24,7 @@ const ClaimPane: FC = () => {
       const receipt = await handleClaim(nftToClaim.token_id);
       if (receipt.success) {
         setEventData(receipt.data.event.args);
+        refetch();
       }
     }
   };

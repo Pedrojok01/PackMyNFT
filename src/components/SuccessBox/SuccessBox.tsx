@@ -6,6 +6,7 @@ import Link from "next/link";
 import Confetti from "react-confetti";
 
 import { CustomDivider } from "@/components";
+import { useWindowSize } from "@/hooks";
 import useStore from "@/store/store";
 
 interface SuccessBoxProps {
@@ -13,11 +14,13 @@ interface SuccessBoxProps {
 }
 
 const SuccessBox: FC<SuccessBoxProps> = ({ children }) => {
+  const { width } = useWindowSize();
   const { reset } = useStore();
 
   return (
     <>
-      <Confetti numberOfPieces={1000} recycle={false} tweenDuration={50000} />
+      <Confetti numberOfPieces={1000} recycle={false} tweenDuration={50000} width={width} />
+
       <Center flexDirection="column">
         <Heading as="h2" size="xl" mb={8}>
           🎉 Congratulations! 🎉
