@@ -3,23 +3,29 @@ import { formatTokenBalance } from "./formatters";
 
 export const calculateMaxAmountOfPacksMintable = (
   selectedNative: NativeCoin | undefined,
-  nativeAmount: number | undefined, // Amount of native token per pack
+  nativeAmount: string | undefined, // Amount of native token per pack
   selectedTokens: EvmToken[],
-  tokenAmounts: Record<string, number>, // Amounts of each token per pack
+  tokenAmounts: Record<string, string>, // Amounts of each token per pack
   selectedCollections: Collections,
 ): number => {
   let maxPacks = 10_000;
 
   // Check for native coin
-  if (selectedNative && nativeAmount && Number(selectedNative.formatted) > 0 && nativeAmount > 0) {
-    const nativeMaxPacks = Number(selectedNative.formatted) / nativeAmount;
+  if (
+    selectedNative &&
+    Number(nativeAmount) &&
+    Number(selectedNative.formatted) > 0 &&
+    Number(nativeAmount) > 0
+  ) {
+    const nativeMaxPacks = Number(selectedNative.formatted) / Number(nativeAmount);
     maxPacks = Math.min(maxPacks, Math.floor(nativeMaxPacks));
   }
 
   // Check for each token
   selectedTokens?.forEach((token) => {
-    if (tokenAmounts[token.token_address] > 0 && Number(token.balance) > 0) {
-      const tokenMaxPacks = Number(formatTokenBalance(token)) / tokenAmounts[token.token_address];
+    if (Number(tokenAmounts[token.token_address]) > 0 && Number(token.balance) > 0) {
+      const tokenMaxPacks =
+        Number(formatTokenBalance(token)) / Number(tokenAmounts[token.token_address]);
       maxPacks = Math.min(maxPacks, Math.floor(tokenMaxPacks));
     }
   });

@@ -12,7 +12,7 @@ export const formatTokenBalance = (asset: EvmToken): string => {
   return formatUnits(BigInt(asset.balance), Number(asset.decimals));
 };
 
-// Format a token bigint balance to a string
+// Format a token balance to a bigint based on its decimals
 export const parseTokenBalance = (amount: number, decimals: string): bigint => {
   return parseUnits(amount.toString(), Number(decimals));
 };
@@ -22,7 +22,7 @@ export const formatNumber = (amount: string, decimals: string): string => {
   return formatUnits(BigInt(amount), Number(decimals));
 };
 
-// Format a token bigint balance to a string
+// Format a token balance to a bigint based on its decimals
 export const parseNumber = (amount: string, decimals: string): bigint => {
   return parseUnits(amount.toString(), Number(decimals));
 };

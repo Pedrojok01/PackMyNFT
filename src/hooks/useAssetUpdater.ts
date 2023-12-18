@@ -95,7 +95,7 @@ export const useAssetUpdater = () => {
       setSelectedNative(selectedNative?.symbol === assetAddress ? undefined : selectedNative);
       setNativeAmount(selectedNative?.symbol === assetAddress ? undefined : nativeAmount);
       setSelectedTokens(selectedTokens.filter((token) => token.token_address !== assetAddress));
-      setTokenAmount(assetAddress, 0);
+      setTokenAmount(assetAddress, "0");
       setSelectedCollections(
         selectedCollections.filter((collection) => collection.token_address !== assetAddress),
       );

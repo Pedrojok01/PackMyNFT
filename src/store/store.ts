@@ -4,12 +4,12 @@ import { create } from "zustand";
 interface StoreData {
   selectedNative: NativeCoin | undefined;
   setSelectedNative: (selectedNative: NativeCoin | undefined) => void;
-  nativeAmount: number | undefined;
-  setNativeAmount: (amount: number | undefined) => void;
+  nativeAmount: string | undefined;
+  setNativeAmount: (amount: string | undefined) => void;
   selectedTokens: EvmToken[];
   setSelectedTokens: (selectedTokens: EvmToken[]) => void;
-  tokenAmounts: Record<string, number>; // Store amounts for each token by token address
-  setTokenAmount: (tokenAddress: string, amount: number) => void;
+  tokenAmounts: Record<string, string>; // Store amounts for each token by token address
+  setTokenAmount: (tokenAddress: string, amount: string) => void;
   selectedCollections: Collections;
   setSelectedCollections: (selectedCollections: Collections) => void;
   nftToClaim: Nft | undefined;

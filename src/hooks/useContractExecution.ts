@@ -15,7 +15,7 @@ export const useContractExecution = () => {
   const handleAllApprovals = async (
     selectedTokens: EvmToken[],
     selectedCollections: Collections,
-    tokenAmounts: Record<string, number>,
+    tokenAmounts: Record<string, string>,
     packAmount: number,
   ): Promise<Receipt> => {
     setLoading(true);
@@ -28,7 +28,7 @@ export const useContractExecution = () => {
 
       for (const [index, token] of selectedTokens.entries()) {
         const totalAmountNeeded = parseUnits(
-          (tokenAmounts[token.token_address] * packAmount).toString(),
+          (Number(tokenAmounts[token.token_address]) * packAmount).toString(),
           Number(token.decimals),
         );
 

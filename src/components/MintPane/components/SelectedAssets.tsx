@@ -25,8 +25,11 @@ const SelectedAssets: FC<SelectedAssetsProps> = ({ onRemove, native }) => {
   } = useStore();
   const [errors, setErrors] = useState<{ [key: string]: boolean }>({});
 
-  const handleAmountChange = (amount: number, assetAddress?: string) => {
-    setErrors({ ...errors, [assetAddress || "native"]: amount <= 0 || isNaN(amount) });
+  const handleAmountChange = (amount: string, assetAddress?: string) => {
+    setErrors({
+      ...errors,
+      [assetAddress || "native"]: Number(amount) <= 0 || isNaN(Number(amount)),
+    });
     assetAddress ? setTokenAmount(assetAddress, amount) : setNativeAmount(amount);
   };
 
@@ -63,8 +66,8 @@ const SelectedAssets: FC<SelectedAssetsProps> = ({ onRemove, native }) => {
           <Box display={"flex"} justifyContent={"flex-end"} gap={10} alignItems={"center"}>
             <PackAmountInput
               balance={selectedNative.formatted}
-              value={nativeAmount ?? 0}
-              onChange={(amount) => handleAmountChange(amount)}
+              value={Number(nativeAmount) ?? 0}
+              onChange={(amount) => handleAmountChange(amount.toString())}
             />
             {errors["native"] && <FormErrorMessage>Invalid amount</FormErrorMessage>}
 
@@ -83,8 +86,8 @@ const SelectedAssets: FC<SelectedAssetsProps> = ({ onRemove, native }) => {
           <Box display={"flex"} justifyContent={"flex-end"} gap={10} alignItems={"center"}>
             <PackAmountInput
               balance={formatTokenBalance(asset)}
-              value={tokenAmounts[asset.token_address]}
-              onChange={(amount) => handleAmountChange(amount, asset.token_address)}
+              value={Number(tokenAmounts[asset.token_address])}
+              onChange={(amount) => handleAmountChange(amount.toString(), asset.token_address)}
             />
             {errors["native"] && <FormErrorMessage>Invalid amount</FormErrorMessage>}
 

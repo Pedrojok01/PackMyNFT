@@ -46,7 +46,7 @@ export const useMintingProcess = () => {
       }
 
       const sortedArrays = sortArrayForBundle(
-        nativeAmount ?? 0,
+        nativeAmount ?? "0",
         selectedTokens,
         selectedCollections,
         tokenAmounts,

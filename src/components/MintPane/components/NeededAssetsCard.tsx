@@ -10,13 +10,14 @@ import {
   StackDivider,
   Text,
 } from "@chakra-ui/react";
+import { formatEther } from "viem";
 
 import useStore from "@/store/store";
 
 interface NeededAssetsCardProps {
   packCount: number;
-  totalNative: number;
-  totalTokens: { [tokenAddress: string]: number };
+  totalNative: string;
+  totalTokens: { [tokenAddress: string]: string };
   totalNfts: { [tokenAddress: string]: number };
 }
 
@@ -44,7 +45,7 @@ const NeededAssetsCard: FC<NeededAssetsCardProps> = ({
               <Text pt="2" fontSize="sm">
                 {selectedNative && (
                   <li>
-                    {totalNative} {selectedNative.symbol}
+                    {formatEther(BigInt(totalNative))} {selectedNative.symbol}
                   </li>
                 )}
                 {selectedTokens.length > 0 &&
@@ -52,7 +53,7 @@ const NeededAssetsCard: FC<NeededAssetsCardProps> = ({
                     const token = selectedTokens.find((t) => t.token_address === tokenAddress);
                     return (
                       <li key={index}>
-                        {amount} {token?.symbol || "Unknown Token"}
+                        {formatEther(BigInt(amount))} {token?.symbol || "Unknown Token"}
                       </li>
                     );
                   })}

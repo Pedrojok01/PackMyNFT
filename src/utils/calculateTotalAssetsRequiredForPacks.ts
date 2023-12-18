@@ -1,29 +1,35 @@
+import { parseEther } from "viem";
+
+import { parseTokenBalance } from ".";
+
 interface TotalAssetsRequired {
-  totalNative: number;
-  totalTokens: Record<string, number>;
+  totalNative: string;
+  totalTokens: Record<string, string>;
   totalNfts: Record<string, number>;
 }
 
 export const calculateTotalAssetsRequiredForPacks = (
   packCount: number,
-  nativeAmount: number | undefined,
+  nativeAmount: string | undefined,
   selectedTokens: EvmToken[],
-  tokenAmounts: Record<string, number>,
+  tokenAmounts: Record<string, string>,
   selectedCollections: CollectionExtended[],
 ): TotalAssetsRequired => {
-  let totalNative = 0;
-  const totalTokens: Record<string, number> = {};
+  let totalNative = "0";
+  const totalTokens: Record<string, string> = {};
   const totalNfts: Record<string, number> = {};
 
   // Calculate total native coins required
   if (nativeAmount) {
-    totalNative = packCount * nativeAmount;
+    totalNative = (parseEther(nativeAmount) * BigInt(packCount)).toString();
   }
 
   // Calculate total tokens required for each token
   selectedTokens.forEach((token) => {
-    const amountPerPack = tokenAmounts[token.token_address] || 0;
-    totalTokens[token.token_address] = packCount * amountPerPack;
+    const amountPerPack = tokenAmounts[token.token_address] || "0";
+    totalTokens[token.token_address] = (
+      BigInt(packCount) * parseTokenBalance(Number(amountPerPack), token.decimals)
+    ).toString();
   });
 
   // Calculate total NFTs required for each collection
