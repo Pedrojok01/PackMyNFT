@@ -24,8 +24,11 @@ export const useFetchNFTFromCollection = (account: `0x${string}`, chainId: numbe
     },
   );
 
+  // Sort NFTs based on token_id
+  const sortedNfts = data?.data.sort((a, b) => parseInt(a.token_id) - parseInt(b.token_id)) ?? [];
+
   return {
-    nfts: data?.data ?? [],
+    nfts: sortedNfts,
     isLoading: isLoading,
     isError: error,
   };

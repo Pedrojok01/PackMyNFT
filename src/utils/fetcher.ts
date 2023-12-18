@@ -2,18 +2,33 @@ import { ExtendedError } from "./extendedError";
 
 type FetcherParams = {
   key: string;
-  account: `0x${string}`;
+  account?: `0x${string}`;
   chainId: number;
+  tokenAddresses?: `0x${string}`[];
+  nftAddresses?: { address: `0x${string}`; tokenId: string }[];
 };
 
-export const fetcher = async <T>({ key, account, chainId }: FetcherParams): Promise<T> => {
+export const fetcher = async <T>({
+  key,
+  account,
+  chainId,
+  tokenAddresses,
+  nftAddresses,
+}: FetcherParams): Promise<T> => {
+  let body = {};
+  if (account && chainId) {
+    body = { account, chainId };
+  } else if (tokenAddresses && nftAddresses && chainId) {
+    body = { tokenAddresses, nftAddresses, chainId };
+  }
+
   const res = await fetch(key, {
     method: "POST",
     headers: {
       accept: "application/json",
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ account, chainId }),
+    body: JSON.stringify(body),
   });
 
   if (!res.ok) {

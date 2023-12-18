@@ -18,10 +18,9 @@ import {
   StepStatus,
   StepNumber,
   StepIcon,
-  StepTitle,
-  StepDescription,
   StepSeparator,
   Text,
+  Center,
 } from "@chakra-ui/react";
 
 import useStore from "@/store/store";
@@ -64,17 +63,24 @@ const MintProgressModal: FC<MintProgressModalProps> = ({
                     active={<StepNumber />}
                   />
                 </StepIndicator>
-
-                {currentStep === step.key && (
-                  <Box flexShrink="0">
-                    <StepTitle>{step.title}</StepTitle>
-                    <StepDescription>{step.description}</StepDescription>
-                  </Box>
-                )}
                 <StepSeparator />
               </Step>
             ))}
           </Stepper>
+
+          {steps.map((step) => {
+            if (currentStep === step.key) {
+              return (
+                <Center key={step.key} gap={2}>
+                  <Text fontSize="1.3rem">{step.title}: </Text>
+                  <Text fontSize="1.2rem" fontWeight={700}>
+                    {step.description}
+                  </Text>
+                </Center>
+              );
+            }
+          })}
+
           {currentStep === 1 && packCount > 200 && (
             <>
               <Text fontSize="sm" mt={6} mb={2}>

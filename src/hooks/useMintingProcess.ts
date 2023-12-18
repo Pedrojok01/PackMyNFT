@@ -54,7 +54,6 @@ export const useMintingProcess = () => {
       );
       setCurrentMintStep(1);
       const mintData = await handleAllMint(sortedArrays, packCount, setPacksMinted);
-      console.log("result", mintData);
 
       if (!mintData.success) {
         throw new Error(mintData.error ?? "Error during minting process.");

@@ -85,9 +85,12 @@ export const useWriteContract = () => {
       functionName: "safeMint",
       account: address,
       args: [address, addressesArray, numbersArray],
+      value: numbersArray[0],
     });
 
-    const hash = await packMyNftInstance.write.safeMint([address, addressesArray, numbersArray]);
+    const hash = await packMyNftInstance.write.safeMint([address, addressesArray, numbersArray], {
+      value: numbersArray[0],
+    });
     const receipt = await publicClient.waitForTransactionReceipt({ confirmations: 3, hash: hash });
     return { success: true, data: receipt, error: null };
   };
@@ -106,14 +109,13 @@ export const useWriteContract = () => {
       functionName: "batchMint",
       account: address,
       args: [address, addressesArray, numbersArrays, packCount],
+      value: numbersArrays[0][0] * BigInt(packCount),
     });
 
-    const hash = await packMyNftInstance.write.batchMint([
-      address,
-      addressesArray,
-      numbersArrays,
-      packCount,
-    ]);
+    const hash = await packMyNftInstance.write.batchMint(
+      [address, addressesArray, numbersArrays, packCount],
+      { value: numbersArrays[0][0] * BigInt(packCount) },
+    );
     const receipt = await publicClient.waitForTransactionReceipt({ confirmations: 3, hash: hash });
 
     return { success: true, data: receipt, error: null };
@@ -202,13 +204,24 @@ export const useWriteContract = () => {
         args: [tokenId],
       });
 
+      let eventData: any = null;
+      const unwatch = publicClient.watchContractEvent({
+        address: PACK_MY_NFT,
+        abi: PACKMYNFT_ABI,
+        eventName: "BundleAssetsClaimed",
+        args: { tokenId: tokenId, owner: address },
+        onLogs: (logs) => (eventData = logs[0]),
+      });
+
       const hash = await packMyNftInstance.write.burn([tokenId]);
       const receipt = await publicClient.waitForTransactionReceipt({
         confirmations: 3,
         hash: hash,
       });
 
-      return { success: true, data: receipt, error: null };
+      unwatch();
+
+      return { success: true, data: { event: eventData, receipt: receipt }, error: null };
     } catch (error) {
       const message = handleErrors(error, PACK_MY_NFT);
       notifyError({ title: "An error occured during claim", message: message });

@@ -9,33 +9,38 @@ import { useContractExecution, useFetchNFTFromCollection } from "@/hooks";
 import useStore from "@/store/store";
 import styles from "@/styles/mainPane.module.css";
 
-import { DisplayNFTs } from "./components";
+import { DisplayNFTs, SuccessClaim } from "./components";
 
 const ClaimPane: FC = () => {
   const { isConnected, address } = useAccount();
   const { chain } = useNetwork();
-  const { nftToClaim, loading } = useStore();
+  const { nftToClaim, loading, eventData, setEventData } = useStore();
   const { handleClaim } = useContractExecution();
-
   const { nfts, isLoading } = useFetchNFTFromCollection(address ?? "0x", chain?.id ?? 0);
 
-  const claim = () => {
+  const claim = async () => {
+    setEventData(undefined);
     if (nftToClaim) {
-      handleClaim(nftToClaim.token_id);
+      const receipt = await handleClaim(nftToClaim.token_id);
+      if (receipt.success) {
+        setEventData(receipt.data.event.args);
+      }
     }
   };
 
   return (
     <ContentBox title="Claim Pack">
+      {!isConnected && <NotConnected />}
+
       {isLoading && <Loading />}
+
       {!isLoading && nfts.length === 0 && (
         <Text fontSize="lg" mb={5}>
           You do not have any pack to claim at this time.
         </Text>
       )}
-      {!isConnected ? (
-        <NotConnected />
-      ) : (
+
+      {!eventData && (
         <Flex className={styles.content}>
           {isConnected && (
             <VStack spacing={4}>
@@ -54,6 +59,8 @@ const ClaimPane: FC = () => {
           )}
         </Flex>
       )}
+
+      {eventData && <SuccessClaim eventData={eventData} />}
     </ContentBox>
   );
 };
