@@ -87,8 +87,10 @@ contract Helpers is Test {
         vm.prank(to);
         mockERC20.approve(address(packMyNFT), numbers[4]);
 
+        uint256 id = 1; // First minted pack
+
         vm.expectEmit(true, false, true, true, address(packMyNFT));
-        emit BundleAssets(to, 0, addresses, numbers);
+        emit BundleAssets(to, id, addresses, numbers);
 
         vm.prank(to);
         uint256 tokenId = packMyNFT.safeMint{value: 1 ether}(

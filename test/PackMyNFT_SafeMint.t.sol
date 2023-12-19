@@ -31,11 +31,11 @@ contract PackMyNFTTest_SafeMint is Helpers {
         uint256 tokenId_3 = _mintToken(user3);
 
         // Assertions
-        assertEq(tokenId_1, 0);
+        assertEq(tokenId_1, 1);
         assertEq(packMyNFT.ownerOf(tokenId_1), user1);
-        assertEq(tokenId_2, 1);
+        assertEq(tokenId_2, 2);
         assertEq(packMyNFT.ownerOf(tokenId_2), user2);
-        assertEq(tokenId_3, 2);
+        assertEq(tokenId_3, 3);
         assertEq(packMyNFT.ownerOf(tokenId_3), user3);
     }
 

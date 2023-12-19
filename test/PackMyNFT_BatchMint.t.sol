@@ -43,7 +43,7 @@ contract PackMyNFTTest_BatchMint is Helpers {
 
         // Assertions
         for (uint256 i = 0; i < amountOfPacks; i++) {
-            assertEq(packMyNFT.ownerOf(i), to);
+            assertEq(packMyNFT.ownerOf(i + 1), to); // nonce start at 1
         }
     }
 

@@ -22,7 +22,7 @@ arbitrumTest = "${ARBITRUM_TEST_RPC_URL}"
 fantom = "${FANTOM_RPC_URL}"
 fantomTest = "${FANTOM_TEST_RPC_URL}"
 bsc = "${BSC_RPC_URL}"
-bscTest = "${BSC_TEST_RPC_URL}"
+bsc-testnet = "${BSC_TEST_RPC_URL}"
 
 [etherscan]
 mainnet = { key = "${ETHERSCAN_API_KEY}" }
@@ -32,11 +32,11 @@ mumbai = { key = "${POLYGONSCAN_API_KEY}" }
 optimism = { key = "${OPTIMISM_API_KEY}" }
 optimismTest = { key = "${OPTIMISM_API_KEY}" }
 arbitrum = { key = "${ARBITRUM_API_KEY}" }
-arbitrumTest = { key = "${ARBITRUM_API_KEY}" }
+arbitrumTest = { key = "${ARBITRUM_API_KEY}", url = "${ARBITRUM_TEST_RPC_URL}"  }
 fantom = { key = "${FATOMSCAN_API_KEY}" }
 fantomTest = { key = "${FATOMSCAN_API_KEY}" }
 bsc = { key = "${BSCSCAN_API_KEY}" }
-bscTest = { key = "${BSCSCAN_API_KEY}" }
+bsc-testnet = { key = "${BSCSCAN_API_KEY}" }
 
 
 # See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options

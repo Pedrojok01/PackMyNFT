@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: BUSL-1.1
+// SPDX-License-Identifier: BSL-1.1
 pragma solidity ^0.8.20;
 
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
@@ -41,7 +41,7 @@ contract PackMyNFT is
 
     string private constant BASE_URI =
         "ipfs://QmPdWmcbxqco4vBZf9cL6XsTHHNF54tVzu2JoMN357pwqw/metadata.json";
-    uint256 private nonce; // Used as: Token Id & Total supply
+    uint256 private nonce = 1; // Used as: Token Id & Total supply
     uint256 public immutable MAX_BATCH_AMOUNT = 200; // Gas limit protection
     uint256 public immutable MAX_ARRAY_SIZE = 15; // DoS protection
     uint256 public immutable MAX_SUPPLY; // 0 = no limit
@@ -98,7 +98,7 @@ contract PackMyNFT is
         uint256[] memory numbers
     ) public payable returns (uint256 tokenId) {
         uint256 maxSupply = MAX_SUPPLY;
-        if (maxSupply != 0 && nonce >= maxSupply)
+        if (maxSupply != 0 && nonce > maxSupply)
             revert PackMyNFT__MaxSupplyReached();
         if (to == address(0)) revert PackMyNFT__MintToAddress0();
         if (msg.value != numbers[0]) revert PackMyNFT__InvalidNativeValue();
@@ -175,7 +175,7 @@ contract PackMyNFT is
     }
 
     function totalSupply() public view returns (uint256) {
-        return nonce;
+        return nonce - 1; // nonce starts at 1 to avoid confusion with tokenId 0
     }
 
     function supportsInterface(

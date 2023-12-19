@@ -20,8 +20,9 @@ contract PackMyNFTTest_Burn is Helpers {
         numbers[3] = 0; // ERC1155 length
         numbers[4] = 100; // ERC20 amount
 
+        uint256 id = 1;
         vm.expectEmit(true, true, true, true, address(packMyNFT));
-        emit BundleAssetsClaimed(0, user1, addresses, numbers);
+        emit BundleAssetsClaimed(id, user1, addresses, numbers);
 
         // Burn the token
         vm.prank(user1);
@@ -60,7 +61,7 @@ contract PackMyNFTTest_Burn is Helpers {
         );
 
         // Assertions before burning
-        assertEq(tokenId, 0, "Token ID should be 0");
+        assertEq(tokenId, 1, "Token ID should be 1");
         assertEq(packMyNFT.ownerOf(tokenId), user1, "Owner should be user1");
         assertEq(
             mockERC721.ownerOf(1),
