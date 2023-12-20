@@ -95,21 +95,21 @@ export const arbitrum: Chain = {
   testnet: false,
 };
 
-export const arbitrumGoerli: Chain = {
-  id: 421613,
-  name: "Arbitrum Goerli",
-  network: "arbitrum-goerli",
+export const arbitrumSepolia: Chain = {
+  id: 421614,
+  name: "Arbitrum Sepolia",
+  network: "arbitrum-sepolia",
   nativeCurrency: {
     name: "ETH",
     symbol: "ETH",
     decimals: 18,
   },
   rpcUrls: {
-    default: { http: ["https://arb-goerli.g.alchemy.com/v2"] },
-    public: { http: ["https://goerli-rollup.arbitrum.io/rpc"] },
+    default: { http: ["https://arb-sepolia.g.alchemy.com/v2"] },
+    public: { http: ["https://sepolia-rollup.arbitrum.io/rpc"] },
   },
   blockExplorers: {
-    default: { name: "Arbiscan", url: "https://goerli.arbiscan.io/" },
+    default: { name: "Arbiscan", url: "https://sepolia.arbiscan.io/" },
   },
   testnet: true,
 };
@@ -272,7 +272,7 @@ export const networks = {
   optimism,
   optimismGoerli,
   arbitrum,
-  arbitrumGoerli,
+  arbitrumSepolia,
   fantom,
   fantomTestnet,
   polygon,

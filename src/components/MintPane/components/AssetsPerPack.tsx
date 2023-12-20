@@ -3,6 +3,7 @@ import { type FC } from "react";
 import { Box, Flex, Text, useColorMode } from "@chakra-ui/react";
 
 import useStore from "@/store/store";
+import { trimDecimals } from "@/utils";
 
 const AssetsPerPack: FC = () => {
   const { colorMode } = useColorMode();
@@ -23,7 +24,12 @@ const AssetsPerPack: FC = () => {
   return (
     <Box bg={backgroundColor} p={2} borderRadius={8}>
       {selectedNative &&
-        renderAssets(Number(nativeAmount).toFixed(5), selectedNative.symbol, Number(nativeAmount))}
+        nativeAmount &&
+        renderAssets(
+          trimDecimals(Number(nativeAmount).toFixed(6).toString()),
+          selectedNative.symbol,
+          Number(nativeAmount),
+        )}
       {selectedTokens.map((asset, index) =>
         renderAssets(tokenAmounts[asset.token_address], asset.name, index),
       )}

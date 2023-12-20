@@ -1,5 +1,5 @@
 // components/ReviewAndMintStep.tsx
-import { type FC } from "react";
+import { useEffect, type FC } from "react";
 
 import { Box, Button, Center, HStack, Input, Text } from "@chakra-ui/react";
 import Image from "next/image";
@@ -29,6 +29,10 @@ const ReviewAndMintStep: FC = () => {
     const newPackCount = Math.max(1, Math.min(maxPackCount, Number(e.target.value)));
     setPackCount(newPackCount);
   };
+
+  useEffect(() => {
+    packCount > maxPackCount && setPackCount(maxPackCount);
+  }, [packCount, maxPackCount, setPackCount]);
 
   return (
     <>
@@ -73,7 +77,7 @@ const ReviewAndMintStep: FC = () => {
             <span style={{ color: "red" }}>(max = {maxPackCount})</span>
           </Text>
 
-          <Input type="number" min={1} value={packCount} onChange={handlePackCountChange} />
+          <Input type="number" min={1} value={packCount ?? 1} onChange={handlePackCountChange} />
 
           <CustomDivider />
 

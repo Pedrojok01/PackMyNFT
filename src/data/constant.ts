@@ -5,7 +5,7 @@ export const APP_URL = process.env.NEXT_PUBLIC_URL;
 
 export const SUPPORTED_CHAIN = {
   mainnet: [1, 10, 56, 137, 250, 42161],
-  testnet: [5, 97, 420, 4002, 80001, 421613],
+  testnet: [11155111, 97, 420, 4002, 80001, 421614],
 };
 
 export const MAX_ASSETS_PER_PACK = 5;
@@ -13,13 +13,17 @@ export const MAX_PACKS_PER_TXN = 200;
 
 /* 
 Deployed at the same address on:
- - Ethereum, Sepolia 
- - BSC, BSC Testnet, 
- - Polygon, Polygon Mumbai,
- - Optimism, Optimism Goerli, 
- - ArbitrumOne, Arbitrum Testnet, 
- - Fantom Opera, Fantom Testnet
+ - Ethereum: 
+ - Sepolia: deployed & verified 
+ - Polygon: deployed & verified
+ - Polygon Mumbai: deployed & verified
+ - Optimism: deployed & verified 
+ - Optimism Goerli: deployed & verified 
+ - ArbitrumOne:
+ - Arbitrum Sepolia Testnet: deployed
+ - Fantom Opera: deployed & verified 
+ - Fantom Testnet: deployed & verified
+ - BSC: deployed & verified 
+ - BSC Testnet: deployed
 */
-// export const PACK_MY_NFT: `0x${string}` = "0x5f492548d781a509119b6fA2D874dC81A64e18a8"; // sepolia only
-
-export const PACK_MY_NFT: `0x${string}` = "0x02C7E4571177c7332BfB451bc4cf1b7222d7bF70";
+export const PACK_MY_NFT: `0x${string}` = "0x99482d34dD610067b66b0A32Fa3Cf1a512D77b2b"; // testnet all good, nonce = 5

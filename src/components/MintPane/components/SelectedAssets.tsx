@@ -1,6 +1,6 @@
-import { useState, type FC } from "react";
+import { type FC } from "react";
 
-import { Box, Button, Flex, FormErrorMessage, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, Text } from "@chakra-ui/react";
 
 import { CustomDivider, PackAmountInput } from "@/components";
 import { useWindowSize } from "@/hooks";
@@ -23,13 +23,8 @@ const SelectedAssets: FC<SelectedAssetsProps> = ({ onRemove, native }) => {
     setNativeAmount,
     setTokenAmount,
   } = useStore();
-  const [errors, setErrors] = useState<{ [key: string]: boolean }>({});
 
   const handleAmountChange = (amount: string, assetAddress?: string) => {
-    setErrors({
-      ...errors,
-      [assetAddress || "native"]: Number(amount) <= 0 || isNaN(Number(amount)),
-    });
     assetAddress ? setTokenAmount(assetAddress, amount) : setNativeAmount(amount);
   };
 
@@ -65,12 +60,10 @@ const SelectedAssets: FC<SelectedAssetsProps> = ({ onRemove, native }) => {
 
           <Box display={"flex"} justifyContent={"flex-end"} gap={10} alignItems={"center"}>
             <PackAmountInput
+              value={nativeAmount ?? ""}
               balance={selectedNative.formatted}
-              value={Number(nativeAmount) ?? 0}
-              onChange={(amount) => handleAmountChange(amount.toString())}
+              onAmountChange={(amount) => handleAmountChange(amount.toString())}
             />
-            {errors["native"] && <FormErrorMessage>Invalid amount</FormErrorMessage>}
-
             <RemoveButton asset={selectedNative.symbol} />
           </Box>
         </Flex>
@@ -85,11 +78,12 @@ const SelectedAssets: FC<SelectedAssetsProps> = ({ onRemove, native }) => {
 
           <Box display={"flex"} justifyContent={"flex-end"} gap={10} alignItems={"center"}>
             <PackAmountInput
+              value={tokenAmounts[asset.token_address]}
               balance={formatTokenBalance(asset)}
-              value={Number(tokenAmounts[asset.token_address])}
-              onChange={(amount) => handleAmountChange(amount.toString(), asset.token_address)}
+              onAmountChange={(amount) =>
+                handleAmountChange(amount.toString(), asset.token_address)
+              }
             />
-            {errors["native"] && <FormErrorMessage>Invalid amount</FormErrorMessage>}
 
             <RemoveButton asset={asset.token_address} />
           </Box>
@@ -101,7 +95,6 @@ const SelectedAssets: FC<SelectedAssetsProps> = ({ onRemove, native }) => {
           <Text>
             {asset.name} {!isMobile && <span style={{ fontSize: "11px" }}>(nft)</span>}
           </Text>
-
           <RemoveButton asset={asset.token_address} />
         </Flex>
       ))}

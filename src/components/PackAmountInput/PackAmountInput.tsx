@@ -1,40 +1,54 @@
-import { type FC } from "react";
+import { type FC, useCallback } from "react";
 
 import { Input } from "@chakra-ui/react";
 
 import { useWindowSize } from "@/hooks";
 
 interface AmountInputProps {
-  value: number;
+  value: string;
   balance: string;
-  onChange: (value: number, tokenAddress?: string) => void;
+  onAmountChange: (value: string, tokenAddress?: string) => void;
 }
 
-const PackAmountInput: FC<AmountInputProps> = ({ value, balance, onChange }) => {
+const PackAmountInput: FC<AmountInputProps> = ({ value, balance, onAmountChange }) => {
   const { isMobile, isTablet, isSmallScreen } = useWindowSize();
+  const maxPrecision = 9;
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const inputAmount = Number(e.target.value);
-    const maxAmount = Number(balance);
+  const formatValue = useCallback(
+    (val: string) => {
+      if (val === "") return val; // Allow empty input to reset the value
 
-    if (isNaN(inputAmount) || inputAmount < 0) {
-      onChange(0);
-      return;
-    }
-    if (inputAmount > maxAmount) {
-      onChange(maxAmount);
-      return;
-    }
+      let num = parseFloat(val);
+      if (!isNaN(num)) {
+        // Clamp value to the range [0, balance]
+        num = Math.max(0, Math.min(num, parseFloat(balance)));
+        // Limit precision only for non-integer numbers
+        if (!Number.isInteger(num)) {
+          num = Math.floor(num * Math.pow(10, maxPrecision)) / Math.pow(10, maxPrecision);
+        }
+        return num.toString();
+      }
+      return val;
+    },
+    [balance, maxPrecision],
+  );
 
-    onChange(inputAmount);
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const sanitizedValue = event.target.value.replace(/[^0-9.]/g, "");
+    onAmountChange(sanitizedValue);
+  };
+
+  const handleBlur = () => {
+    const formattedValue = formatValue(value);
+    onAmountChange(formattedValue);
   };
 
   return (
     <Input
       w={isMobile ? "6rem" : isTablet ? "10rem" : isSmallScreen ? "15rem" : "20rem"}
-      type="number"
-      value={value || ""}
-      onChange={handleChange}
+      value={value}
+      onChange={handleInputChange}
+      onBlur={handleBlur}
       placeholder="Amount per pack"
     />
   );

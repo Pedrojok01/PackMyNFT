@@ -29,8 +29,10 @@ export const useAssetUpdater = () => {
     : 0 + selectedTokens.length + selectedCollections.length;
 
   const isAmountMissing = () => {
-    if (selectedNative && !nativeAmount) return true;
-    return selectedTokens.some((token) => !tokenAmounts[token.token_address]);
+    if (selectedNative && (!nativeAmount || nativeAmount === "0")) return true;
+    return selectedTokens.some(
+      (token) => !tokenAmounts[token.token_address] || tokenAmounts[token.token_address] === "0",
+    );
   };
 
   const updateSelectedAssets = useCallback(
