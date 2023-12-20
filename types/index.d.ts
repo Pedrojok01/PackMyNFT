@@ -46,7 +46,6 @@ interface CollectionExtended extends Collection {
   image?: string;
   nfts: Nft[];
   total: number;
-  uuid: string;
 }
 
 type Collections = CollectionExtended[];

@@ -1,12 +1,9 @@
-import { v4 as uuidv4 } from "uuid";
-
 export function processCollections(collections: Collection[], nfts: EvmNft[]): Collections {
   const collectionsMap = collections.reduce<CollectionsMap>((acc, collection) => {
     acc[collection.token_address.toLowerCase()] = {
       ...collection,
       nfts: [],
       total: 0,
-      uuid: uuidv4(),
     };
     return acc;
   }, {});
