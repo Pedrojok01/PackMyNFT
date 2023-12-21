@@ -33,9 +33,9 @@ const ClaimPane: FC = () => {
     <ContentBox title="Claim Pack">
       {!isConnected && <NotConnected />}
 
-      {isLoading && <Loading />}
+      {isConnected && isLoading && <Loading />}
 
-      {!isLoading && nfts.length === 0 && (
+      {isConnected && !isLoading && nfts.length === 0 && (
         <Text fontSize="lg" mb={5}>
           You do not have any pack to claim at this time.
         </Text>

@@ -78,7 +78,7 @@ const SelectedAssets: FC<SelectedAssetsProps> = ({ onRemove, native }) => {
 
           <Box display={"flex"} justifyContent={"flex-end"} gap={10} alignItems={"center"}>
             <PackAmountInput
-              value={tokenAmounts[asset.token_address]}
+              value={tokenAmounts[asset.token_address] ?? ""}
               balance={formatTokenBalance(asset)}
               onAmountChange={(amount) =>
                 handleAmountChange(amount.toString(), asset.token_address)
