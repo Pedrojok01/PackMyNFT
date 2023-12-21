@@ -1,9 +1,9 @@
 <div align="center">
 
-<img src="./public/img/logo_transparent.png" width="70px"/>
+<img src="./public/img/packmynft_logo.png" width="100px"/>
 <br><br>
 
-<h1><strong> Next Web3 Boilerplate </strong></h1>
+<h1><strong> Pack My NFT - Frontend </strong></h1>
 
 [![Stargazers](https://img.shields.io/github/stars/Pedrojok01/PackMyNFT)](https://github.com/Pedrojok01/PackMyNFT/stargazers)
 [![Forks](https://img.shields.io/github/forks/Pedrojok01/PackMyNFT)](https://github.com/Pedrojok01/PackMyNFT/issues)
@@ -20,7 +20,7 @@
 
 ## Description
 
-Simple and minimalist Web3 boilerplate to boost your Dapp development. Built using the latest tech outhere: [Next.js](https://nextjs.org/), [Viem](https://viem.sh/), [Wagmi](https://wagmi.sh/), [RainbowKit](https://www.rainbowkit.com/), [ChakraUI](https://chakra-ui.com/) and [Typescript](https://www.typescriptlang.org/). Eslint, Prettier and Husky already configured. The perfect starting point for your next web3 project.
+
 
 Try it yourself: [https://packmynft.com/](https://packmynft.com/)
 
@@ -91,15 +91,7 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## Features:
 
-- [x] Web3 Wallet Status (MetaMask / Rainbow / Coinbase Wallet / WalletConnect)
-- [x] Chain selector
-- [x] Block Number / Chain ID & Name
-- [x] Wallet balance
-- [x] Sign Messages & Transfer Native
-- [x] Dark mode support
-- [x] Hook to query user's Token Balances
 
 <br></br>
 

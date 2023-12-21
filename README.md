@@ -1,9 +1,9 @@
 <div align="center">
 
-<img src="./public/img/logo_transparent.png" width="70px"/>
+<img src="./frontend/public/img/packmynft_logo.png" width="100px"/>
 <br><br>
 
-<h1><strong> Next Web3 Boilerplate </strong></h1>
+<h1><strong> Pack My NFT </strong></h1>
 
 [![Stargazers](https://img.shields.io/github/stars/Pedrojok01/PackMyNFT)](https://github.com/Pedrojok01/PackMyNFT/stargazers)
 [![Forks](https://img.shields.io/github/forks/Pedrojok01/PackMyNFT)](https://github.com/Pedrojok01/PackMyNFT/issues)
@@ -20,9 +20,46 @@
 
 ## Description
 
-Simple and minimalist Web3 boilerplate to boost your Dapp development. Built using the latest tech outhere: [Next.js](https://nextjs.org/), [Viem](https://viem.sh/), [Wagmi](https://wagmi.sh/), [RainbowKit](https://www.rainbowkit.com/), [ChakraUI](https://chakra-ui.com/) and [Typescript](https://www.typescriptlang.org/). Eslint, Prettier and Husky already configured. The perfect starting point for your next web3 project.
+PackMyNFT is an innovative web application designed for any EVM blockchains, enabling users to bundle various assets into a single NFT pack. This project simplifies the process of grouping native coins, ERC20 tokens, and NFTs (ERC721 and ERC1155) and allows to create up to 200 packs per transactions. The packs are represented as ERC721 tokens, which means they can be traded on any marketplace supporting this standard. The project is currently deployed at this address (same for all chains):
+
+```ts
+address: `0x${string}` = "0x99482d34dD610067b66b0A32Fa3Cf1a512D77b2b";
+```
+
+on the following networks:
+
+### Mainnet:
+
+Deployed & Verified on:
+
+- [Ethereum](https://etherscan.io/address/0x99482d34dD610067b66b0A32Fa3Cf1a512D77b2b#code) // Might come later
+- [Polygon](https://polygonscan.com/address/0x99482d34dD610067b66b0A32Fa3Cf1a512D77b2b#code)
+- [Optimism](https://optimistic.etherscan.io/address/0x99482d34dD610067b66b0A32Fa3Cf1a512D77b2b#code)
+- [Arbitrum One](https://arbiscan.io/address/0x99482d34dD610067b66b0A32Fa3Cf1a512D77b2b#code) // Coming soon
+- [Fantom Opera](https://ftmscan.com/address/0x99482d34dD610067b66b0A32Fa3Cf1a512D77b2b#code)
+- [Binance Smart Chain](https://bscscan.com/address/0x99482d34dD610067b66b0A32Fa3Cf1a512D77b2b#code)
+
+### Testnet:
+
+Deployed & Verified on:
+
+- [Ethereum Sepolia](https://sepolia.etherscan.io/address/0x99482d34dD610067b66b0A32Fa3Cf1a512D77b2b#code)
+- [Polygon Mumbai](https://mumbai.polygonscan.com/address/0x99482d34dD610067b66b0A32Fa3Cf1a512D77b2b#code)
+- [Optimism Goerli](https://goerli-optimism.etherscan.io/address/0x99482d34dD610067b66b0A32Fa3Cf1a512D77b2b#code)
+- [Arbitrum Goerli](https://sepolia.arbiscan.io/address/0x99482d34dD610067b66b0A32Fa3Cf1a512D77b2b#code) // Not verified
+- [Fantom testnet](https://testnet.ftmscan.com/address/0x99482d34dD610067b66b0A32Fa3Cf1a512D77b2b#code)
+- [Bsc Testnet](https://testnet.bscscan.com/address/0x99482d34dD610067b66b0A32Fa3Cf1a512D77b2b#code) // Not verified
 
 Try it yourself: [https://packmynft.com/](https://packmynft.com/)
+
+## Features
+
+- **Asset Bundling**: Combine native coins, ERC20 tokens, and NFTs into a single NFT pack.
+- **Asset Claiming**: Claim the assets from a pack by burning it.
+- **Batched Transactions**: Create up to 200 packs per transactions (Minting 10,000 packs would only require 50 transactions).
+- **Multi-Chain Support**: Supports Ethereum, Polygon, Optimism, Arbitrum, Fantom, and Binance Smart Chain.
+- **Responsive Design**: Fully responsive and accessible on various devices and screen sizes.
+- **Simple UI/UX**: Intuitive and easy to use interface.
 
 ## Built With
 
@@ -35,71 +72,36 @@ Try it yourself: [https://packmynft.com/](https://packmynft.com/)
 - [![prettier]][prettier-url]
 - [![ESLint]][eslint-url]
 
-## Installation
+## Getting Started
 
-### Make sure you have the following ready:
+### Prerequisites
 
 - [node.js](https://nodejs.org/) installed (developped on LTS v18)
-- [typescript](https://www.typescriptlang.org/) installed (developped on v5.2.2)
 - [bun](https://bun.sh/) or [pnpm](https://pnpm.io/) or [yarn](https://yarnpkg.com/) or [npm](https://www.npmjs.com/) installed
-- [MetaMask](https://metamask.io/) (or any web3 compatible wallet) installed in your browser
+- Git
+- Ethereum Wallet (like [MetaMask](https://metamask.io/))
 
-### Once your config is ready, create a new repo, open your favorite code editor, and clone the repo with the following cmd:
+### Installation
+
+1. **Clone the Repository**
 
 ```bash
 git clone https://github.com/Pedrojok01/PackMyNFT.git .
 ```
 
-### Install all package dependancies by running:
+2. **Navigate to the Repositories**
 
-```bash
-bun install
-# or
-pnpm install
-# or
-yarn install
-# or
-npm install
-```
+There are two repositories, one for the frontend and one for the smart-contracts (foundry). Unless if you want to deploy your own contracts, you will only need to install the frontend dependencies.
 
-<b>IMPORTANT: Double check your package.json to make sure you've installed the exact same version for all @web3-react packages. Since the version 8+ is still in beta, it may not be automatically installed.</b>
+Report to the readme files of each repository for more information about the installation process.
 
-### Add your API keys in the .env file:
+### Contributing
 
-Remove the `.example` from the `.env.example` file name at the root of the project and add you API keys inside. The WalletConnect project ID is now required since the v2 update. The can create one easily on the [WalletConnect dashboard](https://cloud.walletconnect.com/).
+Contributions to PackMyNFT are always welcome, whether it be improvements to the documentation or new functionality.
 
-```js
-NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID = "Project ID needed for WalletConnect v2 here";
-NEXT_PUBLIC_ALCHEMY_API_KEY = "Your Alchemy API key here";
-```
+### License
 
-You can also use any other node provider instead or in addition to [Alchemy](https://www.alchemy.com/).
-
-### To start the PackMyNFT:
-
-First, run the development server:
-
-```bash
-bun dev
-# or
-pnpm dev
-# or
-yarn dev
-# or
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-## Features:
-
-- [x] Web3 Wallet Status (MetaMask / Rainbow / Coinbase Wallet / WalletConnect)
-- [x] Chain selector
-- [x] Block Number / Chain ID & Name
-- [x] Wallet balance
-- [x] Sign Messages & Transfer Native
-- [x] Dark mode support
-- [x] Hook to query user's Token Balances
+Distributed under the MIT License. See [License](LICENSE.md) for more information.
 
 <br></br>
 
