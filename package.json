@@ -24,10 +24,10 @@
   },
   "keywords": [
     "forge",
-    "template",
-    "erc20",
     "openzeppelin",
-    "Solidity"
+    "Solidity",
+    "NFT pack",
+    "NFT Bundle"
   ],
   "type": "module",
   "devDependencies": {
