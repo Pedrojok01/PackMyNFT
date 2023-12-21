@@ -1,0 +1,41 @@
+{
+  "name": "pack-my-nft",
+  "version": "1.0.1",
+  "description": "Bundle your assets into NFTs",
+  "author": "Pedrojok01",
+  "license": "BSL-1.1",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "build": "forge build",
+    "test": "forge test -vvv",
+    "cover": "forge coverage",
+    "cover:debug": "forge coverage --report debug",
+    "lint": "solhint \"src/**/*.sol\"",
+    "prettier": "prettier --write --plugin=prettier-plugin-solidity \"**/*.sol\"",
+    "slither": "slither src/PackMyNFT.sol --solc-remaps @openzeppelin=lib/openzeppelin-contracts",
+    "simulate": "forge script script/PackMyNFTScript.s.sol:PackMyNFTScript --rpc-url arbitrum",
+    "deploy": "forge script script/PackMyNFTScript.s.sol:PackMyNFTScript --rpc-url arbitrum --broadcast --verify --etherscan-api-key <ETHERSCAN_API_KEY> --watch",
+    "verify": "forge verify-contract --chain <CHAIN> --etherscan-api-key <ETHERSCAN_API_KEY> <CONTRACT_ADDRESS> src/PackMyNFT.sol:PackMyNFT"
+  },
+  "repository": {
+    "type": "git"
+  },
+  "keywords": [
+    "forge",
+    "openzeppelin",
+    "Solidity",
+    "NFT pack",
+    "NFT Bundle"
+  ],
+  "type": "module",
+  "devDependencies": {
+    "axios": "1.6.2",
+    "dotenv": "16.3.1",
+    "prettier": "3.1.1",
+    "prettier-plugin-solidity": "1.2.0",
+    "solhint": "4.0.0",
+    "solhint-plugin-prettier": "0.1.0"
+  }
+}
