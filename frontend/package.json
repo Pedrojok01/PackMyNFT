@@ -56,17 +56,16 @@
     "typescript": "5.3.3"
   },
   "keywords": [
-    "nextjs",
     "wagmi",
     "viem",
     "web3",
-    "boilerplate",
-    "chakra-ui",
+    "nft",
+    "nft-pack",
+    "nft-bundle",
+    "pack-my-nft",
     "rainbowkit",
+    "pack nft",
     "ethereum-dapp",
-    "ethereum-boilerplate",
-    "ethereum-dapp",
-    "web3-boilerplate",
     "web3-dapp"
   ]
 }

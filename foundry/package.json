@@ -8,6 +8,7 @@
     "lib": "lib"
   },
   "scripts": {
+    "forge:setup": "forge install foundry-rs/forge-std OpenZeppelin/openzeppelin-contracts",
     "build": "forge build",
     "test": "forge test -vvv",
     "cover": "forge coverage",
