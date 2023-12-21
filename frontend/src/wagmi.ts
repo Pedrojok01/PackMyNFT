@@ -12,7 +12,6 @@ import {
   arbitrumGoerli,
   fantom,
   fantomTestnet,
-  zkSync,
   bsc,
   bscTestnet,
 } from "wagmi/chains";
@@ -29,7 +28,7 @@ if (!alchemyApiKey || !walletConnectProjectId) {
 const { chains, publicClient, webSocketPublicClient } = configureChains(
   [
     ...(process.env.NODE_ENV === "production"
-      ? [mainnet, optimism, polygon, arbitrum, fantom, zkSync, bsc]
+      ? [mainnet, optimism, polygon, arbitrum, fantom, bsc]
       : [sepolia, optimismGoerli, polygonMumbai, arbitrumGoerli, fantomTestnet, bscTestnet]),
   ],
   [alchemyProvider({ apiKey: alchemyApiKey }), publicProvider()],
