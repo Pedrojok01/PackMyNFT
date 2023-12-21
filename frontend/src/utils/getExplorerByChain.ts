@@ -5,7 +5,7 @@ export const getExplorer = (chainId: number) => {
     case 1:
       return networks.ethereum.blockExplorers?.default.url;
     case 5:
-      return networks.goerli.blockExplorers?.default.url;
+      return networks.sepolia.blockExplorers?.default.url;
     case 10:
       return networks.optimism.blockExplorers?.default.url;
     case 56:
@@ -25,7 +25,7 @@ export const getExplorer = (chainId: number) => {
     case 80001:
       return networks.mumbai.blockExplorers?.default.url;
     case 421613:
-      return networks.arbitrumGoerli.blockExplorers?.default.url;
+      return networks.arbitrumSepolia.blockExplorers?.default.url;
     default:
       return networks.ethereum.blockExplorers?.default.url;
   }
