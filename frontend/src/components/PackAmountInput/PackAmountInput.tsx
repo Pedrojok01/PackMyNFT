@@ -18,15 +18,18 @@ const PackAmountInput: FC<AmountInputProps> = ({ value, balance, onAmountChange 
     (val: string) => {
       if (val === "") return val; // Allow empty input to reset the value
 
-      let num = parseFloat(val);
+      let num = Number(val);
       if (!isNaN(num)) {
         // Clamp value to the range [0, balance]
-        num = Math.max(0, Math.min(num, parseFloat(balance)));
-        // Limit precision only for non-integer numbers
+        num = Math.max(0, Math.min(num, Number(balance)));
+
         if (!Number.isInteger(num)) {
-          num = Math.floor(num * Math.pow(10, maxPrecision)) / Math.pow(10, maxPrecision);
+          // Limit precision only for non-integer numbers
+          num = parseFloat(num.toFixed(maxPrecision));
         }
-        return num.toString();
+
+        // Convert to string with fixed decimal places without scientific notation
+        return num.toFixed(maxPrecision).replace(/\.?0+$/, "");
       }
       return val;
     },

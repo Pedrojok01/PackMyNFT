@@ -26,7 +26,7 @@ const AssetsPerPack: FC = () => {
       {selectedNative &&
         nativeAmount &&
         renderAssets(
-          trimDecimals(Number(nativeAmount).toFixed(6).toString()),
+          trimDecimals(Number(nativeAmount).toFixed(9).toString()),
           selectedNative.symbol,
           Number(nativeAmount),
         )}

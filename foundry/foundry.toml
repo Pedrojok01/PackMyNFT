@@ -20,7 +20,7 @@ optimismTest = "${OPTIMISM_TEST_RPC_URL}"
 arbitrum = "${ARBITRUM_RPC_URL}"
 arbitrumTest = "${ARBITRUM_TEST_RPC_URL}"
 fantom = "${FANTOM_RPC_URL}"
-fantomTest = "${FANTOM_TEST_RPC_URL}"
+fantom-testnet = "${FANTOM_TEST_RPC_URL}"
 bsc = "${BSC_RPC_URL}"
 bsc-testnet = "${BSC_TEST_RPC_URL}"
 
@@ -34,7 +34,7 @@ optimismTest = { key = "${OPTIMISM_API_KEY}" }
 arbitrum = { key = "${ARBITRUM_API_KEY}" }
 arbitrumTest = { key = "${ARBITRUM_API_KEY}", url = "${ARBITRUM_TEST_RPC_URL}"  }
 fantom = { key = "${FATOMSCAN_API_KEY}" }
-fantomTest = { key = "${FATOMSCAN_API_KEY}" }
+fantom-testnet = { key = "${FATOMSCAN_API_KEY}" }
 bsc = { key = "${BSCSCAN_API_KEY}" }
 bsc-testnet = { key = "${BSCSCAN_API_KEY}" }
 
