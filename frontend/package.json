@@ -1,7 +1,7 @@
 {
   "name": "pack-my-nft",
   "version": "0.1.8",
-  "description": "Bundle your crypto assets into a single NFT. Support ERC20, ERC721 and ERC1155, as well as batch minting.",
+  "description": "Bundle your crypto assets into a single NFT pack. Support ERC20, ERC721 and ERC1155, as well as batch minting.",
   "author": "Pedrojok01 <pedrojok@pm.me>",
   "license": "MIT",
   "private": true,
@@ -16,8 +16,7 @@
     "build": "next build",
     "start": "next start",
     "prettier": "prettier --write \"**/*.{ts,tsx,js}\"",
-    "lint": "next lint --fix",
-    "prepare": "husky install"
+    "lint": "next lint --fix"
   },
   "dependencies": {
     "@chakra-ui/icons": "2.1.1",
