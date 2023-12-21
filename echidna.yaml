@@ -1,9 +1,0 @@
-# provide solc remappings to crytic-compile
-cryticArgs: ["--solc-remaps", "@openzeppelin/=src/lib/openzeppelin-contracts/"]
-testLimit: 1000000
-coverage: true
-balanceContract: 12000
-#select the mode to test, which can be property, assertion, overflow, exploration, optimization
-testMode: assertion
-workers: 4
-# allContracts: true
