@@ -27,7 +27,7 @@ if (!alchemyApiKey || !walletConnectProjectId) {
 
 const { chains, publicClient, webSocketPublicClient } = configureChains(
   [
-    ...(process.env.NODE_ENV === "production"
+    ...(process.env.NEXT_PUBLIC_NODE_ENV === "production"
       ? [mainnet, optimism, polygon, arbitrum, fantom, bsc]
       : [sepolia, optimismGoerli, polygonMumbai, arbitrumGoerli, fantomTestnet, bscTestnet]),
   ],

@@ -1,3 +1,4 @@
+import type { GetTokenMetadataResponseAdapter } from "@moralisweb3/common-evm-utils";
 import Moralis from "moralis";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -18,7 +19,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
 
   if (!tokenAddresses || !nftAddresses || !chainId) {
     return NextResponse.json(
-      { success: false, message: "Missing account or chainId" },
+      { success: false, message: "Missing parameters or chainId" },
       { status: 400 },
     );
   }
@@ -29,23 +30,30 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
   }
 
   try {
+    let tokensMetadata: GetTokenMetadataResponseAdapter | [] = [];
+    let nftsMetadata: (EvmNft | undefined)[] | [] = [];
+
     // Fetching token metadata
-    const tokensMetadata = await Moralis.EvmApi.token.getTokenMetadata({
-      chain: moralisChain,
-      addresses: [...tokenAddresses],
-    });
+    if (tokenAddresses.length > 0) {
+      tokensMetadata = await Moralis.EvmApi.token.getTokenMetadata({
+        chain: moralisChain,
+        addresses: [...tokenAddresses],
+      });
+    }
 
     // Fetching NFT collection metadata in parallel
-    const collectionMetadataPromises = nftAddresses.map((nft) =>
-      Moralis.EvmApi.nft.getNFTMetadata({
-        chain: moralisChain,
-        address: nft.address,
-        normalizeMetadata: true,
-        tokenId: nft.tokenId,
-      }),
-    );
-    const collectionMetadataResults = await Promise.all(collectionMetadataPromises);
-    const nftsMetadata = collectionMetadataResults.map((result) => result?.raw);
+    if (nftAddresses.length > 0) {
+      const collectionMetadataPromises = nftAddresses.map((nft) =>
+        Moralis.EvmApi.nft.getNFTMetadata({
+          chain: moralisChain,
+          address: nft.address,
+          normalizeMetadata: true,
+          tokenId: nft.tokenId,
+        }),
+      );
+      const collectionMetadataResults = await Promise.all(collectionMetadataPromises);
+      nftsMetadata = collectionMetadataResults.map((result) => result?.raw);
+    }
 
     return NextResponse.json({
       success: true,

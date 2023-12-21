@@ -60,19 +60,19 @@ type CollectionsMap = {
 
 interface EvmNft {
   amount?: string | undefined;
-  block_number: string;
-  block_number_minted: string;
+  block_number?: string | undefined;
+  block_number_minted?: string | undefined;
   contract_type: string;
-  last_metadata_sync: string;
-  last_token_uri_sync: string;
+  last_metadata_sync?: string | undefined;
+  last_token_uri_sync?: string | undefined;
   metadata?: string | undefined;
   name: string;
   normalized_metadata?: NormalizedMetadata;
-  owner_of: string;
+  owner_of?: string | undefined;
   possible_spam: boolean;
   symbol: string;
   token_address: string;
-  token_hash: string;
+  token_hash?: string | undefined;
   token_id: string;
   token_uri?: string | undefined;
   verified_collection?: boolean | undefined;
