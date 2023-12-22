@@ -12,15 +12,15 @@
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-blue?logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/pierre-e/)
 ![Vercel](https://img.shields.io/github/deployments/Pedrojok01/PackMyNFT/production?label=Vercel&logo=Vercel&logoColor=white)
 
-<br></br>
+<br>
 
-![Preview](./public/img/preview.gif)
+![Preview](/frontend/public/gif/preview.gif)
+
+<br>
 
 </div>
 
 ## Description
-
-
 
 Try it yourself: [https://packmynft.com/](https://packmynft.com/)
 
@@ -90,8 +90,6 @@ npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-
 
 <br></br>
 
