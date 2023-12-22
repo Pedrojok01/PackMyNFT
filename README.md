@@ -151,9 +151,15 @@ Distributed under the MIT License. See [License](LICENSE.md) for more informatio
 <br></br>
 
 <div align="center">
-<h2> Enjoy!!!</h2>
 
-### ⭐️ ... and don't forget to leave a star if you like it! ⭐️
+<h3> ⭐️ Leave a star if you like it! ⭐️</h3>
+<h3>And if you want to pay me a coffee or help with contract deployment costs, a donation is always welcome! <h3>
+
+[![btc_qrcode](https://raw.githubusercontent.com/Pedrojok01/Import-CryptoData-into-GoogleSheet/main/btc_qrcode.png)](https://raw.githubusercontent.com/Pedrojok01/Import-CryptoData-into-GoogleSheet/main/bitcoin-address.txt)
+
+```
+BTC: bc1pgud5lk850jrk7ty3kyzazntwdnnl6xrnm2wm5trdz7myfkhccglskqmgdk
+```
 
 </div>
 
