@@ -12,9 +12,11 @@
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-blue?logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/pierre-e/)
 ![Vercel](https://img.shields.io/github/deployments/Pedrojok01/PackMyNFT/production?label=Vercel&logo=Vercel&logoColor=white)
 
-<br></br>
+<br>
 
-![Preview](./public/img/preview.gif)
+![Preview](/frontend/public/gif/preview.gif)
+
+<br>
 
 </div>
 
@@ -50,7 +52,50 @@ Deployed & Verified on:
 - [Fantom testnet](https://testnet.ftmscan.com/address/0x99482d34dD610067b66b0A32Fa3Cf1a512D77b2b#code)
 - [Bsc Testnet](https://testnet.bscscan.com/address/0x99482d34dD610067b66b0A32Fa3Cf1a512D77b2b#code) // Not verified
 
-Try it yourself: [https://packmynft.com/](https://packmynft.com/)
+### Try it yourself: [https://packmynft.com/](https://packmynft.com/)
+
+<br>
+
+## Mint Pack(s)
+
+1. **Select your assets**:
+
+Simply select the assets that you want to bundle into a pack, then click on the "Next" button.
+
+2. **Check pack content and enter number of pack(s)**:
+
+On the following screen, double check the content of your pack(s), then enter the number of pack(s) that you want to mint.
+
+3. **Mint your packs**:
+
+Finally, click on the "Mint" button. You will be prompted to sign approvals depending of what assets your decided to pack, and to sign the transaction(s) to mint the pack(s). Once the transaction is confirmed, you will be able to claim the assets from the pack(s) by burning them.
+
+<b>Note: Make sure you have enough fund to pay for gas fees, especially if you want to batch mint a lot of packs at once! `
+
+Note 2 : Since you can batch-mint up to 10,000 packs in a raw, you might have to sign multiple transactions to mint all your packs (200 packs per transactions).
+</b>
+
+<br>
+
+![Preview](/frontend/public/gif/mint.gif)
+
+<br>
+
+## Claim Pack(s)
+
+1. **Select the pack to claim**:
+
+Simply select the pack that you want to claim, then click on the "Claim" button.
+
+2. **Wait and see the content**:
+
+After the transaction is confirmed, you will be able to see the content that you have just unpacked.
+
+<br>
+
+![Preview](/frontend/public/gif/claim.gif)
+
+<br>
 
 ## Features
 
