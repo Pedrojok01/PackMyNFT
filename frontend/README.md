@@ -93,6 +93,10 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 <br></br>
 
+### ⚠️ This code has not been audited. You at your own risks.
+
+<br></br>
+
 <div align="center">
 <h2> Enjoy!!!</h2>
 
