@@ -6,9 +6,9 @@
 <h1><strong> Pack My NFT </strong></h1>
 
 [![Stargazers](https://img.shields.io/github/stars/Pedrojok01/PackMyNFT)](https://github.com/Pedrojok01/PackMyNFT/stargazers)
-[![Forks](https://img.shields.io/github/forks/Pedrojok01/PackMyNFT)](https://github.com/Pedrojok01/PackMyNFT/issues)
+[![Forks](https://img.shields.io/github/forks/Pedrojok01/PackMyNFT)](https://github.com/Pedrojok01/PackMyNFT/fork)
 [![Issues](https://img.shields.io/github/issues/Pedrojok01/PackMyNFT)](https://github.com/Pedrojok01/PackMyNFT/issues)
-[![MIT License](https://img.shields.io/github/license/Pedrojok01/PackMyNFT)](https://github.com/Pedrojok01/PackMyNFT/blob/main/License)
+[![MIT License](https://img.shields.io/github/license/Pedrojok01/PackMyNFT)](https://github.com/Pedrojok01/PackMyNFT/blob/main/LICENSE.md)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-blue?logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/pierre-e/)
 ![Vercel](https://img.shields.io/github/deployments/Pedrojok01/PackMyNFT/production?label=Vercel&logo=Vercel&logoColor=white)
 
@@ -142,11 +142,15 @@ Report to the readme files of each repository for more information about the ins
 
 ### Contributing
 
-Contributions to PackMyNFT are always welcome, whether it be improvements to the documentation or new functionality.
+Contributions to PackMyNFT are always welcome, whether it be improvements to the documentation or new functionality or bug fixes. Feel free to fork the project and create a pull request.
 
 ### License
 
 Distributed under the MIT License. See [License](LICENSE.md) for more information.
+
+<br>
+
+### ⚠️ This code has not been audited. You at your own risks.
 
 <br></br>
 

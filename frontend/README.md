@@ -5,14 +5,7 @@
 
 <h1><strong> Pack My NFT - Frontend </strong></h1>
 
-[![Stargazers](https://img.shields.io/github/stars/Pedrojok01/PackMyNFT)](https://github.com/Pedrojok01/PackMyNFT/stargazers)
-[![Forks](https://img.shields.io/github/forks/Pedrojok01/PackMyNFT)](https://github.com/Pedrojok01/PackMyNFT/issues)
-[![Issues](https://img.shields.io/github/issues/Pedrojok01/PackMyNFT)](https://github.com/Pedrojok01/PackMyNFT/issues)
-[![MIT License](https://img.shields.io/github/license/Pedrojok01/PackMyNFT)](https://github.com/Pedrojok01/PackMyNFT/blob/main/License)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-blue?logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/pierre-e/)
-![Vercel](https://img.shields.io/github/deployments/Pedrojok01/PackMyNFT/production?label=Vercel&logo=Vercel&logoColor=white)
-
-<br>
+<br><br>
 
 ![Preview](/frontend/public/gif/preview.gif)
 
@@ -21,6 +14,8 @@
 </div>
 
 ## Description
+
+PackMyNFT is an innovative web application designed for any EVM blockchains, enabling users to bundle various assets into a single NFT pack. This project simplifies the process of grouping native coins, ERC20 tokens, and NFTs (ERC721 and ERC1155) and allows to create up to 200 packs per transactions. The packs are represented as ERC721 tokens, which means they can be traded on any marketplace supporting this standard.
 
 Try it yourself: [https://packmynft.com/](https://packmynft.com/)
 
