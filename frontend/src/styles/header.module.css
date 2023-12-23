@@ -40,9 +40,3 @@
   background: rgba(255, 107, 0, 0.2);
   border-radius: 8px;
 }
-
-@media (width > 1050px) {
-  .menuContainer {
-    /* margin-right: 15% !important; */
-  }
-}

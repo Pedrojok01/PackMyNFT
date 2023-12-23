@@ -26,6 +26,7 @@
     "@emotion/styled": "11.11.0",
     "@moralisweb3/common-evm-utils": "2.23.2",
     "@rainbow-me/rainbowkit": "1.3.1",
+    "@vercel/analytics": "^1.1.1",
     "chakra-react-select": "4.7.6",
     "framer-motion": "10.16.16",
     "moralis": "2.23.2",

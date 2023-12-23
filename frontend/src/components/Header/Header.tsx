@@ -41,16 +41,9 @@ const Header: FC = () => {
   );
 
   return (
-    <Box>
-      <HStack
-        as="header"
-        p={"1.5rem"}
-        position="sticky"
-        top={0}
-        zIndex={10}
-        justifyContent={"space-between"}
-      >
-        <Link as={NextLink} href="/" style={{ textDecoration: "none" }}>
+    <Box as="header">
+      <HStack as="header" p={"1.5rem"} position="sticky" top={0} zIndex={10}>
+        <Link as={NextLink} href="/" textDecoration={"none"} w={"100%"} justifyContent={"left"}>
           <HStack>
             <Image
               src={logo.src}
@@ -70,10 +63,16 @@ const Header: FC = () => {
           </HStack>
         </Link>
 
-        {!isSmallScreen && isConnected && menuIems}
+        {!isSmallScreen && isConnected && (
+          <HStack justifyContent={"center"} w={"100%"}>
+            {menuIems}{" "}
+          </HStack>
+        )}
 
-        <HStack>
-          <ConnectButton />
+        <HStack justifyContent={"right"} w={"100%"}>
+          <Box minW={isTablet ? 235 : 370}>
+            <ConnectButton />
+          </Box>
           <DarkModeButton />
         </HStack>
       </HStack>
