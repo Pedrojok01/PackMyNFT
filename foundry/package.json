@@ -17,7 +17,7 @@
     "prettier": "prettier --write --plugin=prettier-plugin-solidity \"**/*.sol\"",
     "slither": "slither src/PackMyNFT.sol --solc-remaps @openzeppelin=lib/openzeppelin-contracts",
     "simulate": "forge script script/PackMyNFTScript.s.sol:PackMyNFTScript --rpc-url arbitrum",
-    "deploy": "forge script script/PackMyNFTScript.s.sol:PackMyNFTScript --rpc-url arbitrum --broadcast --verify --etherscan-api-key <ETHERSCAN_API_KEY> --watch",
+    "deploy": "forge script script/PackMyNFTScript.s.sol:PackMyNFTScript --rpc-url mainnet --broadcast --verify --etherscan-api-key <ETHERSCAN_API_KEY> --watch",
     "verify": "forge verify-contract --chain <CHAIN> --etherscan-api-key <ETHERSCAN_API_KEY> <CONTRACT_ADDRESS> src/PackMyNFT.sol:PackMyNFT"
   },
   "repository": {

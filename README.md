@@ -9,7 +9,7 @@
 [![Forks](https://img.shields.io/github/forks/Pedrojok01/PackMyNFT)](https://github.com/Pedrojok01/PackMyNFT/fork)
 [![Issues](https://img.shields.io/github/issues/Pedrojok01/PackMyNFT)](https://github.com/Pedrojok01/PackMyNFT/issues)
 [![MIT License](https://img.shields.io/github/license/Pedrojok01/PackMyNFT)](https://github.com/Pedrojok01/PackMyNFT/blob/main/LICENSE.md)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-blue?logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/pierre-e/)
+[![LinkedIn](https://img.shields.io/badge/-LinkedIn-blue?style=flat&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/pierre-e/)
 ![Vercel](https://img.shields.io/github/deployments/Pedrojok01/PackMyNFT/production?label=Vercel&logo=Vercel&logoColor=white)
 
 <br>
@@ -20,9 +20,34 @@
 
 </div>
 
+## Table of Contents
+
+- [Table of Contents](#table-of-contents)
+- [Description](#description)
+- [Deployement](#deployement)
+  - [Mainnet:](#mainnet)
+  - [Testnet:](#testnet)
+- [Try it yourself:](#try-it-yourself)
+- [Mint Pack(s)](#mint-packs)
+- [Claim Pack(s)](#claim-packs)
+- [Features](#features)
+- [Built With](#built-with)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Contributing](#contributing)
+  - [License](#license)
+- [⚠️ This code has not been audited. You at your own risks.](#️-this-code-has-not-been-audited-you-at-your-own-risks)
+
+
 ## Description
 
-PackMyNFT is an innovative web application designed for any EVM blockchains, enabling users to bundle various assets into a single NFT pack. This project simplifies the process of grouping native coins, ERC20 tokens, and NFTs (ERC721 and ERC1155) and allows to create up to 200 packs per transactions. The packs are represented as ERC721 tokens, which means they can be traded on any marketplace supporting this standard. The project is currently deployed at this address (same for all chains):
+PackMyNFT is an innovative web application designed for any EVM blockchains, enabling users to bundle various assets into a single NFT pack. This project simplifies the process of grouping native coins, ERC20 tokens, and NFTs (ERC721 and ERC1155) and allows to create up to 200 packs per transactions. The packs are represented as ERC721 tokens, which means they can be traded on any marketplace supporting this standard. 
+
+
+## Deployement
+
+The project is currently deployed at this address (same for all chains):
 
 ```ts
 address: `0x${string}` = "0x99482d34dD610067b66b0A32Fa3Cf1a512D77b2b";
@@ -37,7 +62,7 @@ Deployed & Verified on:
 - [Ethereum](https://etherscan.io/address/0x99482d34dD610067b66b0A32Fa3Cf1a512D77b2b#code) // Might come later
 - [Polygon](https://polygonscan.com/address/0x99482d34dD610067b66b0A32Fa3Cf1a512D77b2b#code)
 - [Optimism](https://optimistic.etherscan.io/address/0x99482d34dD610067b66b0A32Fa3Cf1a512D77b2b#code)
-- [Arbitrum One](https://arbiscan.io/address/0x99482d34dD610067b66b0A32Fa3Cf1a512D77b2b#code) // Coming soon
+- [Arbitrum One](https://arbiscan.io/address/0x99482d34dD610067b66b0A32Fa3Cf1a512D77b2b#code)
 - [Fantom Opera](https://ftmscan.com/address/0x99482d34dD610067b66b0A32Fa3Cf1a512D77b2b#code)
 - [Binance Smart Chain](https://bscscan.com/address/0x99482d34dD610067b66b0A32Fa3Cf1a512D77b2b#code)
 
@@ -48,13 +73,14 @@ Deployed & Verified on:
 - [Ethereum Sepolia](https://sepolia.etherscan.io/address/0x99482d34dD610067b66b0A32Fa3Cf1a512D77b2b#code)
 - [Polygon Mumbai](https://mumbai.polygonscan.com/address/0x99482d34dD610067b66b0A32Fa3Cf1a512D77b2b#code)
 - [Optimism Goerli](https://goerli-optimism.etherscan.io/address/0x99482d34dD610067b66b0A32Fa3Cf1a512D77b2b#code)
-- [Arbitrum Goerli](https://sepolia.arbiscan.io/address/0x99482d34dD610067b66b0A32Fa3Cf1a512D77b2b#code) // Not verified
+- [Arbitrum Sepolia](https://sepolia.arbiscan.io/address/0x99482d34dD610067b66b0A32Fa3Cf1a512D77b2b#code) // Not verified
 - [Fantom testnet](https://testnet.ftmscan.com/address/0x99482d34dD610067b66b0A32Fa3Cf1a512D77b2b#code)
 - [Bsc Testnet](https://testnet.bscscan.com/address/0x99482d34dD610067b66b0A32Fa3Cf1a512D77b2b#code) // Not verified
 
-### Try it yourself: [https://packmynft.com/](https://packmynft.com/)
+## Try it yourself: 
 
-<br>
+[https://packmynft.com/](https://packmynft.com/)
+
 
 ## Mint Pack(s)
 
@@ -150,7 +176,7 @@ Distributed under the MIT License. See [License](LICENSE.md) for more informatio
 
 <br>
 
-### ⚠️ This code has not been audited. You at your own risks.
+## ⚠️ This code has not been audited. You at your own risks.
 
 <br></br>
 

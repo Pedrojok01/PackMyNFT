@@ -12,7 +12,65 @@
 
 PackMyNFT is an innovative web application designed for any EVM blockchains, enabling users to bundle various assets into a single NFT pack. This project simplifies the process of grouping native coins, ERC20 tokens, and NFTs (ERC721 and ERC1155) and allows to create up to 200 packs per transactions. The packs are represented as ERC721 tokens, which means they can be traded on any marketplace supporting this standard.
 
+```ts
+address: `0x${string}` = "0x99482d34dD610067b66b0A32Fa3Cf1a512D77b2b";
+```
+
+on the following networks:
+
+### Mainnet:
+
+Deployed & Verified on:
+
+- [Ethereum](https://etherscan.io/address/0x99482d34dD610067b66b0A32Fa3Cf1a512D77b2b#code) // Might come later
+- [Polygon](https://polygonscan.com/address/0x99482d34dD610067b66b0A32Fa3Cf1a512D77b2b#code)
+- [Optimism](https://optimistic.etherscan.io/address/0x99482d34dD610067b66b0A32Fa3Cf1a512D77b2b#code)
+- [Arbitrum One](https://arbiscan.io/address/0x99482d34dD610067b66b0A32Fa3Cf1a512D77b2b#code)
+- [Fantom Opera](https://ftmscan.com/address/0x99482d34dD610067b66b0A32Fa3Cf1a512D77b2b#code)
+- [Binance Smart Chain](https://bscscan.com/address/0x99482d34dD610067b66b0A32Fa3Cf1a512D77b2b#code)
+
+### Testnet:
+
+Deployed & Verified on:
+
+- [Ethereum Sepolia](https://sepolia.etherscan.io/address/0x99482d34dD610067b66b0A32Fa3Cf1a512D77b2b#code)
+- [Polygon Mumbai](https://mumbai.polygonscan.com/address/0x99482d34dD610067b66b0A32Fa3Cf1a512D77b2b#code)
+- [Optimism Goerli](https://goerli-optimism.etherscan.io/address/0x99482d34dD610067b66b0A32Fa3Cf1a512D77b2b#code)
+- [Arbitrum Sepolia](https://sepolia.arbiscan.io/address/0x99482d34dD610067b66b0A32Fa3Cf1a512D77b2b#code) // Not verified
+- [Fantom testnet](https://testnet.ftmscan.com/address/0x99482d34dD610067b66b0A32Fa3Cf1a512D77b2b#code)
+- [Bsc Testnet](https://testnet.bscscan.com/address/0x99482d34dD610067b66b0A32Fa3Cf1a512D77b2b#code) // Not verified
+
 Try it yourself: [https://packmynft.com/](https://packmynft.com/)
+
+## Table of Contents
+<Details>
+<summary>Click to expand</summary>
+
+- [Description](#description)
+  - [Mainnet:](#mainnet)
+  - [Testnet:](#testnet)
+- [Table of Contents](#table-of-contents)
+- [Foundry](#foundry)
+- [Documentation](#documentation)
+- [Setup](#setup)
+  - [Install the npm dependencies with:](#install-the-npm-dependencies-with)
+  - [Then run the following commands to install the dependencies required by forge:](#then-run-the-following-commands-to-install-the-dependencies-required-by-forge)
+- [Usage](#usage)
+  - [Build the smart contracts](#build-the-smart-contracts)
+  - [Test](#test)
+  - [Coverage](#coverage)
+  - [Format \& Lint](#format--lint)
+  - [Slither Analysis](#slither-analysis)
+  - [Gas Snapshots](#gas-snapshots)
+  - [Anvil](#anvil)
+- [Smart Contracts Deployment](#smart-contracts-deployment)
+  - [Simulate the deployment](#simulate-the-deployment)
+  - [Deploy](#deploy)
+  - [Verify](#verify)
+  - [Help](#help)
+  - [⚠️ This code has not been audited. You at your own risks.](#️-this-code-has-not-been-audited-you-at-your-own-risks)
+
+</Details>
 
 ## Foundry
 

@@ -6,9 +6,9 @@ node_modules/
 # Ignores development broadcast logs
 broadcast/
 
-
 # Docs
 docs/
+solidity-metrics.html
 
 # Dotenv file
 .env
