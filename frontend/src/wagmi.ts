@@ -74,4 +74,5 @@ export const config = createConfig({
       : [sepolia, polygonMumbai, bscTestnet],
   connectors,
   transports,
+  ssr: true,
 });
