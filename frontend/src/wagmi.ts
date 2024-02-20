@@ -12,7 +12,6 @@ import {
 import type { Transport } from "viem";
 import { createConfig, http } from "wagmi";
 import {
-  mainnet,
   sepolia,
   polygon,
   polygonMumbai,
@@ -22,6 +21,8 @@ import {
   bsc,
   bscTestnet,
 } from "wagmi/chains";
+
+import fantomLogo from "../public/img/fantom-ftm-logo.png";
 
 const walletConnectProjectId = process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID;
 
@@ -48,10 +49,12 @@ const connectors = connectorsForWallets(
   { appName: "PackMyNFT", projectId: walletConnectProjectId },
 );
 
+const customFantom = { ...fantom, iconUrl: fantomLogo.src };
+
 const transports: Record<number, Transport> =
   process.env.NEXT_PUBLIC_NODE_ENV === "production"
     ? {
-        [mainnet.id]: http(),
+        // [mainnet.id]: http(),
         [polygon.id]: http(),
         [optimism.id]: http(),
         [arbitrum.id]: http(),
@@ -70,7 +73,7 @@ const transports: Record<number, Transport> =
 export const config = createConfig({
   chains:
     process.env.NEXT_PUBLIC_NODE_ENV === "production"
-      ? [mainnet, optimism, polygon, arbitrum, fantom, bsc]
+      ? [optimism, polygon, arbitrum, customFantom, bsc]
       : [sepolia, polygonMumbai, bscTestnet],
   connectors,
   transports,

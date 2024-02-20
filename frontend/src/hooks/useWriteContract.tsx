@@ -188,7 +188,7 @@ export const useWriteContract = () => {
   /* Claim an NFT pack and get the content back:
    *********************************************/
 
-  /* batch Mint function:
+  /* Claim Pack function:
    ***********************/
   const claimPack = async (tokenId: string) => {
     if (!walletClient || !client) throw new Error("Public or Wallet client not initialized");
@@ -208,13 +208,19 @@ export const useWriteContract = () => {
         args: [tokenId],
       });
 
-      let eventData: any = null;
+      let resolveEvent: (value: unknown) => void;
+      const eventPromise = new Promise((resolve) => {
+        resolveEvent = resolve;
+      });
+
       const unwatch = client.watchContractEvent({
         address: PACK_MY_NFT,
         abi: PACKMYNFT_ABI,
         eventName: "BundleAssetsClaimed",
         args: { tokenId: tokenId, owner: address },
-        onLogs: (logs) => (eventData = logs[0]),
+        onLogs: (logs) => {
+          resolveEvent(logs[0]);
+        },
       });
 
       const hash = await packMyNftInstance.write.burn([tokenId]);
@@ -223,6 +229,7 @@ export const useWriteContract = () => {
         hash: hash,
       });
 
+      const eventData = await eventPromise;
       unwatch();
 
       return { success: true, data: { event: eventData, receipt: receipt }, error: null };

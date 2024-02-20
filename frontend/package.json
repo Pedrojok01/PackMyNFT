@@ -1,6 +1,6 @@
 {
   "name": "pack-my-nft",
-  "version": "0.1.9",
+  "version": "0.1.91",
   "description": "Bundle your crypto assets into a single NFT pack. Support ERC20, ERC721 and ERC1155, as well as batch minting.",
   "author": "Pedrojok01 <pedrojok@pm.me>",
   "license": "MIT",
