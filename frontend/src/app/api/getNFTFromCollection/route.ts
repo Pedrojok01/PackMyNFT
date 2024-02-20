@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 import { PACK_MY_NFT } from "@/data/constant";
 import { startMoralis } from "@/services/moralisService";
-import { fixIpfsUrl, getMoralisChain } from "@/utils";
+import { fixIpfsUrl, getChainIdToHex } from "@/utils";
 
 type RequestBody = {
   account: `0x${string}`;
@@ -24,24 +24,30 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       );
     }
 
-    const moralisChain = getMoralisChain(chainId);
+    const moralisChain = getChainIdToHex(chainId);
     if (!moralisChain) {
       return NextResponse.json({ success: false, message: "Invalid chainId" }, { status: 400 });
     }
 
-    const nfts = await Moralis.EvmApi.nft.getWalletNFTs({
+    const response = await Moralis.EvmApi.nft.getWalletNFTs({
       chain: moralisChain,
-      address: account,
-      tokenAddresses: [PACK_MY_NFT],
-      normalizeMetadata: true,
+      format: "decimal",
       limit: 50,
+      tokenAddresses: [PACK_MY_NFT],
+      mediaItems: false,
+      address: account,
+      normalizeMetadata: true,
     });
 
-    // Resolve the NFT pack image once
-    const packImageUrl = fixIpfsUrl(nfts.raw.result[0]);
+    let resolvedNfts: Nft[] = [];
 
-    // Apply the resolved image URL to all NFTs
-    const resolvedNfts: Nft[] = nfts.raw.result.map((nft) => ({ ...nft, image: packImageUrl }));
+    if (response.raw.result.length > 0) {
+      // Resolve the NFT pack image once
+      const packImageUrl = fixIpfsUrl(response.raw.result[0]);
+
+      // Apply the resolved image URL to all NFTs
+      resolvedNfts = response.raw.result.map((nft) => ({ ...nft, image: packImageUrl }));
+    }
 
     return NextResponse.json({
       success: true,

@@ -1,4 +1,3 @@
-import type { EvmChain } from "@moralisweb3/common-evm-utils";
 import Moralis from "moralis";
 
 const MORALIS_API_KEY = process.env.MORALIS_API_KEY;
@@ -15,12 +14,12 @@ export const startMoralis = async () => {
 };
 
 // Function to fetch collections
-export async function fetchCollections(account: string, chain: EvmChain) {
+export async function fetchCollections(account: string, chain: string) {
   return Moralis.EvmApi.nft.getWalletNFTCollections({ address: account, chain });
 }
 
 // Function to fetch NFTs
-export async function fetchNFTs(account: string, chain: EvmChain) {
+export async function fetchNFTs(account: string, chain: string) {
   const initialResponse = await Moralis.EvmApi.nft.getWalletNFTs({
     address: account,
     chain,

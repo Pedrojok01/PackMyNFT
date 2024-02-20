@@ -7,6 +7,6 @@ export * from "./fetcher";
 export * from "./fixIpfsUrl";
 export * from "./formatters";
 export * from "./getExplorerByChain";
-export * from "./getMoralisChain";
+export * from "./getChainIdToHex";
 export * from "./processCollections";
 export * from "./sortArraysForBundle";

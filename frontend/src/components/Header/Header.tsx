@@ -70,7 +70,7 @@ const Header: FC = () => {
         )}
 
         <HStack justifyContent={"right"} w={"100%"}>
-          <Box minW={isTablet ? 235 : 370} display={"flex"} justifyContent={"flex-end"}>
+          <Box minW={isTablet ? 235 : 500} display={"flex"} justifyContent={"flex-end"}>
             <ConnectButton />
           </Box>
           <DarkModeButton />

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 import { fetchCollections, fetchNFTs, startMoralis } from "@/services/moralisService";
-import { getMoralisChain, processCollections } from "@/utils";
+import { getChainIdToHex, processCollections } from "@/utils";
 
 type RequestBody = {
   account: `0x${string}`;
@@ -21,7 +21,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     );
   }
 
-  const moralisChain = getMoralisChain(chainId);
+  const moralisChain = getChainIdToHex(chainId);
   if (!moralisChain) {
     return NextResponse.json({ success: false, message: "Invalid chainId" }, { status: 400 });
   }

@@ -2,7 +2,7 @@ import Moralis from "moralis";
 import { NextRequest, NextResponse } from "next/server";
 
 import { startMoralis } from "@/services/moralisService";
-import { getMoralisChain } from "@/utils";
+import { getChainIdToHex } from "@/utils";
 
 type RequestBody = {
   account: `0x${string}`;
@@ -23,7 +23,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       );
     }
 
-    const moralisChain = getMoralisChain(chainId);
+    const moralisChain = getChainIdToHex(chainId);
     if (!moralisChain) {
       return NextResponse.json({ success: false, message: "Invalid chainId" }, { status: 400 });
     }

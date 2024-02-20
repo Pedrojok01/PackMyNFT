@@ -17,7 +17,7 @@ export const useWindowSize = () => {
 
   const isMobile = windowSize.width <= 549;
   const isTablet = windowSize.width <= 768;
-  const isSmallScreen = windowSize.width <= 1050;
+  const isSmallScreen = windowSize.width <= 1200;
 
   return { ...windowSize, isMobile, isTablet, isSmallScreen };
 };

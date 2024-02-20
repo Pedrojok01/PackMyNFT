@@ -17,11 +17,8 @@ import {
   polygon,
   polygonMumbai,
   optimism,
-  optimismGoerli,
   arbitrum,
-  arbitrumGoerli,
   fantom,
-  fantomTestnet,
   bsc,
   bscTestnet,
 } from "wagmi/chains";
@@ -63,10 +60,10 @@ const transports: Record<number, Transport> =
       }
     : {
         [sepolia.id]: http(),
-        [optimismGoerli.id]: http(),
         [polygonMumbai.id]: http(),
-        [arbitrumGoerli.id]: http(),
-        [fantomTestnet.id]: http(),
+        // [optimismGoerli.id]: http(),
+        // [arbitrumGoerli.id]: http(),
+        // [fantomTestnet.id]: http(),
         [bscTestnet.id]: http(),
       };
 
@@ -74,7 +71,7 @@ export const config = createConfig({
   chains:
     process.env.NEXT_PUBLIC_NODE_ENV === "production"
       ? [mainnet, optimism, polygon, arbitrum, fantom, bsc]
-      : [sepolia, optimismGoerli, polygonMumbai, arbitrumGoerli, fantomTestnet, bscTestnet],
+      : [sepolia, polygonMumbai, bscTestnet],
   connectors,
   transports,
 });
