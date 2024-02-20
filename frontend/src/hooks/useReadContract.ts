@@ -1,4 +1,4 @@
-import { type Address, type PublicClient, getContract } from "viem";
+import { type Address, getContract } from "viem";
 import { useAccount, usePublicClient } from "wagmi";
 
 import { ERC20_ABI, ERC721_ABI } from "@/data/abis";
@@ -6,17 +6,17 @@ import { PACK_MY_NFT } from "@/data/constant";
 
 export const useReadContract = () => {
   const { address } = useAccount();
-  const publicClient: PublicClient = usePublicClient();
+  const client = usePublicClient();
 
   /* Check if existing allowance of ERC20 token :
    ***********************************************/
   const checkTokenAllowance = async (token: Address): Promise<bigint> => {
-    if (!publicClient) throw new Error("Public client not initialized");
+    if (!client) throw new Error("Public client not initialized");
 
     const tokenInstance = getContract({
       abi: ERC20_ABI,
       address: token,
-      publicClient: publicClient,
+      client: client,
     });
 
     try {
@@ -31,12 +31,12 @@ export const useReadContract = () => {
   /* Check existing allowance of an NFT collection (both ERC721 or ERC1155):
    **************************************************************************/
   const checkNftAllowance = async (nft: Address): Promise<boolean> => {
-    if (!publicClient) throw new Error("Public client not initialized");
+    if (!client) throw new Error("Public client not initialized");
 
     const nftInstance = getContract({
       abi: ERC721_ABI,
       address: nft,
-      publicClient: publicClient,
+      client: client,
     });
 
     try {

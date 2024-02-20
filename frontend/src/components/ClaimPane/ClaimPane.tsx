@@ -2,7 +2,7 @@
 import { type FC } from "react";
 
 import { Button, Flex, VStack, Box, Text } from "@chakra-ui/react";
-import { useAccount, useNetwork } from "wagmi";
+import { useAccount } from "wagmi";
 
 import { ContentBox, Loading, NotConnected } from "@/components";
 import { useContractExecution, useFetchNFTFromCollection } from "@/hooks";
@@ -12,8 +12,7 @@ import styles from "@/styles/mainPane.module.css";
 import { DisplayNFTs, SuccessClaim } from "./components";
 
 const ClaimPane: FC = () => {
-  const { isConnected, address } = useAccount();
-  const { chain } = useNetwork();
+  const { isConnected, address, chain } = useAccount();
   const { nftToClaim, loading, eventData, setEventData } = useStore();
   const { handleClaim } = useContractExecution();
   const { nfts, isLoading, refetch } = useFetchNFTFromCollection(address ?? "0x", chain?.id ?? 0);

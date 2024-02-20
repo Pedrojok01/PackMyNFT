@@ -2,7 +2,7 @@
 import { type FC } from "react";
 
 import { Button, Text } from "@chakra-ui/react";
-import { useAccount, useBalance, useNetwork } from "wagmi";
+import { useAccount, useBalance } from "wagmi";
 
 import { Loading } from "@/components";
 import { useAssetUpdater, useFetchTokenBalances, useFetchWalletNFTs, useNotify } from "@/hooks";
@@ -13,9 +13,8 @@ import SelectedAssets from "./SelectedAssets";
 import TokenSelect from "./TokenSelect";
 
 const SelectStep: FC = () => {
-  const { address } = useAccount();
-  const { chain } = useNetwork();
-  const { data: nativeData } = useBalance({ address, watch: true });
+  const { address, chain } = useAccount();
+  const { data: nativeData } = useBalance({ address });
   const { notifyError } = useNotify();
   const { setCurrentStep } = useStore();
   const {

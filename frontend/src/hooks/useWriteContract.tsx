@@ -1,4 +1,4 @@
-import { type PublicClient, getContract, parseUnits } from "viem";
+import { getContract, parseUnits } from "viem";
 import { useAccount, usePublicClient, useWalletClient } from "wagmi";
 
 import { PACKMYNFT_ABI, ERC721_ABI, ERC20_ABI } from "@/data/abis";
@@ -11,25 +11,25 @@ import { useNotify } from ".";
 export const useWriteContract = () => {
   const { address } = useAccount();
   const { notifyError, openNotification } = useNotify();
-  const publicClient: PublicClient = usePublicClient();
+  const client = usePublicClient();
   const { data: walletClient } = useWalletClient();
 
   /* Set Token Allowance:
    ***************************/
   const approveToken = async (token: EvmToken, allowance: string) => {
-    if (!walletClient) throw new Error("Wallet client not initialized");
+    if (!walletClient || !client) throw new Error("Public or Wallet client not initialized");
 
     const tokenInstance = getContract({
       abi: ERC20_ABI,
       address: token.token_address as `0x${string}`,
-      walletClient: walletClient,
+      client: walletClient,
     });
 
     const allowanceToBn = parseUnits(allowance, Number(token.decimals));
 
     try {
       const hash = await tokenInstance.write.approve([PACK_MY_NFT, allowanceToBn]);
-      await publicClient.waitForTransactionReceipt({
+      await client.waitForTransactionReceipt({
         confirmations: 3,
         hash: hash,
       });
@@ -49,17 +49,17 @@ export const useWriteContract = () => {
   /* Approve an NFT collection (both ERC721 and ERC1155):
    *******************************************************/
   const approveNft = async (nft: string) => {
-    if (!walletClient) throw new Error("Wallet client not initialized");
+    if (!walletClient || !client) throw new Error("Public or Wallet client not initialized");
 
     const nftInstance = getContract({
       abi: ERC721_ABI, // Same for ERC1155
       address: nft as `0x${string}`,
-      walletClient: walletClient,
+      client: walletClient,
     });
 
     try {
       const hash = await nftInstance.write.setApprovalForAll([PACK_MY_NFT, true]);
-      await publicClient.waitForTransactionReceipt({
+      await client.waitForTransactionReceipt({
         confirmations: 3,
         hash: hash,
       });
@@ -79,7 +79,9 @@ export const useWriteContract = () => {
     addressesArray: `0x${string}`[],
     numbersArray: bigint[],
   ) => {
-    await publicClient.simulateContract({
+    if (!client) throw new Error("Public client not initialized");
+
+    await client.simulateContract({
       address: PACK_MY_NFT,
       abi: PACKMYNFT_ABI,
       functionName: "safeMint",
@@ -91,7 +93,7 @@ export const useWriteContract = () => {
     const hash = await packMyNftInstance.write.safeMint([address, addressesArray, numbersArray], {
       value: numbersArray[0],
     });
-    const receipt = await publicClient.waitForTransactionReceipt({ confirmations: 3, hash: hash });
+    const receipt = await client.waitForTransactionReceipt({ confirmations: 3, hash: hash });
     return { success: true, data: receipt, error: null };
   };
 
@@ -103,7 +105,9 @@ export const useWriteContract = () => {
     numbersArrays: bigint[][],
     packCount: number,
   ) => {
-    await publicClient.simulateContract({
+    if (!client) throw new Error("Public client not initialized");
+
+    await client.simulateContract({
       address: PACK_MY_NFT,
       abi: PACKMYNFT_ABI,
       functionName: "batchMint",
@@ -116,7 +120,7 @@ export const useWriteContract = () => {
       [address, addressesArray, numbersArrays, packCount],
       { value: numbersArrays[0][0] * BigInt(packCount) },
     );
-    const receipt = await publicClient.waitForTransactionReceipt({ confirmations: 3, hash: hash });
+    const receipt = await client.waitForTransactionReceipt({ confirmations: 3, hash: hash });
 
     return { success: true, data: receipt, error: null };
   };
@@ -133,7 +137,7 @@ export const useWriteContract = () => {
     const packMyNftInstance = getContract({
       abi: PACKMYNFT_ABI,
       address: PACK_MY_NFT,
-      walletClient: walletClient,
+      client: walletClient,
     });
 
     const addressesArray = bundleArrays[0].addressesArray;
@@ -187,16 +191,16 @@ export const useWriteContract = () => {
   /* batch Mint function:
    ***********************/
   const claimPack = async (tokenId: string) => {
-    if (!walletClient) throw new Error("Wallet client not initialized");
+    if (!walletClient || !client) throw new Error("Public or Wallet client not initialized");
 
     const packMyNftInstance = getContract({
       abi: PACKMYNFT_ABI,
       address: PACK_MY_NFT,
-      walletClient: walletClient,
+      client: walletClient,
     });
 
     try {
-      await publicClient.simulateContract({
+      await client.simulateContract({
         address: PACK_MY_NFT,
         abi: PACKMYNFT_ABI,
         functionName: "burn",
@@ -205,7 +209,7 @@ export const useWriteContract = () => {
       });
 
       let eventData: any = null;
-      const unwatch = publicClient.watchContractEvent({
+      const unwatch = client.watchContractEvent({
         address: PACK_MY_NFT,
         abi: PACKMYNFT_ABI,
         eventName: "BundleAssetsClaimed",
@@ -214,7 +218,7 @@ export const useWriteContract = () => {
       });
 
       const hash = await packMyNftInstance.write.burn([tokenId]);
-      const receipt = await publicClient.waitForTransactionReceipt({
+      const receipt = await client.waitForTransactionReceipt({
         confirmations: 3,
         hash: hash,
       });

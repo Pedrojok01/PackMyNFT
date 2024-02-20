@@ -1,6 +1,16 @@
-import { getDefaultWallets, connectorsForWallets } from "@rainbow-me/rainbowkit";
-import { argentWallet, ledgerWallet } from "@rainbow-me/rainbowkit/wallets";
-import { configureChains, createConfig } from "wagmi";
+import { connectorsForWallets } from "@rainbow-me/rainbowkit";
+import {
+  argentWallet,
+  coinbaseWallet,
+  ledgerWallet,
+  metaMaskWallet,
+  rabbyWallet,
+  rainbowWallet,
+  safeWallet,
+  walletConnectWallet,
+} from "@rainbow-me/rainbowkit/wallets";
+import type { Transport } from "viem";
+import { createConfig, http } from "wagmi";
 import {
   mainnet,
   sepolia,
@@ -15,47 +25,56 @@ import {
   bsc,
   bscTestnet,
 } from "wagmi/chains";
-import { alchemyProvider } from "wagmi/providers/alchemy";
-import { publicProvider } from "wagmi/providers/public";
 
-const alchemyApiKey = process.env.NEXT_PUBLIC_ALCHEMY_API_KEY;
 const walletConnectProjectId = process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID;
 
-if (!alchemyApiKey || !walletConnectProjectId) {
+if (!walletConnectProjectId) {
   throw new Error("Some ENV variables are not defined");
 }
 
-const { chains, publicClient, webSocketPublicClient } = configureChains(
+const connectors = connectorsForWallets(
   [
-    ...(process.env.NEXT_PUBLIC_NODE_ENV === "production"
-      ? [mainnet, optimism, polygon, arbitrum, fantom, bsc]
-      : [sepolia, optimismGoerli, polygonMumbai, arbitrumGoerli, fantomTestnet, bscTestnet]),
+    {
+      groupName: "Other",
+      wallets: [
+        metaMaskWallet,
+        rainbowWallet,
+        walletConnectWallet,
+        ledgerWallet,
+        rabbyWallet,
+        coinbaseWallet,
+        argentWallet,
+        safeWallet,
+      ],
+    },
   ],
-  [alchemyProvider({ apiKey: alchemyApiKey }), publicProvider()],
+  { appName: "PackMyNFT", projectId: walletConnectProjectId },
 );
 
-const { wallets } = getDefaultWallets({
-  appName: "PackMyNFT",
-  projectId: walletConnectProjectId,
-  chains,
-});
-
-const connectors = connectorsForWallets([
-  ...wallets,
-  {
-    groupName: "Other",
-    wallets: [
-      argentWallet({ projectId: walletConnectProjectId, chains }),
-      ledgerWallet({ projectId: walletConnectProjectId, chains }),
-    ],
-  },
-]);
+const transports: Record<number, Transport> =
+  process.env.NEXT_PUBLIC_NODE_ENV === "production"
+    ? {
+        [mainnet.id]: http(),
+        [polygon.id]: http(),
+        [optimism.id]: http(),
+        [arbitrum.id]: http(),
+        [fantom.id]: http(),
+        [bsc.id]: http(),
+      }
+    : {
+        [sepolia.id]: http(),
+        [optimismGoerli.id]: http(),
+        [polygonMumbai.id]: http(),
+        [arbitrumGoerli.id]: http(),
+        [fantomTestnet.id]: http(),
+        [bscTestnet.id]: http(),
+      };
 
 export const config = createConfig({
-  autoConnect: true,
+  chains:
+    process.env.NEXT_PUBLIC_NODE_ENV === "production"
+      ? [mainnet, optimism, polygon, arbitrum, fantom, bsc]
+      : [sepolia, optimismGoerli, polygonMumbai, arbitrumGoerli, fantomTestnet, bscTestnet],
   connectors,
-  publicClient,
-  webSocketPublicClient,
+  transports,
 });
-
-export { chains };

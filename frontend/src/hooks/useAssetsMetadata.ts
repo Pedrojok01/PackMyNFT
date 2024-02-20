@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 import useSWR from "swr";
-import { useNetwork } from "wagmi";
+import { useAccount } from "wagmi";
 
 import { APP_URL } from "@/data/constant";
 import { categorizeAssets, ExtendedError, fetcher } from "@/utils";
@@ -20,7 +20,7 @@ interface AssetsMetadata {
 }
 
 export const useAssetsMetadata = ({ addresses, numbers }: AssetsArrays): AssetsMetadata => {
-  const { chain } = useNetwork();
+  const { chain } = useAccount();
   const [categorizedAssets, setCategorizedAssets] = useState<CategorizedAssets>();
   const [tokenAddresses, setTokenAddresses] = useState<`0x${string}`[]>([]);
   const [nftAddresses, setNftAddresses] = useState<{ address: `0x${string}`; tokenId: string }[]>(
