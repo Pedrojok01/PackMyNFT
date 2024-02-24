@@ -65,7 +65,7 @@ Remove the `.example` from the `.env.example` file name at the root of the proje
 
 ```js
 NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID = "Project ID needed for WalletConnect v2 here";
-NEXT_PUBLIC_ALCHEMY_API_KEY = "Your Alchemy API key here";
+MORALIS_API_KEY = "Your Moralis API key here";
 ```
 
 You can also use any other node provider instead or in addition to [Alchemy](https://www.alchemy.com/).
