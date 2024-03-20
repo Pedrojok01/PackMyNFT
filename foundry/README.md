@@ -10,7 +10,7 @@
 
 ## Description
 
-PackMyNFT is an innovative web application designed for any EVM blockchains, enabling users to bundle various assets into a single NFT pack. This project simplifies the process of grouping native coins, ERC20 tokens, and NFTs (ERC721 and ERC1155) and allows to create up to 200 packs per transactions. The packs are represented as ERC721 tokens, which means they can be traded on any marketplace supporting this standard.
+PackMyNFT is an innovative web application designed for any EVM blockchain, enabling users to bundle various assets into a single NFT pack. This project simplifies the process of grouping native coins, ERC20 tokens, and NFTs (ERC721 and ERC1155) and allows to create up to 200 packs per transaction. The packs are represented as ERC721 tokens, which means they can be traded on any marketplace supporting this standard.
 
 ```ts
 address: `0x${string}` = "0x99482d34dD610067b66b0A32Fa3Cf1a512D77b2b";
@@ -68,7 +68,7 @@ Try it yourself: [https://packmynft.com/](https://packmynft.com/)
   - [Deploy](#deploy)
   - [Verify](#verify)
   - [Help](#help)
-  - [⚠️ This code has not been audited. You at your own risks.](#️-this-code-has-not-been-audited-you-at-your-own-risks)
+  - [⚠️ This code has not been audited. Use at your own risk.](#️-this-code-has-not-been-audited-use-at-your-own-risk)
 
 </Details>
 
@@ -183,6 +183,6 @@ $ anvil --help
 $ cast --help
 ```
 
-### ⚠️ This code has not been audited. You at your own risks.
+### ⚠️ This code has not been audited. Use at your own risk.
 
 <br></br>

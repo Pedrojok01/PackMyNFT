@@ -24,28 +24,26 @@
 
 - [Table of Contents](#table-of-contents)
 - [Description](#description)
-- [Deployement](#deployement)
+- [Deployment](#deployment)
   - [Mainnet:](#mainnet)
   - [Testnet:](#testnet)
 - [Try it yourself:](#try-it-yourself)
 - [Mint Pack(s)](#mint-packs)
 - [Claim Pack(s)](#claim-packs)
 - [Features](#features)
-- [Built With](#built-with)
+- [Built With:](#built-with)
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
   - [Contributing](#contributing)
   - [License](#license)
-- [⚠️ This code has not been audited. You at your own risks.](#️-this-code-has-not-been-audited-you-at-your-own-risks)
-
+- [⚠️ This code has not been audited. Use at your own risk.](#️-this-code-has-not-been-audited-use-at-your-own-risk)
 
 ## Description
 
-PackMyNFT is an innovative web application designed for any EVM blockchains, enabling users to bundle various assets into a single NFT pack. This project simplifies the process of grouping native coins, ERC20 tokens, and NFTs (ERC721 and ERC1155) and allows to create up to 200 packs per transactions. The packs are represented as ERC721 tokens, which means they can be traded on any marketplace supporting this standard. 
+PackMyNFT is an innovative web application designed for any EVM blockchain, enabling users to bundle various assets into a single NFT pack. This project simplifies the process of grouping native coins, ERC20 tokens, and NFTs (ERC721 and ERC1155), and allows to create up to 200 packs per transaction. The packs are represented as ERC721 tokens, which means they can be traded on any marketplace supporting this standard.
 
-
-## Deployement
+## Deployment
 
 The project is currently deployed at this address (same for all chains):
 
@@ -77,10 +75,9 @@ Deployed & Verified on:
 - [Fantom testnet](https://testnet.ftmscan.com/address/0x99482d34dD610067b66b0A32Fa3Cf1a512D77b2b#code)
 - [Bsc Testnet](https://testnet.bscscan.com/address/0x99482d34dD610067b66b0A32Fa3Cf1a512D77b2b#code) // Not verified
 
-## Try it yourself: 
+## Try it yourself:
 
 [https://packmynft.com/](https://packmynft.com/)
-
 
 ## Mint Pack(s)
 
@@ -88,17 +85,17 @@ Deployed & Verified on:
 
 Simply select the assets that you want to bundle into a pack, then click on the "Next" button.
 
-2. **Check pack content and enter number of pack(s)**:
+2. **Check pack content and enter the desired amount of pack(s)**:
 
-On the following screen, double check the content of your pack(s), then enter the number of pack(s) that you want to mint.
+On the following screen, double-check the content of your pack(s), then enter the number of pack(s) that you want to mint.
 
 3. **Mint your packs**:
 
-Finally, click on the "Mint" button. You will be prompted to sign approvals depending of what assets your decided to pack, and to sign the transaction(s) to mint the pack(s). Once the transaction is confirmed, you will be able to claim the assets from the pack(s) by burning them.
+Finally, click on the `Mint` button. You will be prompted to sign approvals depending on what assets you decided to pack, and to sign the transaction(s) to mint the pack(s). Once the transaction is confirmed, you will be able to claim the assets from the pack(s) by burning them.
 
-<b>Note: Make sure you have enough fund to pay for gas fees, especially if you want to batch mint a lot of packs at once! `
+<b>Note: Make sure you have enough funds to pay for gas fees, especially if you want to batch-mint a lot of packs at once!
 
-Note 2 : Since you can batch-mint up to 10,000 packs in a raw, you might have to sign multiple transactions to mint all your packs (200 packs per transactions).
+Note 2: Since you can batch-mint up to 10,000 packs in a raw, you might have to sign multiple transactions to mint all your packs (200 packs per transaction).
 </b>
 
 <br>
@@ -130,9 +127,9 @@ After the transaction is confirmed, you will be able to see the content that you
 - **Batched Transactions**: Create up to 200 packs per transactions (Minting 10,000 packs would only require 50 transactions).
 - **Multi-Chain Support**: Supports Ethereum, Polygon, Optimism, Arbitrum, Fantom, and Binance Smart Chain.
 - **Responsive Design**: Fully responsive and accessible on various devices and screen sizes.
-- **Simple UI/UX**: Intuitive and easy to use interface.
+- **Simple UI/UX**: Intuitive and easy-to-use interface.
 
-## Built With
+## Built With:
 
 - [![nextjs]][nextjs-url]
 - [![typescript]][typescript-url]
@@ -147,7 +144,7 @@ After the transaction is confirmed, you will be able to see the content that you
 
 ### Prerequisites
 
-- [node.js](https://nodejs.org/) installed (developped on LTS v18)
+- [node.js](https://nodejs.org/) installed (developed on LTS v18)
 - [bun](https://bun.sh/) or [pnpm](https://pnpm.io/) or [yarn](https://yarnpkg.com/) or [npm](https://www.npmjs.com/) installed
 - Git
 - Ethereum Wallet (like [MetaMask](https://metamask.io/))
@@ -162,13 +159,13 @@ git clone https://github.com/Pedrojok01/PackMyNFT.git .
 
 2. **Navigate to the Repositories**
 
-There are two repositories, one for the frontend and one for the smart-contracts (foundry). Unless if you want to deploy your own contracts, you will only need to install the frontend dependencies.
+There are two repositories, one for the frontend and one for the smart contracts (foundry). Unless you want to deploy your own contracts, you will only need to install the frontend dependencies.
 
 Report to the readme files of each repository for more information about the installation process.
 
 ### Contributing
 
-Contributions to PackMyNFT are always welcome, whether it be improvements to the documentation or new functionality or bug fixes. Feel free to fork the project and create a pull request.
+Contributions to PackMyNFT are always welcome, whether it be improvements to the documentation, new functionality, or bug fixes. Feel free to fork the project and create a pull request.
 
 ### License
 
@@ -176,7 +173,7 @@ Distributed under the MIT License. See [License](LICENSE.md) for more informatio
 
 <br>
 
-## ⚠️ This code has not been audited. You at your own risks.
+## ⚠️ This code has not been audited. Use at your own risk.
 
 <br></br>
 

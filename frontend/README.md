@@ -15,11 +15,11 @@
 
 ## Description
 
-PackMyNFT is an innovative web application designed for any EVM blockchains, enabling users to bundle various assets into a single NFT pack. This project simplifies the process of grouping native coins, ERC20 tokens, and NFTs (ERC721 and ERC1155) and allows to create up to 200 packs per transactions. The packs are represented as ERC721 tokens, which means they can be traded on any marketplace supporting this standard.
+PackMyNFT is an innovative web application designed for any EVM blockchain, enabling users to bundle various assets into a single NFT pack. This project simplifies the process of grouping native coins, ERC20 tokens, and NFTs (ERC721 and ERC1155), and allows to create up to 200 packs per transaction. The packs are represented as ERC721 tokens, which means they can be traded on any marketplace supporting this standard.
 
 Try it yourself: [https://packmynft.com/](https://packmynft.com/)
 
-## Built With
+## Built With:
 
 - [![nextjs]][nextjs-url]
 - [![typescript]][typescript-url]
@@ -34,8 +34,8 @@ Try it yourself: [https://packmynft.com/](https://packmynft.com/)
 
 ### Make sure you have the following ready:
 
-- [node.js](https://nodejs.org/) installed (developped on LTS v18)
-- [typescript](https://www.typescriptlang.org/) installed (developped on v5.2.2)
+- [node.js](https://nodejs.org/) installed (developed on LTS v18)
+- [typescript](https://www.typescriptlang.org/) installed (developed on v5.2.2)
 - [bun](https://bun.sh/) or [pnpm](https://pnpm.io/) or [yarn](https://yarnpkg.com/) or [npm](https://www.npmjs.com/) installed
 - [MetaMask](https://metamask.io/) (or any web3 compatible wallet) installed in your browser
 
@@ -45,7 +45,7 @@ Try it yourself: [https://packmynft.com/](https://packmynft.com/)
 git clone https://github.com/Pedrojok01/PackMyNFT.git .
 ```
 
-### Install all package dependancies by running:
+### Install all package dependencies by running:
 
 ```bash
 bun install
@@ -57,11 +57,9 @@ yarn install
 npm install
 ```
 
-<b>IMPORTANT: Double check your package.json to make sure you've installed the exact same version for all @web3-react packages. Since the version 8+ is still in beta, it may not be automatically installed.</b>
-
 ### Add your API keys in the .env file:
 
-Remove the `.example` from the `.env.example` file name at the root of the project and add you API keys inside. The WalletConnect project ID is now required since the v2 update. The can create one easily on the [WalletConnect dashboard](https://cloud.walletconnect.com/).
+Remove the `.example` from the `.env.example` file name at the root of the project and add your API keys inside. The WalletConnect project ID is now required since the v2 update. You can create one easily on the [WalletConnect dashboard](https://cloud.walletconnect.com/).
 
 ```js
 NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID = "Project ID needed for WalletConnect v2 here";
@@ -88,7 +86,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 <br></br>
 
-### ⚠️ This code has not been audited. You at your own risks.
+### ⚠️ This code has not been audited. Use at your own risk.
 
 <br></br>
 
