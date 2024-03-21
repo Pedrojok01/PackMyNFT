@@ -6,23 +6,28 @@ on:
     branches: [main]
 
 jobs:
-  build:
+  check:
+    name: Foundry project
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Use Node.js
-        uses: actions/setup-node@v2
+      - uses: actions/checkout@v3
         with:
-          node-version: "18.x"
+          submodules: recursive
 
-      - name: Install dependencies and build
-        run: |
-          cd foundry
-          yarn
-          yarn forge:setup
-          yarn cover
+      - name: Install Foundry
+        uses: foundry-rs/foundry-toolchain@v1
+
+      - name: Change to Foundry directory
+        run: cd foundry
+
+      - name: Run Foundry Install
+        run: forge install
+        working-directory: foundry
+
+      - name: Run Tests with Foundry
+        run: forge test -vvv
+        working-directory: foundry
 
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v4.0.1
