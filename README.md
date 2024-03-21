@@ -9,8 +9,9 @@
 [![Forks](https://img.shields.io/github/forks/Pedrojok01/PackMyNFT)](https://github.com/Pedrojok01/PackMyNFT/fork)
 [![Issues](https://img.shields.io/github/issues/Pedrojok01/PackMyNFT)](https://github.com/Pedrojok01/PackMyNFT/issues)
 [![MIT License](https://img.shields.io/github/license/Pedrojok01/PackMyNFT)](https://github.com/Pedrojok01/PackMyNFT/blob/main/LICENSE.md)
-[![LinkedIn](https://img.shields.io/badge/-LinkedIn-blue?style=flat&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/pierre-e/)
+[![codecov](https://codecov.io/gh/Pedrojok01/PackMyNFT/graph/badge.svg?token=ASH2OVKXQA)](https://codecov.io/gh/Pedrojok01/PackMyNFT)
 ![Vercel](https://img.shields.io/github/deployments/Pedrojok01/PackMyNFT/production?label=Vercel&logo=Vercel&logoColor=white)
+[![LinkedIn](https://img.shields.io/badge/-LinkedIn-blue?style=flat&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/pierre-e/)
 
 <br>
 
