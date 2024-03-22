@@ -1,4 +1,0 @@
-codecov:
-  ignore:
-    - "foundry/test"
-    - "foundry/src/mocks"

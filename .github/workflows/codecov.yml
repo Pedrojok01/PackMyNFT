@@ -26,15 +26,15 @@ jobs:
         working-directory: foundry
 
       - name: Run Tests with Foundry
-        run: forge test -vvv
-        working-directory: foundry
-
-      - name: Run snapshot
-        run: forge snapshot
+        run: |
+          forge coverage --report lcov
+          sudo apt-get install lcov
+          lcov --remove ./lcov.info -o ./lcov.info.pruned 'script/**/*' 'test/**/*' 'src/mocks/**/*'
         working-directory: foundry
 
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v4.0.1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
+          file: ./foundry/lcov.info.pruned
           slug: Pedrojok01/PackMyNFT
