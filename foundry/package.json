@@ -11,7 +11,7 @@
     "forge:setup": "forge install foundry-rs/forge-std OpenZeppelin/openzeppelin-contracts",
     "build": "forge build",
     "test": "forge test -vvv",
-    "cover": "forge coverage",
+    "cover": "forge coverage --report lcov",
     "cover:debug": "forge coverage --report debug",
     "lint": "solhint \"src/**/*.sol\"",
     "prettier": "prettier --write --plugin=prettier-plugin-solidity \"**/*.sol\"",
