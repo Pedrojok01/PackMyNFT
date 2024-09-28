@@ -23,6 +23,7 @@ export const fetcher = async <T>({
   }
 
   const res = await fetch(key, {
+    cache: "no-cache",
     method: "POST",
     headers: {
       accept: "application/json",
