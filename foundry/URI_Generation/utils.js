@@ -43,7 +43,7 @@ export const pushAttributesPromise = (ipfsArray, number) => {
       name: metadata.name,
       description: metadata.description,
       image: `ipfs://${IPFS_img}/images/${paddedHex}.png`,
-      external_url: "https://packmynft.com/",
+      external_url: "https://packmynft.pedrojok.com/",
       attributes: [
         {
           display_type: "number",

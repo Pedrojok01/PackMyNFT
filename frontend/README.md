@@ -17,7 +17,7 @@
 
 PackMyNFT is an innovative web application designed for any EVM blockchain, enabling users to bundle various assets into a single NFT pack. This project simplifies the process of grouping native coins, ERC20 tokens, and NFTs (ERC721 and ERC1155), and allows to create up to 200 packs per transaction. The packs are represented as ERC721 tokens, which means they can be traded on any marketplace supporting this standard.
 
-Try it yourself: [https://packmynft.com/](https://packmynft.com/)
+Try it yourself: [https://packmynft.pedrojok.com/](https://packmynft.pedrojok.com/)
 
 ## Built With:
 

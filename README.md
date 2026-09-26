@@ -78,7 +78,7 @@ Deployed & Verified on:
 
 ## Try it yourself:
 
-[https://packmynft.com/](https://packmynft.com/)
+[https://packmynft.pedrojok.com/](https://packmynft.pedrojok.com/)
 
 ## Mint Pack(s)
 
