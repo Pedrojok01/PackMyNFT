@@ -40,7 +40,7 @@ Deployed & Verified on:
 - [Fantom testnet](https://testnet.ftmscan.com/address/0x99482d34dD610067b66b0A32Fa3Cf1a512D77b2b#code)
 - [Bsc Testnet](https://testnet.bscscan.com/address/0x99482d34dD610067b66b0A32Fa3Cf1a512D77b2b#code) // Not verified
 
-Try it yourself: [https://packmynft.com/](https://packmynft.com/)
+Try it yourself: [https://packmynft.pedrojok.com/](https://packmynft.pedrojok.com/)
 
 ## Table of Contents
 <Details>
