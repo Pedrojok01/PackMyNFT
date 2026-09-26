@@ -26,10 +26,7 @@ jobs:
         working-directory: foundry
 
       - name: Run Tests with Foundry
-        run: |
-          forge coverage --report lcov
-          sudo apt-get install lcov
-          lcov --remove ./lcov.info -o ./lcov.info 'script/**/*' 'test/**/*' 'src/mocks/**/*'
+        run: forge coverage --report lcov --no-match-coverage "(script|test|mocks)/"
         working-directory: foundry
 
       - name: Upload coverage reports to Codecov
